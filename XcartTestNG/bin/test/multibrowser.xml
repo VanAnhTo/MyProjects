@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="CrossBrowser/MultiBrowser">
+
+	<!-- <suite name="CrossBrowser/MultiBrowser" parallel="tests" thread-count="4"> -->
+
+	<!-- <test name="Test login in chrome"> <parameter name="browser" value="chrome" 
+		/> <classes> <class name="Test.TestLogin" /> </classes> </test> -->
+
+	<!-- <test name="Test login in chrome"> <parameter name="browser" value="chrome" 
+		/> <classes> <class name="Test.TestSign" /> </classes> </test> -->
+
+ 	<test name="Test login in chrome">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="test.Contact" />
+		</classes>
+	</test>
+<!-- 
+	 <test name="Test login in chrome">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="seleniumDigitest.AddUserDigitest" />
+		</classes>
+	</test>   -->
+
+
+
+	<!-- <test name="ie"> <parameter name="browser" value="ie" /> <classes> 
+		<class name="tests.v" /> </classes> </test> <test name="firefox"> <parameter 
+		name="browser" value="firefox" /> <classes> <class name="tests.v" /> </classes> 
+		</test> <test name="chrome"> <parameter name="browser" value="chrome" /> 
+		<classes> <class name="tests.v" /> </classes> </test> -->
+
+
+</suite>
