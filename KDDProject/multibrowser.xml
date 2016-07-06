@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="CrossBrowser/MultiBrowser">
+
+
+ 	<test name="Test login in chrome">
+		
+		<classes>
+			<class name="scenarios.AddNew2dd" />
+		</classes>
+	</test>
+
+
+</suite>
