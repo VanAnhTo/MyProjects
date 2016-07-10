@@ -1,4 +1,6 @@
-package domain;
+package domain.builder.account;
+
+import domain.detail.account.LoginDetails;
 
 public class LoginDetailBuilder {
 

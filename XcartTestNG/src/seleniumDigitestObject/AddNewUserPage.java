@@ -3,6 +3,19 @@ package seleniumDigitestObject;
 import org.openqa.selenium.By;
 
 public class AddNewUserPage {
+	
+	public static class UserModel
+	{
+		public String username;
+		public String email;
+		public String firstName;
+		public String lastname;		
+		public String website;
+		public String password;
+		public String role;
+
+	}
+	
 	public static By menuUser = By.cssSelector("#menu-users > a > div.wp-menu-name");	
 	//menu add new user
 	public static By addNewUser = By.cssSelector("#menu-users > ul > li:nth-child(3) > a");	

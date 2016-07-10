@@ -1,6 +1,9 @@
-package domain;
+package domain.builder.material;
 
 import java.util.List;
+
+import domain.detail.material.AddNew2ddDetails;
+import domain.detail.material.MaterialDetail;
 
 public class AddNew2ddDetailBuilder {
 	private String fileNumber;

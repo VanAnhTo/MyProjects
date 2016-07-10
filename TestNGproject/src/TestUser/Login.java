@@ -41,7 +41,6 @@ public class Login extends BaseScenario  {
 	}*/
 	
 	//CHap 11
-	@Test
 	public void testLogin() throws InterruptedException{
 		LoginDetails loginDetails = new LoginDetailsBuilder().
 				withUsername("admin").withPassword("123456").
@@ -52,7 +51,6 @@ public class Login extends BaseScenario  {
 
 	}
 	
-	@Test
 	public void testLoginFail() throws InterruptedException{
 		LoginDetailsBuilder builder =   new LoginDetailsBuilder();
 		// thong tin thuoc

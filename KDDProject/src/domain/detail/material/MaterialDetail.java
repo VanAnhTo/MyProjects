@@ -1,4 +1,4 @@
-package domain;
+package domain.detail.material;
 
 public class MaterialDetail {
 

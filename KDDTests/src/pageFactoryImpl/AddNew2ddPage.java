@@ -129,26 +129,8 @@ public class AddNew2ddPage {
     	qualityMaterialField.clear();
     	qualityMaterialField.sendKeys(qualityMaterial);
     }
-    public void chooseProviderMaterialFieldAs(){
-    	providerMaterialField.click();
-    	amountMaterialField.sendKeys(amountMaterial);
-    }
-    public void enterAmountMaterialFieldAs(String amountMaterial){
-    	amountMaterialField.clear();
-    	amountMaterialField.sendKeys(amountMaterial);
-    }
-    public void enterAmountMaterialFieldAs(String amountMaterial){
-    	amountMaterialField.clear();
-    	amountMaterialField.sendKeys(amountMaterial);
-    }
-    public void enterAmountMaterialFieldAs(String amountMaterial){
-    	amountMaterialField.clear();
-    	amountMaterialField.sendKeys(amountMaterial);
-    }
-    public void enterAmountMaterialFieldAs(String amountMaterial){
-    	amountMaterialField.clear();
-    	amountMaterialField.sendKeys(amountMaterial);
-    }
+
+
     
     
     

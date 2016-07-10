@@ -1,6 +1,6 @@
 package TestSuite;
 
-import static org.junit.Assert.assertEquals;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 
 import Common.Common;
 
@@ -41,7 +42,7 @@ public class UploadFileZamzar {
 			
 			String exMess = "File upload complete";
 			String acMess= driver.findElement(By.cssSelector(".largeHeader")).getText();
-			assertEquals(exMess,acMess);
+			Assert.assertEquals(exMess,acMess);
 			
 			if(exMess.contentEquals(acMess))
 			{

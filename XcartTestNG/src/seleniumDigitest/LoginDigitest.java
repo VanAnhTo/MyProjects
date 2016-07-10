@@ -42,7 +42,7 @@ public class LoginDigitest {
 	@AfterTest
 	public void tearDown() throws Exception
 	{
-		Util.driver.close();
+		Util.driver.quit();
 
 	}
 }

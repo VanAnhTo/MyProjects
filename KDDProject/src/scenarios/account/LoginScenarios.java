@@ -1,13 +1,14 @@
-package scenarios;
+package scenarios.account;
 
 import org.testng.annotations.Test;
 
-import domain.LoginDetailBuilder;
-import domain.LoginDetails;
+import domain.builder.account.LoginDetailBuilder;
+import domain.detail.account.LoginDetails;
+import scenarios.BaseScenario;
 
 
 
-public class Login extends BaseScenario{
+public class LoginScenarios extends BaseScenario{
 
     @Test
     public void testLoginSucessfull(){

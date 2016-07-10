@@ -39,7 +39,7 @@ public class Contact {
 					ObjContact.txtMessage
 			};
 			for(int rowStart = 1; rowStart <= rowsInSheet; rowStart++){
-				Util.driver.get(Util.URL_DIGITEST+"contact/");				
+				Util.driver.get(Util.URL_XCART+"?target=contact_us");				
 				for(int i = 0; i < controls.length; i++){
 					temp = ExcelCommon_POI.getCellData(rowStart,column++,ExcelWsheet);
 					Util.driver.findElement(controls[i]).sendKeys(temp);

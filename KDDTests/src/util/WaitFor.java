@@ -1,6 +1,9 @@
 package util;
 
 import com.google.common.base.Function;
+
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -24,7 +27,7 @@ public class WaitFor {
 
         return wait.until(new Function<WebDriver, WebElement>() {
             @Override
-			@Override
+
 			public WebElement apply(WebDriver driver) {
                 return driver.findElement(elementIdentifier);
             }

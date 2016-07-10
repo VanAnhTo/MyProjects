@@ -1,4 +1,6 @@
-package domain;
+package domain.builder.material;
+
+import domain.detail.material.MaterialDetail;
 
 public class MaterialDetailBuilder {
 
@@ -53,7 +55,8 @@ public class MaterialDetailBuilder {
 	}
 	
 	public MaterialDetail build() {
-		return new MaterialDetail(materialName, contentMaterial,  unitMaterial, amountMaterial, qualityMaterial,registrationNumber,  contentration,  contentImport);
+		return new MaterialDetail(materialName, contentMaterial,  unitMaterial, amountMaterial, 
+									qualityMaterial,registrationNumber,  contentration,  contentImport);
 	}
 
 }

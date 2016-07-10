@@ -1,4 +1,4 @@
-package domain;
+package domain.detail.material;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package domain;
+package domain.detail.account;
 
 /**
  * Created with IntelliJ IDEA.

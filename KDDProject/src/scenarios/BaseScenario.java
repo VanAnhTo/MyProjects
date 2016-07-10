@@ -16,7 +16,7 @@ import java.io.IOException;
 public class BaseScenario {
     // Use the application driver
     WebDriver driver;
-    SpecWithPageStoreImplementation user ;
+    protected SpecWithPageStoreImplementation user ;
     PageStore pageStore;
 
     @BeforeMethod(alwaysRun = true)

@@ -23,7 +23,6 @@ public class RegisterDigitest {
 		Util.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 	@Test
-	
 	public void doRegisterOnDigitest() throws Exception
 	{
 		try{

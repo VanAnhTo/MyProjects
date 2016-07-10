@@ -1,4 +1,4 @@
-package pageFactoryImpl;
+package page.material;
 
 import java.util.List;
 
@@ -6,7 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
-public class AddNewBase {
+
+public abstract class AddNewPageBase {
 	
 	// Thuoc tinh
 	//===============================================
@@ -102,11 +103,14 @@ public class AddNewBase {
 	// End Thuoc tinh
 	//===============================================
     
-    public void enterFileNumberFieldAs(String fileNumber) {
-        fileNumberField = allTextbox.get(0);
-        fileNumberField.clear();
-        fileNumberField.sendKeys(fileNumber);
-    }
+    public abstract void enterFileNumberFieldAs(String fileNumber);
+    
+    public abstract void enterQuyCachDongGoiFieldAs(String quyCachDongGoi);
+//    {
+//        fileNumberField = allTextbox.get(0);
+//        fileNumberField.clear();
+//        fileNumberField.sendKeys(fileNumber);
+//    }
     
     public void enterSignWhereFieldAs(String signWhere) {
     	signWhereField = allTextbox.get(1);
@@ -118,36 +122,38 @@ public class AddNewBase {
     	copporateCheckBox = allCheckbox.get(1);
     	copporateCheckBox.click();
     }
-    
+    //ten nglieu
     public void enterMaterialNameFieldAs(String materialName){
     	materialNameField = allCombobox.get(1);
     	materialNameField.clear();
     	materialNameField.sendKeys(materialName);
     }
-    
+    //ham luong, dang bao che
     public void enterContenMaterialFieldAs(String contentMaterial){
     	contenMaterialField = allTextbox.get(2);
     	contenMaterialField.clear();
     	contenMaterialField.sendKeys(contentMaterial);
     }
-    
+    //don vi tinh
     public void enterUnitMaterialFieldAs(String unitMaterial){
     	unitMaterialField = allCombobox.get(2);
     	unitMaterialField.clear();
     	unitMaterialField.sendKeys(unitMaterial);
     }
-    
-    public void enterAmountMaterialFieldAs(String amountMaterial){
+    //so luong
+    public abstract void enterAmountMaterialFieldAs(String amountMaterial);
+    /*{
     	amountMaterialField = allTextbox.get(3);
     	amountMaterialField.clear();
     	amountMaterialField.sendKeys(amountMaterial);
-    }
-    
-    public void enterQualityMaterialFieldAs(String qualityMaterial){
+    }*/
+    //tieu chuan chat luong
+    public abstract void enterQualityMaterialFieldAs(String qualityMaterial);
+    /*{
     	qualityMaterialField = allTextbox.get(4);
     	qualityMaterialField.clear();
     	qualityMaterialField.sendKeys(qualityMaterial);
-    }
+    }*/
     //cty cung cap
      public void focusOnProviderMaterialField(){
     	 providerMaterialField = allChosenbox.get(0);
@@ -200,5 +206,9 @@ public class AddNewBase {
     	saveListMaterialButton.click();
     	
     }
+    
+    public abstract void Run();
+    
+    
    
 }

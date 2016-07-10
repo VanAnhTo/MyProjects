@@ -32,8 +32,6 @@ public class AddressBook {
 		String addressSheet = "addressbook";
 		String loginSheet = "login";
 
-
-
 		//Login	
 		Util.driver.get(Util.URL);
 

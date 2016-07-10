@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="1" total="1" passed="0">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="17738" started-at="2016-07-10T14:39:26Z" finished-at="2016-07-10T14:39:44Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="17738" started-at="2016-07-10T14:39:26Z" finished-at="2016-07-10T14:39:44Z">
+      <class name="scenarios.AddNew2dd">
+        <test-method status="PASS" signature="setup()[pri:0, instance:scenarios.AddNew2dd@1629756]" name="setup" is-config="true" duration-ms="8238" started-at="2016-07-10T21:39:27Z" finished-at="2016-07-10T21:39:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="FAIL" signature="testLoginSucessfull()[pri:0, instance:scenarios.AddNew2dd@1629756]" name="testLoginSucessfull" duration-ms="8980" started-at="2016-07-10T21:39:35Z" finished-at="2016-07-10T21:39:44Z">
+          <exception class="java.lang.IndexOutOfBoundsException">
+            <message>
+              <![CDATA[Index: 7, Size: 7]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.IndexOutOfBoundsException: Index: 7, Size: 7
+	at java.util.ArrayList.rangeCheck(Unknown Source)
+	at java.util.ArrayList.get(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementListHandler.invoke(LocatingElementListHandler.java:39)
+	at com.sun.proxy.$Proxy8.get(Unknown Source)
+	at pageFactoryImpl.AddNewPageBase.enterContentImportFieldFeildAs(AddNewPageBase.java:189)
+	at pageFactoryImpl.AddNewEvent.save2ddWith(AddNewEvent.java:38)
+	at pageFactoryImpl.AddNew2aPage.save2ddWith(AddNew2aPage.java:27)
+	at spec.SpecWithPageStoreImplementation.clickAddNew2aWith(SpecWithPageStoreImplementation.java:58)
+	at scenarios.AddNew2dd.testLoginSucessfull(AddNew2dd.java:43)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:778)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
+	at org.testng.TestNG.runSuites(TestNG.java:1075)
+	at org.testng.TestNG.run(TestNG.java:1047)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.IndexOutOfBoundsException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginSucessfull -->
+        <test-method status="PASS" signature="teardown(org.testng.ITestResult)[pri:0, instance:scenarios.AddNew2dd@1629756]" name="teardown" is-config="true" duration-ms="466" started-at="2016-07-10T21:39:44Z" finished-at="2016-07-10T21:39:44Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testLoginSucessfull status=FAILURE method=AddNew2dd.testLoginSucessfull()[pri:0, instance:scenarios.AddNew2dd@1629756] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- scenarios.AddNew2dd -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

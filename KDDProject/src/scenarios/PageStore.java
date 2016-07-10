@@ -22,10 +22,10 @@ public class PageStore {
     List<Object> pages;
 
     public PageStore() {
-    	/*System.setProperty("webdriver.chrome.driver",
+    	System.setProperty("webdriver.chrome.driver",
 				"F:/Selenium/N8/TestNG/chromedriver.exe");
-        webDriver = new ChromeDriver();*/
-    	webDriver = new FirefoxDriver();
+        webDriver = new ChromeDriver();
+    	//webDriver = new FirefoxDriver();
         pages = new ArrayList<Object>();
     }
 

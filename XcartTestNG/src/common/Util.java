@@ -13,6 +13,7 @@ public class Util {
 	public static final String COCOC_PATH = "C:/Users/VanEm/AppData/Local/CocCoc/Browser/Application/browser.exe";
 	
 	public static final String URL_DIGITEST = "http://localhost/selenium-digitest/";
+	public static final String URL_XCART = "http://localhost/xcart/";
 }
 
 
