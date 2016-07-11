@@ -2,30 +2,30 @@ package spec;
 
 
 import domain.detail.account.LoginDetails;
-import domain.detail.material.AddNew2ddDetails;
+import domain.detail.material.PageDetail;
 import page.account.HomePage;
 import page.account.LoginPage;
-import page.material.AddAttachFile2ddPage;
-import page.material.AddNew2aPage;
-import page.material.AddNew2ddPage;
-import scenarios.PageStore;
+import page.material.add.AttachmentFilePage;
+import page.material.add.NormalPage;
+import page.material.add.SpecialOfNormalPage;
+import util.PageStore;
 
 
-public class SpecWithPageStoreImplementation {
+public class Specification {
 
 
     LoginPage onLoginPage;
 
     PageStore pageStore;
     HomePage onHomePage;
-    AddAttachFile2ddPage onAttachPage;
+    AttachmentFilePage onAttachPage;
 
-    public SpecWithPageStoreImplementation(PageStore pageStore) {
+    public Specification(PageStore pageStore) {
         this.pageStore = pageStore;
     }
 
 
-    public SpecWithPageStoreImplementation(LoginPage onLoginPage) {
+    public Specification(LoginPage onLoginPage) {
         this.onLoginPage = onLoginPage;
     }
 
@@ -44,21 +44,21 @@ public class SpecWithPageStoreImplementation {
     	onHomePage.goToCreate2aPage();
     }
     
-    public void clickAddNew2ddWith(AddNew2ddDetails new2ddDetails) throws InterruptedException
+    public void clickAddNew2ddWith(PageDetail new2ddDetails) throws InterruptedException
     {
-    	 AddNew2ddPage onNew2ddPage = pageStore.get(AddNew2ddPage.class);
+    	 SpecialOfNormalPage onNew2ddPage = pageStore.get(SpecialOfNormalPage.class);
     	 onNew2ddPage.save2ddWith(new2ddDetails);
     	 
     }
     
-    public void clickAddNew2aWith(AddNew2ddDetails new2ddDetails) throws InterruptedException
+    public void clickAddNew2aWith(PageDetail new2ddDetails) throws InterruptedException
     {
-    	 AddNew2aPage onNew2ddPage = pageStore.get(AddNew2aPage.class);
+    	 NormalPage onNew2ddPage = pageStore.get(NormalPage.class);
     	 onNew2ddPage.save2ddWith(new2ddDetails);
     	 
     }
     public void goToAttachPage() throws Exception{
-    	onAttachPage = pageStore.get(AddAttachFile2ddPage.class);
+    	onAttachPage = pageStore.get(AttachmentFilePage.class);
     	onAttachPage.saveAllAttachFiles();
     }
     

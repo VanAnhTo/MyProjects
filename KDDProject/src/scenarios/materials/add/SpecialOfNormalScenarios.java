@@ -1,4 +1,4 @@
-package scenarios.material;
+package scenarios.materials.add;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,14 +6,14 @@ import java.util.List;
 import org.testng.annotations.Test;
 
 import domain.builder.account.LoginDetailBuilder;
-import domain.builder.material.AddNew2ddDetailBuilder;
+import domain.builder.material.PageDetailBuilder;
 import domain.builder.material.MaterialDetailBuilder;
 import domain.detail.account.LoginDetails;
-import domain.detail.material.AddNew2ddDetails;
+import domain.detail.material.PageDetail;
 import domain.detail.material.MaterialDetail;
-import scenarios.BaseScenario;
+import scenarios.base.BaseScenario;
 
-public class AddNew2dd extends BaseScenario {
+public class SpecialOfNormalScenarios extends BaseScenario {
 	@Test
 	public void testLoginSucessfull() throws Exception {
 
@@ -22,7 +22,7 @@ public class AddNew2dd extends BaseScenario {
 		given(user).clickLoginWith(loginDetails);
 		// then(user).goToAddNew2ddPage();
 
-		AddNew2ddDetailBuilder builder = new AddNew2ddDetailBuilder();
+		PageDetailBuilder builder = new PageDetailBuilder();
 
 		for (int j = 0; j <= 1; j++) {
 			builder.withFileNumber("SODH/2017").withSignWhere("Ha Noi");
@@ -39,7 +39,7 @@ public class AddNew2dd extends BaseScenario {
 			}
 
 			builder.withMaterialDetailList(materialDetailList);
-			AddNew2ddDetails new2ddDetails = builder.build();
+			PageDetail new2ddDetails = builder.build();
 			then(user).goToAddNew2ddPage();
 			then(user).clickAddNew2ddWith(new2ddDetails);
 			then(user).goToAttachPage();
