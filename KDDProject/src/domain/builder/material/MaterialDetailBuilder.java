@@ -53,10 +53,10 @@ public class MaterialDetailBuilder {
 		this.contentImport = contentImport;
 		return this;
 	}
-	
+
 	public MaterialDetail build() {
-		return new MaterialDetail(materialName, contentMaterial,  unitMaterial, amountMaterial, 
-									qualityMaterial,registrationNumber,  contentration,  contentImport);
+		return new MaterialDetail(materialName, contentMaterial, unitMaterial, amountMaterial, qualityMaterial,
+				registrationNumber, contentration, contentImport);
 	}
 
 }

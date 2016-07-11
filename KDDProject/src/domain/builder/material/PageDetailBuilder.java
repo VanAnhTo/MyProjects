@@ -6,15 +6,10 @@ import domain.detail.material.PageDetail;
 import domain.detail.material.MaterialDetail;
 
 public class PageDetailBuilder {
+	
 	private String fileNumber;
 	private String signWhere;
 	private List<MaterialDetail> materialDetailList;
-	/*
-	 * private String materialName; private String contentMaterial; private
-	 * String unitMaterial; private String amountMaterial; private String
-	 * qualityMaterial; private String registrationNumber; private String
-	 * contentration; private String contentImport;
-	 */
 
 	public PageDetailBuilder withFileNumber(String fileNumber) {
 		this.fileNumber = fileNumber;

@@ -14,11 +14,12 @@ import domain.detail.material.MaterialDetail;
 import scenarios.base.BaseScenario;
 
 public class SpecialOfNormalScenarios extends BaseScenario {
+	
 	@Test
 	public void testLoginSucessfull() throws Exception {
 
 		LoginDetails loginDetails = new LoginDetailBuilder().withUsername("010203123").withPassword("123").build();
-		//Thread.sleep(4000);
+		// Thread.sleep(4000);
 		given(user).clickLoginWith(loginDetails);
 		// then(user).goToAddNew2ddPage();
 
@@ -39,9 +40,9 @@ public class SpecialOfNormalScenarios extends BaseScenario {
 			}
 
 			builder.withMaterialDetailList(materialDetailList);
-			PageDetail new2ddDetails = builder.build();
+			PageDetail pageDetail = builder.build();
 			then(user).goToAddNew2ddPage();
-			then(user).clickAddNew2ddWith(new2ddDetails);
+			then(user).clickAddNew2ddWith(pageDetail);
 			then(user).goToAttachPage();
 
 		}
