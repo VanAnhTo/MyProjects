@@ -18,7 +18,7 @@ public class SpecialOfNormalScenarios extends BaseScenario {
 	@Test
 	public void testLoginSucessfull() throws Exception {
 
-		LoginDetails loginDetails = new LoginDetailBuilder().withUsername("010203123").withPassword("123").build();
+		LoginDetails loginDetails = new LoginDetailBuilder().withUsername(obj.getProperty("Username")).withPassword(obj.getProperty("Password")).build();
 		// Thread.sleep(4000);
 		given(user).clickLoginWith(loginDetails);
 		// then(user).goToAddNew2ddPage();
