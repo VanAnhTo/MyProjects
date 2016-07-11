@@ -1,4 +1,4 @@
-package page.material;
+package page.material.add;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,20 +8,20 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import domain.detail.material.AddNew2ddDetails;
+import domain.detail.material.PageDetail;
 import domain.detail.material.MaterialDetail;
 
-public class AddNewEvent extends AddNewPageBase {
+public class PageEvent extends PageBase {
 	
 
 	WebDriver driver;
 
-	public AddNewEvent(WebDriver driver) {
+	public PageEvent(WebDriver driver) {
 		this.driver = driver;
 	}
 	
 	
-	public void save2ddWith(AddNew2ddDetails new2ddDetails) {
+	public void save2ddWith(PageDetail new2ddDetails) {
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		waitForTextboxFeildAppear();
 		this.clickCopporateCheckBox();

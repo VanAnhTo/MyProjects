@@ -2,14 +2,14 @@ package domain.detail.material;
 
 import java.util.List;
 
-public class AddNew2ddDetails {
+public class PageDetail {
 	
 	private String fileNumber;
 	private String signWhere;
 	
 	private List<MaterialDetail> materialDetailList;
 	
-	public AddNew2ddDetails(String fileNumber,String signWhere,
+	public PageDetail(String fileNumber,String signWhere,
 			List<MaterialDetail> materialDetailList)
 	{
 		this.fileNumber = fileNumber;

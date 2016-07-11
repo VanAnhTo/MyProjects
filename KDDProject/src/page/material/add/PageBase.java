@@ -1,4 +1,4 @@
-package page.material;
+package page.material.add;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 
 
-public abstract class AddNewPageBase {
+public abstract class PageBase {
 	
 	// Thuoc tinh
 	//===============================================

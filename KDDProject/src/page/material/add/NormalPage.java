@@ -1,4 +1,4 @@
-package page.material;
+package page.material.add;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,14 +8,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import domain.detail.material.AddNew2ddDetails;
+import domain.detail.material.PageDetail;
 import domain.detail.material.MaterialDetail;
 
-public class AddNew2aPage extends AddNewEvent {
+public class NormalPage extends PageEvent {
 
 	WebDriver driver;
 	
-	public AddNew2aPage(WebDriver driver) {
+	public NormalPage(WebDriver driver) {
 		super(driver);
 
 		// TODO Auto-generated constructor stub

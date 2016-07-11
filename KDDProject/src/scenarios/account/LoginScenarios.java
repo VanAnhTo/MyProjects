@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 import domain.builder.account.LoginDetailBuilder;
 import domain.detail.account.LoginDetails;
-import scenarios.BaseScenario;
+import scenarios.base.BaseScenario;
 
 
 

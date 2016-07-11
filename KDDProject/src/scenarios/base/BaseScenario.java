@@ -1,4 +1,4 @@
-package scenarios;
+package scenarios.base;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -7,7 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import spec.SpecWithPageStoreImplementation;
+
+import spec.Specification;
+import util.PageStore;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,13 +18,13 @@ import java.io.IOException;
 public class BaseScenario {
     // Use the application driver
     WebDriver driver;
-    protected SpecWithPageStoreImplementation user ;
+    protected Specification user ;
     PageStore pageStore;
 
     @BeforeMethod(alwaysRun = true)
       public void setup(){
         pageStore = new PageStore();
-        user = new SpecWithPageStoreImplementation(pageStore);
+        user = new Specification(pageStore);
 
         //launch the application under test
         driver = pageStore.getDriver();
@@ -38,19 +40,19 @@ public class BaseScenario {
 
     }
 
-    protected <T extends SpecWithPageStoreImplementation> T given(T dsl) {
+    protected <T extends Specification> T given(T dsl) {
         return dsl;
     }
 
-    protected <T extends SpecWithPageStoreImplementation> T when(T dsl) {
+    protected <T extends Specification> T when(T dsl) {
         return dsl;
     }
 
-    protected <T extends SpecWithPageStoreImplementation> T then(T dsl) {
+    protected <T extends Specification> T then(T dsl) {
         return dsl;
     }
 
-    protected <T extends SpecWithPageStoreImplementation> T and(T dsl) {
+    protected <T extends Specification> T and(T dsl) {
         return dsl;
     }
 

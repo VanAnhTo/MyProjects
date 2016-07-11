@@ -1,4 +1,4 @@
-package page.material;
+package page.material.add;
 
 import java.util.List;
 
@@ -10,10 +10,10 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class AddAttachFile2ddPage {
+public class AttachmentFilePage {
 	
 	WebDriver driver;
-	public AddAttachFile2ddPage(WebDriver driver) {
+	public AttachmentFilePage(WebDriver driver) {
         this.driver = driver;
     }
     
