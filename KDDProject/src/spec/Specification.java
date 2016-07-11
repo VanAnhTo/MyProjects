@@ -13,20 +13,10 @@ import util.PageStore;
 
 public class Specification {
 
-
-    LoginPage onLoginPage;
-
     PageStore pageStore;
-    HomePage onHomePage;
-    AttachmentFilePage onAttachPage;
 
     public Specification(PageStore pageStore) {
         this.pageStore = pageStore;
-    }
-
-
-    public Specification(LoginPage onLoginPage) {
-        this.onLoginPage = onLoginPage;
     }
 
     public void clickLoginWith(LoginDetails loginDetails) {
@@ -36,11 +26,11 @@ public class Specification {
     }
     
     public void goToAddNew2ddPage() throws InterruptedException{
-    	onHomePage = pageStore.get(HomePage.class);
+    	HomePage onHomePage = pageStore.get(HomePage.class);
     	onHomePage.goToCreate2ddPage();
     }
     public void goToAddNew2aPage() throws InterruptedException{
-    	onHomePage = pageStore.get(HomePage.class);
+    	HomePage onHomePage = pageStore.get(HomePage.class);
     	onHomePage.goToCreate2aPage();
     }
     
@@ -58,7 +48,7 @@ public class Specification {
     	 
     }
     public void goToAttachPage() throws Exception{
-    	onAttachPage = pageStore.get(AttachmentFilePage.class);
+    	AttachmentFilePage onAttachPage = pageStore.get(AttachmentFilePage.class);
     	onAttachPage.saveAllAttachFiles();
     }
     

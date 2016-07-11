@@ -12,7 +12,6 @@ import domain.detail.material.PageDetail;
 import domain.detail.material.MaterialDetail;
 
 public class PageEvent extends PageBase {
-	
 
 	WebDriver driver;
 
@@ -45,12 +44,9 @@ public class PageEvent extends PageBase {
 			this.choosemanufacturalMaterialCombobox();
 			this.clickAddMaterialButton();
 			waitForDataFillOnTableComplete(i);
-			// wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".z-listbox-body
-			// table tbody:nth-child(2) tr:nth-child("+ i +")")));
 			i++;
 		}
 		this.clickSaveListMaterialButton();
-		// waitUtilNotificationAppear();
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".z-notification")));
 	}
 	
@@ -58,11 +54,6 @@ public class PageEvent extends PageBase {
 		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
 		wait.until(visibilityOfElementLocated(
 				By.cssSelector(".z-listbox-body table tbody:nth-child(2) tr:nth-child(" + i + ")")));
-	}
-
-	private void waitUtilNotificationAppear() {
-		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
-		wait.until(visibilityOfElementLocated(By.cssSelector(".z-notification")));
 	}
 
 	protected void waitForTextboxFeildAppear() {
@@ -102,12 +93,6 @@ public class PageEvent extends PageBase {
 
 	@Override
 	public void enterQualityMaterialFieldAs(String qualityMaterial) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void Run() {
 		// TODO Auto-generated method stub
 		
 	}
