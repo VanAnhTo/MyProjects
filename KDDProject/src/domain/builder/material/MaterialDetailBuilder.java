@@ -12,6 +12,13 @@ public class MaterialDetailBuilder {
 	private String registrationNumber;
 	private String contentration;
 	private String contentImport;
+	private String quyCachDongGoi;
+	
+	public MaterialDetailBuilder withQuyCachDongGoi(String quyCachDongGoi)
+	{
+		this.quyCachDongGoi = quyCachDongGoi;
+		return this;
+	}
 
 	public MaterialDetailBuilder withMaterialName(String materialName) {
 		this.materialName = materialName;
@@ -56,7 +63,7 @@ public class MaterialDetailBuilder {
 
 	public MaterialDetail build() {
 		return new MaterialDetail(materialName, contentMaterial, unitMaterial, amountMaterial, qualityMaterial,
-				registrationNumber, contentration, contentImport);
+				registrationNumber, contentration, contentImport, quyCachDongGoi);
 	}
 
 }

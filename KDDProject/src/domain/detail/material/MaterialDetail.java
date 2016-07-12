@@ -10,9 +10,10 @@ public class MaterialDetail {
 	private String registrationNumber;
 	private String contentration;
 	private String contentImport;
+	private String quyCachDongGoi;
 
 	public MaterialDetail(String materialName, String contentMaterial, String unitMaterial, String amountMaterial,
-			String qualityMaterial, String registrationNumber, String contentration, String contentImport) {
+			String qualityMaterial, String registrationNumber, String contentration, String contentImport, String quyCachDongGoi) {
 
 		this.materialName = materialName;
 		this.contentMaterial = contentMaterial;
@@ -22,7 +23,13 @@ public class MaterialDetail {
 		this.registrationNumber = registrationNumber;
 		this.contentration = contentration;
 		this.contentImport = contentImport;
+		this.quyCachDongGoi = quyCachDongGoi;
 
+	}
+	
+	public String getQuyCachDongGoi()
+	{
+		return quyCachDongGoi;
 	}
 
 	public String getMaterialName() {

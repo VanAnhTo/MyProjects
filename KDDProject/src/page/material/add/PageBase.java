@@ -91,7 +91,7 @@ public abstract class PageBase {
 	@FindBy(css = ".z-combobox .z-combobox-inp")
 	protected List<WebElement> allCombobox;
 
-	@FindBy(css = ".z-chosenbox .z-chosenbox-inp")
+	@FindBy(css = ".z-groupbox-cnt input.z-chosenbox-inp")
 	protected List<WebElement> allChosenbox;
 
 	@FindBy(css = ".button.z-button-os")
@@ -109,12 +109,14 @@ public abstract class PageBase {
 	// fileNumberField.sendKeys(fileNumber);
 	// }
 
+	//Noi ky
 	public void enterSignWhereFieldAs(String signWhere) {
 		signWhereField = allTextbox.get(1);
 		signWhereField.clear();
 		signWhereField.sendKeys(signWhere);
 	}
-
+	
+	//Muc dich don hang
 	public void clickCopporateCheckBox() {
 		copporateCheckBox = allCheckbox.get(1);
 		copporateCheckBox.click();
@@ -155,35 +157,41 @@ public abstract class PageBase {
 	 * { qualityMaterialField = allTextbox.get(4); qualityMaterialField.clear();
 	 * qualityMaterialField.sendKeys(qualityMaterial); }
 	 */
+	
 	// cty cung cap
-	public void focusOnProviderMaterialField() {
+	public abstract void focusOnProviderMaterialField() ;
+	/*{
 		providerMaterialField = allChosenbox.get(0);
 		providerMaterialField.click();
-	}
+	}*/
 
-	public void chooseProviderMaterialCombobox() {
+	public abstract void chooseProviderMaterialCombobox() ;
+	/*{
 		providerMaterialCombobox = allChosenComboboxChild1.get(2);
 		providerMaterialCombobox.click();
-	}
+	}*/
 
 	// ct san xuat
-	public void focusManufacturalMaterialField() {
+	public abstract void focusManufacturalMaterialField(); 
+	/*{
 		manufacturalMaterialField = allChosenbox.get(1);
 		manufacturalMaterialField.click();
-	}
+	}*/
 
-	public void choosemanufacturalMaterialCombobox() {
+	public abstract void choosemanufacturalMaterialCombobox();
+	/*{
 		manufacturalMaterialCombobox = allChosenComboboxChild2.get(2);
 		manufacturalMaterialCombobox.click();
-	}
+	}*/
 
 	// SDK thuoc cung cung
 
-	public void enterRegistrationNumberFeildAs(String registrationNumner) {
+	public abstract void enterRegistrationNumberFeildAs(String registrationNumner) ;
+	/*{
 		registrationNumberFeild = allTextbox.get(5);
 		registrationNumberFeild.clear();
 		registrationNumberFeild.sendKeys(registrationNumner);
-	}
+	}*/
 
 	public void enterContentrationFieldAs(String contentration) {
 		contentrationField = allTextbox.get(6);

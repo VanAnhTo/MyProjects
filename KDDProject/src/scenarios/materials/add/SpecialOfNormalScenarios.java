@@ -34,15 +34,15 @@ public class SpecialOfNormalScenarios extends BaseScenario {
 						.withContenMaterial("Ham Luong").withQualityMateriall("TCCL").withUnitMaterial("kg");
 				materialDetailBuilder.withContentration("Ham luong SDK thuoc tu nguyen lieu")
 						.withContentImportl("Dang bao che SDK thuoc tu NL")
-						.withRegistrationNumber("SDK cua thuoc tu nl");
+						.withRegistrationNumber("SDK cua thuoc tu nl").withQuyCachDongGoi("Quy cach dong goi a");
 				materialDetailList.add(materialDetailBuilder.build());
 
 			}
 
 			builder.withMaterialDetailList(materialDetailList);
 			PageDetail pageDetail = builder.build();
-			then(user).goToAddNew2ddPage();
-			then(user).clickAddNew2ddWith(pageDetail);
+			then(user).goToAddNew2aPage();
+			then(user).clickAddNew2aWith(pageDetail);
 			then(user).goToAttachPage();
 
 		}

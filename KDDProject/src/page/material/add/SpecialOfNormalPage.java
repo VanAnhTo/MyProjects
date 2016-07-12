@@ -34,5 +34,36 @@ public class SpecialOfNormalPage extends PageEvent {
     	qualityMaterialField.clear();
     	qualityMaterialField.sendKeys(qualityMaterial);
     }
+	
+	//cong ty cung cap
+	@Override
+	public void focusOnProviderMaterialField()
+	{
+		providerMaterialField = allChosenbox.get(0);
+		providerMaterialField.click();
+	}
+	@Override
+	public void chooseProviderMaterialCombobox() {
+		providerMaterialCombobox = allChosenComboboxChild1.get(2);
+		providerMaterialCombobox.click();
+	}
 
+	// ct san xuat
+	@Override
+		public void focusManufacturalMaterialField() {
+			manufacturalMaterialField = allChosenbox.get(1);
+			manufacturalMaterialField.click();
+		}
+	@Override
+	public void choosemanufacturalMaterialCombobox() 
+	{
+		manufacturalMaterialCombobox = allChosenComboboxChild2.get(2);
+		manufacturalMaterialCombobox.click();
+	}
+	@Override
+	public void enterRegistrationNumberFeildAs(String registrationNumner) {
+		registrationNumberFeild = allTextbox.get(5);
+		registrationNumberFeild.clear();
+		registrationNumberFeild.sendKeys(registrationNumner);
+	}
 }

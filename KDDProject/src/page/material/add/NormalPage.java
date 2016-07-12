@@ -9,7 +9,7 @@ public class NormalPage extends PageEvent {
 	public NormalPage(WebDriver driver) {
 		super(driver);
 	}
-	
+
 	@Override
 	public void enterFileNumberFieldAs(String fileNumber)
 	{
@@ -17,7 +17,7 @@ public class NormalPage extends PageEvent {
 		fileNumberField.clear();
 		fileNumberField.sendKeys(fileNumber);
 	}
-	
+
 	@Override
 	public void enterAmountMaterialFieldAs(String amountMaterial)
 	{
@@ -25,15 +25,15 @@ public class NormalPage extends PageEvent {
 		amountMaterialField.clear();
 		amountMaterialField.sendKeys(amountMaterial);
 	}
-	
+
 	@Override
-	public  void enterQuyCachDongGoiFieldAs(String quyCachDongGoi)
+	public void enterQuyCachDongGoiFieldAs(String quyCachDongGoi)
 	{
 		fileNumberField = allTextbox.get(3);
 		fileNumberField.clear();
 		fileNumberField.sendKeys(quyCachDongGoi);
 	}
-	
+
 	@Override
 	public void enterQualityMaterialFieldAs(String qualityMaterial)
 	{
@@ -41,6 +41,30 @@ public class NormalPage extends PageEvent {
 		qualityMaterialField.clear();
 		qualityMaterialField.sendKeys(qualityMaterial);
 	}
+	//cty cung cap
+	@Override
+	public void focusOnProviderMaterialField()
+	{
+		providerMaterialField = allChosenbox.get(1);
+		providerMaterialField.click();
+	}
+	@Override
+	public void chooseProviderMaterialCombobox() {
+		providerMaterialCombobox = allChosenComboboxChild1.get(1);
+		providerMaterialCombobox.click();
+	}
 
+	// ct san xuat
+	@Override
+	public void focusManufacturalMaterialField() {
+		manufacturalMaterialField = allChosenbox.get(0);
+		manufacturalMaterialField.click();
+	}
+	@Override
+	public void choosemanufacturalMaterialCombobox() 
+	{
+		manufacturalMaterialCombobox = allChosenComboboxChild2.get(1);
+		manufacturalMaterialCombobox.click();
+	}
 
 }

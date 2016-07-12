@@ -33,6 +33,9 @@ public class PageEvent extends PageBase {
 			this.enterContenMaterialFieldAs(materialDetail.getContenMaterial());
 			this.enterMaterialNameFieldAs(materialDetail.getMaterialName());
 			this.enterUnitMaterialFieldAs(materialDetail.getUnitMaterial());
+			
+			this.enterQuyCachDongGoiFieldAs(materialDetail.getQuyCachDongGoi());
+			
 			this.enterRegistrationNumberFeildAs(materialDetail.getRegistrationNumber());
 			this.enterContentImportFieldFeildAs(materialDetail.getContentImportl());
 			this.enterContentrationFieldAs(materialDetail.getContentration());
@@ -93,6 +96,41 @@ public class PageEvent extends PageBase {
 
 	@Override
 	public void enterQualityMaterialFieldAs(String qualityMaterial) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void focusOnProviderMaterialField() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void chooseProviderMaterialCombobox() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void focusManufacturalMaterialField() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void choosemanufacturalMaterialCombobox() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void enterRegistrationNumberFeildAs(String registrationNumner) {
 		// TODO Auto-generated method stub
 		
 	}

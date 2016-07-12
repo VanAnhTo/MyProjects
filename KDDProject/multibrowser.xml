@@ -7,7 +7,7 @@
  	<test name="Test login in chrome">
 		
 		<classes>
-			<class name="scenarios.AddNew2dd" />
+			<class name="scenarios.materials.add.SpecialOfNormalScenarios" />
 		</classes>
 	</test>
 
