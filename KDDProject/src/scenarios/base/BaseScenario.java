@@ -12,9 +12,7 @@ import spec.Specification;
 import util.PageStore;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Properties;
 
 public class BaseScenario {
 	// Use the application driver
@@ -177,4 +175,4 @@ public class BaseScenario {
 		return new File(fullPath);
 	}
 
-}
+}*/

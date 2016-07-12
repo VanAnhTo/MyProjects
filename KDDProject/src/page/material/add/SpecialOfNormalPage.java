@@ -18,7 +18,7 @@ public class SpecialOfNormalPage extends PageEvent {
 				.parseInt(PropertiesStore.getProperty("PositionOfAmountMaterialField_SpecialOfNormalPage"));
 		positionOfQualityMaterialField = Integer
 				.parseInt(PropertiesStore.getProperty("PositionOfQualityMaterialField_SpecialOfNormalPage"));
-	}
+ 	}
 
 
 }
@@ -92,4 +92,4 @@ public class SpecialOfNormalPage extends PageEvent {
 		registrationNumberFeild.clear();
 		registrationNumberFeild.sendKeys(registrationNumner);
 	}
-}
+}*/

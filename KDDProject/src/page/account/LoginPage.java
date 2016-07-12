@@ -59,6 +59,7 @@ public class LoginPage {
 
 	    private ExpectedCondition<WebElement> visibilityOfElementLocated(final By locator) {
 			return new ExpectedCondition<WebElement>() {
+				@Override
 				public WebElement apply(WebDriver driver) {
 					WebElement toReturn = driver.findElement(locator);
 					if (toReturn.isDisplayed()) {
