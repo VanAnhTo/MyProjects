@@ -10,10 +10,6 @@ public class SpecialOfNormalPage extends PageEvent {
 
 	WebDriver driver;
 
-	private int positionOfFileNumberField;
-	private int positionOfAmountMaterialField;
-	private int positionOfQualityMaterialField;
-
 	public SpecialOfNormalPage(WebDriver driver) throws NumberFormatException, IOException {
 		super(driver);
 		positionOfFileNumberField = Integer
@@ -24,19 +20,5 @@ public class SpecialOfNormalPage extends PageEvent {
 				.parseInt(PropertiesStore.getProperty("PositionOfQualityMaterialField_SpecialOfNormalPage"));
 	}
 
-	@Override
-	protected int getPositionOfFileNumberField() {
-		return positionOfFileNumberField;
-	}
-
-	@Override
-	protected int getPositionOfAmountMaterialField() {
-		return positionOfAmountMaterialField;
-	}
-
-	@Override
-	protected int getPositionOfQualityMaterialField() {
-		return positionOfQualityMaterialField;
-	}
 
 }

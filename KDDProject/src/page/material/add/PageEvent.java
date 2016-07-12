@@ -73,25 +73,4 @@ public class PageEvent extends PageBase {
 		};
 	}
 
-
-
-	@Override
-	protected int getPositionOfFileNumberField() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	protected int getPositionOfAmountMaterialField() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	protected int getPositionOfQualityMaterialField() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }

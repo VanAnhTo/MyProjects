@@ -10,10 +10,6 @@ public class NormalPage extends PageEvent {
 
 	WebDriver driver;
 
-	private int positionOfFileNumberField;
-	private int positionOfAmountMaterialField;
-	private int positionOfQualityMaterialField;
-
 	public NormalPage(WebDriver driver) throws NumberFormatException, IOException {
 		super(driver);
 		positionOfFileNumberField = Integer
@@ -25,19 +21,5 @@ public class NormalPage extends PageEvent {
 	
 	}
 
-	@Override
-	protected int getPositionOfFileNumberField() {
-		return positionOfFileNumberField;
-	}
-
-	@Override
-	protected int getPositionOfAmountMaterialField() {
-		return positionOfAmountMaterialField;
-	}
-
-	@Override
-	protected int getPositionOfQualityMaterialField() {
-		return positionOfQualityMaterialField;
-	}
 
 }

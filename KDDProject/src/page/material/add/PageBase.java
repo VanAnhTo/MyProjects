@@ -101,23 +101,20 @@ public abstract class PageBase {
 	// ===============================================
 
 
-	protected abstract int getPositionOfFileNumberField();
-	protected abstract int getPositionOfAmountMaterialField();
-	protected abstract int getPositionOfQualityMaterialField();
+	protected int positionOfFileNumberField;
+	protected int positionOfAmountMaterialField;
+	protected int positionOfQualityMaterialField;
 	
 	public void enterFileNumberFieldAs(String fileNumber){
-		int pos = getPositionOfFileNumberField();
-		enterTextBoxField(fileNumberField, pos, fileNumber);
+		enterTextBoxField(fileNumberField, positionOfFileNumberField, fileNumber);
 	}
 	
 	public void enterAmountMaterialFieldAs(String amountMaterial){
-		int pos = getPositionOfAmountMaterialField();
-		enterTextBoxField(amountMaterialField, pos, amountMaterial);
+		enterTextBoxField(amountMaterialField, positionOfAmountMaterialField, amountMaterial);
 	}
 
 	public void enterQualityMaterialFieldAs(String qualityMaterial){
-		int pos = getPositionOfQualityMaterialField();
-		enterTextBoxField(qualityMaterialField, pos, qualityMaterial);
+		enterTextBoxField(qualityMaterialField, positionOfQualityMaterialField, qualityMaterial);
 	}
 
 	public void enterSignWhereFieldAs(String signWhere) {
