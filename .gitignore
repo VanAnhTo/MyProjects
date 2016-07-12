@@ -4,6 +4,7 @@
 .metadata/
 .recommenders/
 .mtj.tmp/
+test-output/
 
 # Package Files #
 *.jar
