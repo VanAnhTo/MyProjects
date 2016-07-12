@@ -1,33 +1,42 @@
 package page.material.add;
 
+import java.io.IOException;
+
 import org.openqa.selenium.WebDriver;
 
+import util.PropertiesStore;
+
 public class SpecialOfNormalPage extends PageEvent {
-	
+
 	WebDriver driver;
 
-	private int positionOfFileNumberField = 0;
-	private int positionOfAmountMaterialField = 3;
-	private int positionOfQualityMaterialField = 4;
-	
-	public SpecialOfNormalPage(WebDriver driver) {
+	private int positionOfFileNumberField;
+	private int positionOfAmountMaterialField;
+	private int positionOfQualityMaterialField;
+
+	public SpecialOfNormalPage(WebDriver driver) throws NumberFormatException, IOException {
 		super(driver);
+		positionOfFileNumberField = Integer
+				.parseInt(PropertiesStore.getProperty("PositionOfFileNumberField_SpecialOfNormalPage"));
+		positionOfAmountMaterialField = Integer
+				.parseInt(PropertiesStore.getProperty("PositionOfAmountMaterialField_SpecialOfNormalPage"));
+		positionOfQualityMaterialField = Integer
+				.parseInt(PropertiesStore.getProperty("PositionOfQualityMaterialField_SpecialOfNormalPage"));
 	}
-	
+
 	@Override
 	protected int getPositionOfFileNumberField() {
 		return positionOfFileNumberField;
 	}
-	
+
 	@Override
 	protected int getPositionOfAmountMaterialField() {
 		return positionOfAmountMaterialField;
 	}
-	
+
 	@Override
 	protected int getPositionOfQualityMaterialField() {
 		return positionOfQualityMaterialField;
 	}
-
 
 }

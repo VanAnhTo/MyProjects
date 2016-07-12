@@ -12,13 +12,14 @@ import domain.detail.account.LoginDetails;
 import domain.detail.material.PageDetail;
 import domain.detail.material.MaterialDetail;
 import scenarios.base.BaseScenario;
+import util.PropertiesStore;
 
 public class SpecialOfNormalScenarios extends BaseScenario {
 	
 	@Test
 	public void testLoginSucessfull() throws Exception {
 
-		LoginDetails loginDetails = new LoginDetailBuilder().withUsername(obj.getProperty("Username")).withPassword(obj.getProperty("Password")).build();
+		LoginDetails loginDetails = new LoginDetailBuilder().withUsername(PropertiesStore.getProperty("Username")).withPassword(PropertiesStore.getProperty("Password")).build();
 		// Thread.sleep(4000);
 		given(user).clickLoginWith(loginDetails);
 		// then(user).goToAddNew2ddPage();

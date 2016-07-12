@@ -21,8 +21,6 @@ public class BaseScenario {
 	WebDriver driver;
 	protected Specification user;
 	PageStore pageStore;
-	FileInputStream objfile;
-	protected Properties obj;
 
 	@BeforeMethod(alwaysRun = true)
 	public void setup() throws IOException {
@@ -32,14 +30,11 @@ public class BaseScenario {
 		// launch the application under test
 		driver = pageStore.getDriver();
 		driver.get("http://203.190.173.37:8080/kinhdoanhduoc/Pages/login.zul");
-		obj = new Properties();
-		objfile = new FileInputStream(System.getProperty("user.dir") + "\\src\\objects.properties");
-		obj.load(objfile);
 
 	}
 
 	@AfterMethod(alwaysRun = true)
-	public void teardown(ITestResult result) {
+	public void teardown(ITestResult result) throws IOException {
 		captureScreenShotInCaseOfFailure(result);
 		// close the browser
 		// pageStore.destroy();
