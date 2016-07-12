@@ -73,27 +73,25 @@ public class PageEvent extends PageBase {
 		};
 	}
 
-	@Override
-	public void enterFileNumberFieldAs(String fileNumber) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
-	public void enterQuyCachDongGoiFieldAs(String quyCachDongGoi) {
+	protected int getPositionOfFileNumberField() {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
-	@Override
-	public void enterAmountMaterialFieldAs(String amountMaterial) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
-	public void enterQualityMaterialFieldAs(String qualityMaterial) {
+	protected int getPositionOfAmountMaterialField() {
 		// TODO Auto-generated method stub
-		
+		return 0;
+	}
+
+
+	@Override
+	protected int getPositionOfQualityMaterialField() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

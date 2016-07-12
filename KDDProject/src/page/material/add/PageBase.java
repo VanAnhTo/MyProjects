@@ -77,37 +77,48 @@ public abstract class PageBase {
 
 	// cung cap
 	@FindBy(css = ".z-chosenbox-sel div:nth-child(1)")
-	protected List<WebElement> allChosenComboboxChild1;
+	private List<WebElement> allChosenComboboxChild1;
 	// san xuat
 	@FindBy(css = ".z-chosenbox-sel div:nth-child(2)")
-	protected List<WebElement> allChosenComboboxChild2;
+	private List<WebElement> allChosenComboboxChild2;
 
 	@FindBy(css = ".z-groupbox-cnt .z-textbox")
-	protected List<WebElement> allTextbox;
+	private List<WebElement> allTextbox;
 
 	@FindBy(css = ".z-checkbox input")
-	protected List<WebElement> allCheckbox;
+	private List<WebElement> allCheckbox;
 
 	@FindBy(css = ".z-combobox .z-combobox-inp")
-	protected List<WebElement> allCombobox;
+	private List<WebElement> allCombobox;
 
 	@FindBy(css = ".z-chosenbox .z-chosenbox-inp")
-	protected List<WebElement> allChosenbox;
+	private List<WebElement> allChosenbox;
 
 	@FindBy(css = ".button.z-button-os")
-	protected List<WebElement> allButton;
+	private List<WebElement> allButton;
 
 	// End Thuoc tinh
 	// ===============================================
 
-	public abstract void enterFileNumberFieldAs(String fileNumber);
 
-	public abstract void enterQuyCachDongGoiFieldAs(String quyCachDongGoi);
-	// {
-	// fileNumberField = allTextbox.get(0);
-	// fileNumberField.clear();
-	// fileNumberField.sendKeys(fileNumber);
-	// }
+	protected abstract int getPositionOfFileNumberField();
+	protected abstract int getPositionOfAmountMaterialField();
+	protected abstract int getPositionOfQualityMaterialField();
+	
+	public void enterFileNumberFieldAs(String fileNumber){
+		int pos = getPositionOfFileNumberField();
+		enterTextBoxField(fileNumberField, pos, fileNumber);
+	}
+	
+	public void enterAmountMaterialFieldAs(String amountMaterial){
+		int pos = getPositionOfAmountMaterialField();
+		enterTextBoxField(amountMaterialField, pos, amountMaterial);
+	}
+
+	public void enterQualityMaterialFieldAs(String qualityMaterial){
+		int pos = getPositionOfQualityMaterialField();
+		enterTextBoxField(qualityMaterialField, pos, qualityMaterial);
+	}
 
 	public void enterSignWhereFieldAs(String signWhere) {
 		signWhereField = allTextbox.get(1);
@@ -120,42 +131,24 @@ public abstract class PageBase {
 		copporateCheckBox.click();
 	}
 
-	// ten nglieu
 	public void enterMaterialNameFieldAs(String materialName) {
 		materialNameField = allCombobox.get(1);
 		materialNameField.clear();
 		materialNameField.sendKeys(materialName);
 	}
 
-	// ham luong, dang bao che
 	public void enterContenMaterialFieldAs(String contentMaterial) {
 		contenMaterialField = allTextbox.get(2);
 		contenMaterialField.clear();
 		contenMaterialField.sendKeys(contentMaterial);
 	}
 
-	// don vi tinh
 	public void enterUnitMaterialFieldAs(String unitMaterial) {
 		unitMaterialField = allCombobox.get(2);
 		unitMaterialField.clear();
 		unitMaterialField.sendKeys(unitMaterial);
 	}
 
-	// so luong
-	public abstract void enterAmountMaterialFieldAs(String amountMaterial);
-
-	/*
-	 * { amountMaterialField = allTextbox.get(3); amountMaterialField.clear();
-	 * amountMaterialField.sendKeys(amountMaterial); }
-	 */
-	// tieu chuan chat luong
-	public abstract void enterQualityMaterialFieldAs(String qualityMaterial);
-
-	/*
-	 * { qualityMaterialField = allTextbox.get(4); qualityMaterialField.clear();
-	 * qualityMaterialField.sendKeys(qualityMaterial); }
-	 */
-	// cty cung cap
 	public void focusOnProviderMaterialField() {
 		providerMaterialField = allChosenbox.get(0);
 		providerMaterialField.click();
@@ -166,7 +159,6 @@ public abstract class PageBase {
 		providerMaterialCombobox.click();
 	}
 
-	// ct san xuat
 	public void focusManufacturalMaterialField() {
 		manufacturalMaterialField = allChosenbox.get(1);
 		manufacturalMaterialField.click();
@@ -176,8 +168,6 @@ public abstract class PageBase {
 		manufacturalMaterialCombobox = allChosenComboboxChild2.get(2);
 		manufacturalMaterialCombobox.click();
 	}
-
-	// SDK thuoc cung cung
 
 	public void enterRegistrationNumberFeildAs(String registrationNumner) {
 		registrationNumberFeild = allTextbox.get(5);
@@ -214,6 +204,12 @@ public abstract class PageBase {
 		saveListMaterialButton = allButton.get(6);
 		saveListMaterialButton.click();
 
+	}
+
+	protected void enterTextBoxField(WebElement textBox, int position, String content) {
+		textBox = allTextbox.get(position);
+		textBox.clear();
+		textBox.sendKeys(content);
 	}
 
 }
