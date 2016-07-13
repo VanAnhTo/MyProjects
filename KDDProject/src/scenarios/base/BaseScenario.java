@@ -67,7 +67,7 @@ public class BaseScenario {
 			File screenShotTargetFile = getTargetFile(screenShotFolder, fileName, "png");
 			FileUtils.copyFile(screenShotSourceFile, screenShotTargetFile);
 		} catch (IOException e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 	}
 
