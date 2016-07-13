@@ -27,7 +27,7 @@ public class SpecialOfNormalScenarios extends BaseScenario {
 		PageDetailBuilder builder = new PageDetailBuilder();
 
 		for (int j = 0; j <= 1; j++) {
-			builder.withFileNumber("SODH/2017 commit lần 1").withSignWhere("Ha Noi");
+			builder.withFileNumber("SODH/2017 commit lần 2").withSignWhere("Ha Noi");
 			List<MaterialDetail> materialDetailList = new ArrayList<MaterialDetail>();
 			MaterialDetailBuilder materialDetailBuilder = new MaterialDetailBuilder();
 			for (int i = 0; i <= 1; i++) {
