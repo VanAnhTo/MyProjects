@@ -37,14 +37,14 @@ public class Specification {
     public void clickAddNew2ddWith(PageDetail new2ddDetails) throws InterruptedException
     {
     	 SpecialOfNormalPage onNew2ddPage = pageStore.get(SpecialOfNormalPage.class);
-    	 onNew2ddPage.save2ddWith(new2ddDetails);
+    	 onNew2ddPage.saveMaterialWith(new2ddDetails);
     	 
     }
     
     public void clickAddNew2aWith(PageDetail new2ddDetails) throws InterruptedException
     {
     	 NormalPage onNew2ddPage = pageStore.get(NormalPage.class);
-    	 onNew2ddPage.save2ddWith(new2ddDetails);
+    	 onNew2ddPage.saveMaterialWith(new2ddDetails);
     	 
     }
     public void goToAttachPage() throws Exception{
