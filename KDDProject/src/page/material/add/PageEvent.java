@@ -20,7 +20,7 @@ public class PageEvent extends PageBase {
 	}
 	
 	
-	public void save2ddWith(PageDetail new2ddDetails) {
+	public void saveMaterialWith(PageDetail new2ddDetails) {
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		waitForTextboxFeildAppear();
 		this.clickCopporateCheckBox();
@@ -34,14 +34,14 @@ public class PageEvent extends PageBase {
 			this.enterMaterialNameFieldAs(materialDetail.getMaterialName());
 			this.enterUnitMaterialFieldAs(materialDetail.getUnitMaterial());
 			this.enterRegistrationNumberFeildAs(materialDetail.getRegistrationNumber());
-			this.enterContentImportFieldFeildAs(materialDetail.getContentImportl());
-			this.enterContentrationFieldAs(materialDetail.getContentration());
+			this.enterContentImportFeildAs(materialDetail.getContentImportl());
+			this.enterContentrationFeildAs(materialDetail.getContentration());
 			this.enterQualityMaterialFieldAs(materialDetail.getQualityMateriall());
 			this.clickCommitedCheckbox();
 			this.focusOnProviderMaterialField();
 			this.chooseProviderMaterialCombobox();
 			this.focusManufacturalMaterialField();
-			this.choosemanufacturalMaterialCombobox();
+			this.chooseManufacturalMaterialCombobox();
 			this.clickAddMaterialButton();
 			waitForDataFillOnTableComplete(i);
 			i++;
