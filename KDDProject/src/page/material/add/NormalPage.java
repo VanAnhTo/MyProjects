@@ -2,9 +2,14 @@ package page.material.add;
 
 import java.io.IOException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import domain.detail.material.MaterialDetail;
+import domain.detail.material.PageDetail;
 import util.PropertiesStore;
 
 public class NormalPage extends PageEvent {
@@ -50,4 +55,35 @@ public class NormalPage extends PageEvent {
 				.parseInt(PropertiesStore.getProperty("PositionOfaveListMaterialButton_NormalPage"));				
 
 	}
+	
+	public void saveMaterialWith(PageDetail new2ddDetails) {
+		waitForTextboxFeildAppear();
+		this.clickCopporateCheckBox();
+		this.enterFileNumberFieldAs(new2ddDetails.getFileNumber());
+		this.enterSignWhereFieldAs(new2ddDetails.getSignWhere());
+
+		int i = 1;
+		for (MaterialDetail materialDetail : new2ddDetails.getMaterialDetailList()) {
+			this.enterAmountMaterialFieldAs(materialDetail.getAmountMaterial());
+			this.enterContenMaterialFieldAs(materialDetail.getContenMaterial());
+			this.enterMaterialNameFieldAs(materialDetail.getMaterialName());
+			this.enterUnitMaterialFieldAs(materialDetail.getUnitMaterial());
+			this.enterRegistrationNumberFieldAs(materialDetail.getRegistrationNumber());
+			this.enterContentImportFeildAs(materialDetail.getContentImportl());
+			this.enterContentrationFeildAs(materialDetail.getContentration());
+			this.enterQualityMaterialFieldAs(materialDetail.getQualityMateriall());
+			this.enterQuyCachDongGoiAs(materialDetail.getQuyCachDongGoi());
+			this.clickCommitedCheckbox();
+			this.focusOnProviderMaterialField();
+			this.chooseProviderMaterialCombobox();
+			this.focusManufacturalMaterialField();
+			this.chooseManufacturalMaterialCombobox();
+			this.clickAddMaterialButton();
+			waitForDataFillOnTableComplete(i);
+			i++;
+		}
+		this.clickSaveListMaterialButton();
+		waitForAlert();
+	}
+	
 }

@@ -35,6 +35,7 @@ public class NormalScenarios extends BaseScenario {
 						.withContenMaterial("Ham Luong").withQualityMateriall("TCCL").withUnitMaterial("kg");
 				materialDetailBuilder.withContentration("Ham luong SDK thuoc tu nguyen lieu")
 						.withContentImportl("Dang bao che SDK thuoc tu NL")
+						.withQuyCachDongGoi("Quy cach dong goi")
 						.withRegistrationNumber("SDK cua thuoc tu nl");
 				materialDetailList.add(materialDetailBuilder.build());
 
