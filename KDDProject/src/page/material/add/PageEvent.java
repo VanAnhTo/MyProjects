@@ -19,7 +19,6 @@ public class PageEvent extends PageBase {
 		this.driver = driver;
 	}
 	
-	
 	public void saveMaterialWith(PageDetail new2ddDetails) {
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		waitForTextboxFeildAppear();
@@ -37,6 +36,7 @@ public class PageEvent extends PageBase {
 			this.enterContentImportFeildAs(materialDetail.getContentImportl());
 			this.enterContentrationFeildAs(materialDetail.getContentration());
 			this.enterQualityMaterialFieldAs(materialDetail.getQualityMateriall());
+			this.enterQuyCachDongGoiAs(materialDetail.getQuyCachDongGoi());
 			this.clickCommitedCheckbox();
 			this.focusOnProviderMaterialField();
 			this.chooseProviderMaterialCombobox();
@@ -59,6 +59,11 @@ public class PageEvent extends PageBase {
 	protected void waitForTextboxFeildAppear() {
 		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
 		wait.until(visibilityOfElementLocated(By.cssSelector(".z-groupbox-cnt .z-textbox")));
+	}
+	
+	protected void waitForAlert() {
+		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".z-notification")));
 	}
 
 	private ExpectedCondition<WebElement> visibilityOfElementLocated(final By locator) {

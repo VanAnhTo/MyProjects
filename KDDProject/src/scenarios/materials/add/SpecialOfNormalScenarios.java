@@ -32,7 +32,8 @@ public class SpecialOfNormalScenarios extends BaseScenario {
 			MaterialDetailBuilder materialDetailBuilder = new MaterialDetailBuilder();
 			for (int i = 0; i <= 1; i++) {
 				materialDetailBuilder.withMaterialName("Nguyen lieu san xuat 1").withAmountMaterial("20")
-						.withContenMaterial("Ham Luong").withQualityMateriall("TCCL").withUnitMaterial("kg");
+						.withContenMaterial("Ham Luong").withQualityMateriall("TCCL")
+						.withUnitMaterial("kg");
 				materialDetailBuilder.withContentration("Ham luong SDK thuoc tu nguyen lieu")
 						.withContentImportl("Dang bao che SDK thuoc tu NL")
 						.withRegistrationNumber("SDK cua thuoc tu nl");
