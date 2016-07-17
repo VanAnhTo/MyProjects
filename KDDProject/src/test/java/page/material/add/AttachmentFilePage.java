@@ -48,7 +48,7 @@ public class AttachmentFilePage {
 	}
 	
 	public void clickButtonChonTep() throws Exception{
-		buttonChonTep.sendKeys("C:\\Users\\VanEm\\Downloads\\GPKD Cong ty Tan Loi My.pdf");
+		buttonChonTep.sendKeys("C:\\Users\\Admin\\Downloads\\645b96400b048d49937824ef3862f005.jpg");
 		waitForUploadFileComplete();
 		clickButtonThemTep();
 		
@@ -77,27 +77,37 @@ public class AttachmentFilePage {
 	{
 		fileTypeOther.click();		
 	}
-	
+	int i = 1;
 	public void saveAllAttachFiles() throws Exception
 	{
 		chonTabTepDinhKem();
 		chonLoaiTepDangKyKinhDoanh();
 		clickButtonChonTep();
+		waitForDataFillOnTableComplete(i);
+		i++;
 		chonLoaiTepTieuChuanChatLuong();
 		clickButtonChonTep();
+		waitForDataFillOnTableComplete(i);
+		i++;
 		chonLoaiTepPPKiemNghiem();
 		clickButtonChonTep();
+		waitForDataFillOnTableComplete(i);
+		i++;
 		chonLoaiTepKhac();
 		clickButtonChonTep();
+		waitForDataFillOnTableComplete(i);
+		i++;
 	}
 	
 	private void waitForUploadFileComplete() {
 		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
 		wait.until(visibilityOfElementLocated(By.cssSelector(".newFile.z-hlayout .z-hlayout-inner .z-label")));
 	}
-	private void waitForSaveFileUploadFileCoplete() {
+	
+	protected void waitForDataFillOnTableComplete(int i) {
 		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
-		wait.until(visibilityOfElementLocated(By.cssSelector("")));
+		wait.until(visibilityOfElementLocated(
+				By.cssSelector(".z-groupbox-cnt .z-listbox-body table tbody:nth-child(2) tr:nth-child(" + i + ")")));
 	}
 
     private ExpectedCondition<WebElement> visibilityOfElementLocated(final By locator) {
