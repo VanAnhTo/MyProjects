@@ -91,6 +91,7 @@ public class SpecialOfNormalPage extends PageEvent {
 			this.clickAddMaterialButton();
 			waitForDataFillOnTableComplete(i);
 			i++;
+			
 		}
 		this.clickSaveListMaterialButton();
 		waitForAlert();
