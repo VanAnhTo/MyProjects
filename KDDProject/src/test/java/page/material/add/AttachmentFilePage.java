@@ -83,31 +83,21 @@ public class AttachmentFilePage {
 		chonTabTepDinhKem();
 		chonLoaiTepDangKyKinhDoanh();
 		clickButtonChonTep();
-		waitForDataFillOnTableComplete(i);
-		i++;
+
 		chonLoaiTepTieuChuanChatLuong();
 		clickButtonChonTep();
-		waitForDataFillOnTableComplete(i);
-		i++;
+
 		chonLoaiTepPPKiemNghiem();
 		clickButtonChonTep();
-		waitForDataFillOnTableComplete(i);
-		i++;
+
 		chonLoaiTepKhac();
 		clickButtonChonTep();
-		waitForDataFillOnTableComplete(i);
-		i++;
+
 	}
 	
 	private void waitForUploadFileComplete() {
 		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
 		wait.until(visibilityOfElementLocated(By.cssSelector(".newFile.z-hlayout .z-hlayout-inner .z-label")));
-	}
-	
-	protected void waitForDataFillOnTableComplete(int i) {
-		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
-		wait.until(visibilityOfElementLocated(
-				By.cssSelector(".z-groupbox-cnt .z-listbox-body table tbody:nth-child(2) tr:nth-child(" + i + ")")));
 	}
 
     private ExpectedCondition<WebElement> visibilityOfElementLocated(final By locator) {
