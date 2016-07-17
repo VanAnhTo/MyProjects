@@ -11,7 +11,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import domain.builder.account.LoginDetailBuilder;
 import domain.detail.account.LoginDetails;
-import scenarios.base.BaseScenario;
 import spec.Specification;
 
 public class BlankStepDefs {

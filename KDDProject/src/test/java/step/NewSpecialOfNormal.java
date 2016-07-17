@@ -18,7 +18,6 @@ import domain.builder.material.PageDetailBuilder;
 import domain.detail.account.LoginDetails;
 import domain.detail.material.MaterialDetail;
 import domain.detail.material.PageDetail;
-import scenarios.base.BaseScenario;
 
 public class NewSpecialOfNormal {
 	public WebDriver driver;

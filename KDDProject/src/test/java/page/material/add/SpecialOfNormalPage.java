@@ -8,8 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
-
 import domain.detail.material.MaterialDetail;
 import domain.detail.material.PageDetail;
 import util.PropertiesStore;
@@ -83,15 +81,15 @@ public class SpecialOfNormalPage extends PageEvent {
 
 			this.clickCommitedCheckbox();
 			this.focusOnProviderMaterialField();
-			waitItemAppear();
+			// waitItemAppear();
 			this.chooseProviderMaterialCombobox();
 			this.focusManufacturalMaterialField();
-			waitItemAppear();
+			// waitItemAppear();
 			this.chooseManufacturalMaterialCombobox();
 			this.clickAddMaterialButton();
 			waitForDataFillOnTableComplete(i);
 			i++;
-		
+
 		}
 		this.clickSaveListMaterialButton();
 		waitForAlert();
@@ -99,7 +97,8 @@ public class SpecialOfNormalPage extends PageEvent {
 
 	protected void waitItemAppear() {
 		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".z-chosenbox-pp.z-chosenbox-pp-hidden")));
+		wait.until(
+				ExpectedConditions.presenceOfElementLocated(By.cssSelector(".z-chosenbox-pp.z-chosenbox-pp-hidden")));
 	}
 
 }
