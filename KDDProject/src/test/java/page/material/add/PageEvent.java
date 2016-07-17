@@ -60,7 +60,7 @@ public class PageEvent extends PageBase {
 	protected void waitUtilItemOnComboboxAppear() {
 		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
 		wait.until(visibilityOfElementLocated(
-				By.cssSelector(".z-chosenbox-pp.z-chosenbox-pp-hidden    ")));
+				By.cssSelector(".z-chosenbox-pp.z-chosenbox-pp-hidden       ")));
 	}
 
 	protected void waitForTextboxFeildAppear() {
