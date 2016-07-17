@@ -11,14 +11,10 @@ Feature: Add new special of normal file
     When I go to specical of nomarl page
     And I enter file number:"<fileNumber>" and Sign where: "<signWhere>"
     And I fill material info
-      | materialName    | Ten nguyen lieu 11        |
-      | contenMaterial  | Ham luong, dang bao che 1 |
-      | amout           |                        20 |
-      | unit            | tan                       |
-      | TCCL            | ISO                       |
-      | registration    | SDK cua thuoc duoc SX     |
-      | contentration   | Ham luong cua thuoc       |
-      | dangbaochethuoc | dang bao che thuoc        |
+      | materialName       | contenMaterial            | amout | unit | TCCL | registration          | contentration       | dangbaochethuoc    |
+      | Ten nguyen lieu 11 | Ham luong, dang bao che 1 |    20 | tan  | ISO  | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | Ten nguyen lieu 2  | Ham luong, dang bao che 2 |    20 | tan  | ISO  | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | Ten nguyen lieu 3  | Ham luong, dang bao che 3 |    20 | tan  | ISO  | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
     Then I save infomation
 
     Examples: 

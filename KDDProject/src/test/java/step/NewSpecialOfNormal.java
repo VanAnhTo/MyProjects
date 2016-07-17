@@ -67,23 +67,30 @@ public class NewSpecialOfNormal {
 	}
 
 	MaterialDetailBuilder materialDetailBuilder = new MaterialDetailBuilder();
-	
+
+	List<MaterialDetail> materialDetailList = new ArrayList<MaterialDetail>();
+
 	@And("I fill material info")
 	public void i_fill_material_info(DataTable loginDataTable) throws Throwable {
 		List<List<String>> result = loginDataTable.raw();
-		String materialName = result.get(0).get(1);
-		String content = result.get(1).get(1);
-		String amount = result.get(2).get(1);
-		String quality = result.get(3).get(1);
-		String unit = result.get(4).get(1);
-		String registration = result.get(5).get(1);
-		String contrentration = result.get(6).get(1);
-		String contenImport = result.get(7).get(1);
 
-		materialDetailBuilder.withMaterialName(materialName).withContenMaterial(content).withAmountMaterial(amount)
-		.withQualityMateriall(quality).withUnitMaterial(unit);
-		materialDetailBuilder.withContentImportl(contenImport).withRegistrationNumber(registration)
-		.withContentration(contrentration);
+		for (int i = 1; i <= 3; i++) {
+			String materialName = result.get(i).get(0);
+			String content = result.get(i).get(1);
+			String amount = result.get(i).get(2);
+			String quality = result.get(i).get(3);
+			String unit = result.get(i).get(4);
+			String registration = result.get(i).get(5);
+			String contrentration = result.get(i).get(6);
+			String contenImport = result.get(i).get(7);
+
+			materialDetailBuilder.withMaterialName(materialName).withContenMaterial(content).withAmountMaterial(amount)
+					.withQualityMateriall(quality).withUnitMaterial(unit);
+			materialDetailBuilder.withContentImportl(contenImport).withRegistrationNumber(registration)
+					.withContentration(contrentration);
+
+			materialDetailList.add(materialDetailBuilder.build());
+		}
 	}
 
 	@And("^I enter material name: \"(.*)\" , ham luong:\"(.*)\", so luong: \"(.*)\", don vi tinh: \"(.*)\" TCCL: \"(.*)\"$")
@@ -102,8 +109,6 @@ public class NewSpecialOfNormal {
 
 	@Then("^I save infomation$")
 	public void i_save_info() throws Throwable {
-		List<MaterialDetail> materialDetailList = new ArrayList<MaterialDetail>();
-		materialDetailList.add(materialDetailBuilder.build());
 		pageDetailBuilder.withMaterialDetailList(materialDetailList);
 		PageDetail pageDetail = pageDetailBuilder.build();
 		baseScenario.user.clickAddNew2ddWith(pageDetail);
