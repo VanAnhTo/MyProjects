@@ -21,7 +21,7 @@ public class Hooks{
     public void openBrowser() throws MalformedURLException {
     	System.out.println("Called openBrowser");
     	System.setProperty("webdriver.chrome.driver",
-				"E:/setup/browerdriver/chromedriver.exe");
+				"C:/Windows/System32/config/systemprofile/.jenkins/jobs/chromedriver.exe");
     	driver = new ChromeDriver();
     	//driver = new FirefoxDriver();
     	driver.manage().deleteAllCookies();
