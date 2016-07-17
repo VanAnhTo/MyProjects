@@ -39,10 +39,10 @@ public class PageEvent extends PageBase {
 			this.enterQuyCachDongGoiAs(materialDetail.getQuyCachDongGoi());
 			this.clickCommitedCheckbox();
 			this.focusOnProviderMaterialField();
-			waitUtilItemOnComboboxAppear();
+			//waitUtilItemOnComboboxAppear();
 			this.chooseProviderMaterialCombobox();
 			this.focusManufacturalMaterialField();
-			waitUtilItemOnComboboxAppear();
+			//waitUtilItemOnComboboxAppear();
 			this.chooseManufacturalMaterialCombobox();
 			this.clickAddMaterialButton();
 			waitForDataFillOnTableComplete(i);
@@ -57,11 +57,11 @@ public class PageEvent extends PageBase {
 		wait.until(visibilityOfElementLocated(
 				By.cssSelector(".z-listbox-body table tbody:nth-child(2) tr:nth-child(" + i + ")")));
 	}
-	protected void waitUtilItemOnComboboxAppear() {
+	/*protected void waitUtilItemOnComboboxAppear() {
 		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
 		wait.until(visibilityOfElementLocated(
 				By.cssSelector(".z-chosenbox-pp.z-chosenbox-pp-hidden       ")));
-	}
+	}*/
 
 	protected void waitForTextboxFeildAppear() {
 		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
@@ -75,7 +75,6 @@ public class PageEvent extends PageBase {
 
 	private ExpectedCondition<WebElement> visibilityOfElementLocated(final By locator) {
 		return new ExpectedCondition<WebElement>() {
-			@Override
 			public WebElement apply(WebDriver driver) {
 				WebElement toReturn = driver.findElement(locator);
 				if (toReturn.isDisplayed()) {
