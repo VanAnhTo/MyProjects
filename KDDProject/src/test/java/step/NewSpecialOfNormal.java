@@ -7,6 +7,7 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 
 import cucumber.api.DataTable;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -29,7 +30,7 @@ public class NewSpecialOfNormal {
 		builder = new LoginDetailBuilder();
 		baseScenario = new BaseScenario(driver);
 	}
-
+	
 	@Given("^I open pharmacy website to add$")
 	public void i_open_pharmacy_website() throws Throwable {
 		driver.get("http://203.190.173.37:8080/kinhdoanhduoc/Pages/login.zul");
@@ -71,26 +72,8 @@ public class NewSpecialOfNormal {
 	List<MaterialDetail> materialDetailList = new ArrayList<MaterialDetail>();
 
 	@And("I fill material info")
-	public void i_fill_material_info(DataTable loginDataTable) throws Throwable {
-		List<List<String>> result = loginDataTable.raw();
-
-		for (int i = 1; i <= 3; i++) {
-			String materialName = result.get(i).get(0);
-			String content = result.get(i).get(1);
-			String amount = result.get(i).get(2);
-			String quality = result.get(i).get(3);
-			String unit = result.get(i).get(4);
-			String registration = result.get(i).get(5);
-			String contrentration = result.get(i).get(6);
-			String contenImport = result.get(i).get(7);
-
-			materialDetailBuilder.withMaterialName(materialName).withContenMaterial(content).withAmountMaterial(amount)
-					.withQualityMateriall(quality).withUnitMaterial(unit);
-			materialDetailBuilder.withContentImportl(contenImport).withRegistrationNumber(registration)
-					.withContentration(contrentration);
-
-			materialDetailList.add(materialDetailBuilder.build());
-		}
+	public void i_fill_material_info(List<MaterialDetail> materialDetailList) throws Throwable {
+		this.materialDetailList = materialDetailList;
 	}
 
 	@And("^I enter material name: \"(.*)\" , ham luong:\"(.*)\", so luong: \"(.*)\", don vi tinh: \"(.*)\" TCCL: \"(.*)\"$")
