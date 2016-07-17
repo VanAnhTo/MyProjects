@@ -89,8 +89,14 @@ public class NewSpecialOfNormal {
 		materialDetailBuilder.withContentImportl(contenImport).withRegistrationNumber(registration)
 				.withContentration(contrentration);
 	}
+	
+	@And("^I upload documents file$")
+	public void i_upload_documents() throws Throwable {
+		baseScenario.user.goToAttachPage();
+	}
 
-	@Then("^I save infomation$")
+
+	@And("^I save infomation$")
 	public void i_save_info() throws Throwable {
 		pageDetailBuilder.withMaterialDetailList(materialDetailList);
 		PageDetail pageDetail = pageDetailBuilder.build();
