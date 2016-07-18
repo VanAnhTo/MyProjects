@@ -90,11 +90,15 @@ public class NewSpecialOfNormal {
 				.withContentration(contrentration);
 	}
 
-	@Then("^I save infomation$")
+	@And("^I save infomation$")
 	public void i_save_info() throws Throwable {
 		pageDetailBuilder.withMaterialDetailList(materialDetailList);
 		PageDetail pageDetail = pageDetailBuilder.build();
 		baseScenario.user.clickAddNew2ddWith(pageDetail);
+	}
+	@And("^I upload document$")
+	public void i_upload_document() throws Throwable {
+		baseScenario.user.goToAttachPage();
 	}
 
 }

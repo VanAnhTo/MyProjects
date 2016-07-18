@@ -25,7 +25,9 @@ Feature: Add new special of normal file
       | Ten nguyen lieu 11 | Ham luong, dang bao che 1 |              1 | tan          | 2015/11/11      | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
       | Ten nguyen lieu 2  | Ham luong, dang bao che 2 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
       | Ten nguyen lieu 3  | Ham luong, dang bao che 3 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
-    Then I save infomation
+    
+    And I save infomation
+    And I upload document
 
     Examples: 
       | fileNumber | signWhere |
