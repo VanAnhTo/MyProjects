@@ -61,9 +61,9 @@ public class AttachmentFilePage extends PageEvent {
 
 	public void saveAllAttachFiles(List<AttachmentDetail> attachmentDetailList) {
 		chonTabTepDinhKem();
-		int i = 0;
+		int i = 1;
 		for (AttachmentDetail attachmentDetail : attachmentDetailList) {
-			int fileType = AttachmentEnum.valueOf(attachmentDetail.getFileType()).value;
+			int fileType = AttachmentEnum.valueOf(attachmentDetail.getFileType()).value - 1;
 			selectAttachmentFile(fileType);
 			clickButtonChonTep(attachmentDetail.getFilePath());
 			waitForSaveFileUploadFileCoplete(i);
@@ -81,7 +81,7 @@ public class AttachmentFilePage extends PageEvent {
 	}
 
 	private void waitForSaveFileUploadFileCoplete(int i) {
-		waitForElement(".z-groupbox-cnt .z-listbox-body table tbody:nth-child(2) tr:nth-child(" + (i + 1) + ")");
+		waitForElement(".z-groupbox-cnt .z-listbox-body table tbody:nth-child(2) tr:nth-child(" + (i) + ")");
 	}
 
 }
