@@ -24,8 +24,9 @@ public class Hooks {
 		String browserRunner = PropertiesStore.getProperty("browser");
 		switch (browserRunner) {
 		case "chrome":
+			String chromePath = PropertiesStore.getProperty("chrome_path");
 			System.setProperty("webdriver.chrome.driver",
-					"C:/Windows/System32/config/systemprofile/.jenkins/jobs/chromedriver.exe");
+					chromePath);
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--no-sandbox");
 			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
