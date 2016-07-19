@@ -2,11 +2,7 @@ package page.material.add;
 
 import java.io.IOException;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import domain.detail.material.MaterialDetail;
 import domain.detail.material.PageDetail;
