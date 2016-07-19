@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
@@ -15,7 +16,6 @@ import domain.builder.material.PageDetailBuilder;
 import domain.detail.account.LoginDetails;
 import domain.detail.material.MaterialDetail;
 import domain.detail.material.PageDetail;
-import util.Hooks;
 import util.PageStore;
 import util.Specification;
 
