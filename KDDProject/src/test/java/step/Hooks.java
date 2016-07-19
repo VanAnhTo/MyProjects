@@ -21,17 +21,17 @@ public class Hooks {
 	@Before
 	public void openBrowser() throws MalformedURLException {
 		System.out.println("Called openBrowser");
-		System.setProperty("webdriver.chrome.driver",
-				"C:/Windows/System32/config/systemprofile/.jenkins/jobs/chromedriver.exe");
-		// driver = new ChromeDriver();
+//		System.setProperty("webdriver.chrome.driver",
+//				"C:/Windows/System32/config/systemprofile/.jenkins/jobs/chromedriver.exe");
+//		// driver = new ChromeDriver();
+//
+//		ChromeOptions options = new ChromeOptions();
+//		options.addArguments("--no-sandbox");
+//		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+//		capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+//		driver = new ChromeDriver(capabilities);
 
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--no-sandbox");
-		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-		capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-		driver = new ChromeDriver(capabilities);
-
-		// driver = new FirefoxDriver();
+		 driver = new FirefoxDriver();
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 	}
