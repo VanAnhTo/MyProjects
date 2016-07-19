@@ -3,7 +3,11 @@ package util;
 import page.material.add.AttachmentFilePage;
 import page.material.add.NormalPage;
 import page.material.add.SpecialOfNormalPage;
+
+import java.util.List;
+
 import domain.detail.account.LoginDetails;
+import domain.detail.material.AttachmentDetail;
 import domain.detail.material.PageDetail;
 import page.account.HomePage;
 import page.account.LoginPage;
@@ -44,9 +48,9 @@ public class Specification {
     	 onNew2ddPage.saveMaterialWith(new2ddDetails);
     	 
     }
-    public void goToAttachPage(String pathFile) {
+    public void goToAttachPage(List<AttachmentDetail> attachmentDetail) {
     	AttachmentFilePage onAttachPage = pageStore.get(AttachmentFilePage.class);
-    	onAttachPage.saveAllAttachFiles(pathFile);
+    	onAttachPage.saveAllAttachFiles(attachmentDetail);
     }
     
     

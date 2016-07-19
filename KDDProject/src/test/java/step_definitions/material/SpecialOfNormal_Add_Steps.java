@@ -14,6 +14,7 @@ import domain.builder.account.LoginDetailBuilder;
 import domain.builder.material.MaterialDetailBuilder;
 import domain.builder.material.PageDetailBuilder;
 import domain.detail.account.LoginDetails;
+import domain.detail.material.AttachmentDetail;
 import domain.detail.material.MaterialDetail;
 import domain.detail.material.PageDetail;
 import util.PageStore;
@@ -87,9 +88,9 @@ public class SpecialOfNormal_Add_Steps {
 		user.clickAddNew2ddWith(pageDetail);
 	}
 
-	@And("^I upload attachment files for document with path of file \"(.*)\"$")
-	public void i_upload_attachment_files_document(String pathFile) {
-		user.goToAttachPage(pathFile);
+	@And("^I upload attachment files for document$")
+	public void i_upload_attachment_files_document(List<AttachmentDetail> attachmentDetail) {
+		user.goToAttachPage(attachmentDetail);
 	}
 
 }

@@ -10,7 +10,7 @@ Background:
 		| 010203123 |      123 |
 	And I login 
 
-@SpecialOfNormal	
+@wip	
 Scenario Outline: Update a new document
 	When I go to specical of nomaral page 
 	And I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>" 

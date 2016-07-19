@@ -6,6 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import domain.detail.material.AttachmentDetail;
+import domain.detail.material.MaterialDetail;
+
 public class AttachmentFilePage extends PageEvent {
 
 	WebDriver driver;
@@ -15,7 +18,6 @@ public class AttachmentFilePage extends PageEvent {
 	}
 
 	protected WebElement tabTepDinhKem;
-
 	protected WebElement buttonThemTep;
 
 	@FindBy(css = ".z-tabs-header .z-tab-hm span")
@@ -27,24 +29,15 @@ public class AttachmentFilePage extends PageEvent {
 	@FindBy(css = ".z-groupbox-cnt .button.z-button-os")
 	protected List<WebElement> allButton;
 
-	@FindBy(css = ".z-groupbox-cnt .z-select .z-option:nth-child(1)")
-	protected WebElement fileTypeGCNKinhDoanh;
-
-	@FindBy(css = ".z-groupbox-cnt .z-select .z-option:nth-child(2)")
-	protected WebElement fileTypeTCCL;
-
-	@FindBy(css = ".z-groupbox-cnt .z-select .z-option:nth-child(3)")
-	protected WebElement fileTypePhuongPhapKiemNghiem;
-
-	@FindBy(css = ".z-groupbox-cnt .z-select .z-option:nth-child(4)")
-	protected WebElement fileTypeOther;
+	@FindBy(css = ".z-groupbox-cnt .z-select .z-option")
+	protected List<WebElement> fileType;
 
 	public void chonTabTepDinhKem() {
 		tabTepDinhKem = allTabLable.get(1);
 		tabTepDinhKem.click();
 	}
 
-	public void clickButtonChonTep(String pathFile)  {
+	public void clickButtonChonTep(String pathFile) {
 		buttonChonTep.sendKeys(pathFile);
 		waitForUploadFileComplete();
 		clickButtonThemTep();
@@ -55,46 +48,32 @@ public class AttachmentFilePage extends PageEvent {
 
 		buttonThemTep = allButton.get(5);
 		buttonThemTep.click();
-		// waitForSaveFileUploadFileCoplete() ;
 	}
 
-	public void chonLoaiTepDangKyKinhDoanh()  {
-		fileTypeGCNKinhDoanh.click();
+	public enum AttachmentEnum {
+		CERTIFICATE(1), QUALITY(2), METHOD(3), OTHER(4);
+		private int value;
+
+		private AttachmentEnum(int value) {
+			this.value = value;
+		}
 	}
-
-	public void chonLoaiTepTieuChuanChatLuong()  {
-		fileTypeTCCL.click();
-	}
-
-	public void chonLoaiTepPPKiemNghiem()  {
-		fileTypePhuongPhapKiemNghiem.click();
-	}
-
-	public void chonLoaiTepKhac()  {
-		fileTypeOther.click();
-	}
-
-	int i = 1;
-
-	public void saveAllAttachFiles(String pathFile) {
+	
+	public void saveAllAttachFiles(List<AttachmentDetail> attachmentDetailList) {
 		chonTabTepDinhKem();
+		int i = 0;
+		for (AttachmentDetail attachmentDetail : attachmentDetailList) {
+			int fileType = AttachmentEnum.valueOf(attachmentDetail.getFileType()).value;
+			selectAttachmentFile(fileType);
+			clickButtonChonTep(attachmentDetail.getFilePath());
+			waitForSaveFileUploadFileCoplete(i);
+			i++;
+		}
+	}
 
-		chonLoaiTepDangKyKinhDoanh();
-		clickButtonChonTep(pathFile);
-		waitForSaveFileUploadFileCoplete(i);
-		i++;
-		chonLoaiTepTieuChuanChatLuong();
-		clickButtonChonTep(pathFile);
-		waitForSaveFileUploadFileCoplete(i);
-		i++;
-		chonLoaiTepPPKiemNghiem();
-		clickButtonChonTep(pathFile);
-		waitForSaveFileUploadFileCoplete(i);
-		i++;
-		chonLoaiTepKhac();
-		clickButtonChonTep(pathFile);
-		waitForSaveFileUploadFileCoplete(i);
-		i++;
+	private void selectAttachmentFile(int fileType) {
+		this.fileType.get(fileType).click();
+
 	}
 
 	private void waitForUploadFileComplete() {

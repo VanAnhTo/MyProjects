@@ -10,7 +10,7 @@ Background:
 		| 010203123 |      123 |
 	And I login 
 	
-#@SpecialOfNormal 
+@SpecialOfNormal 
 Scenario Outline: Create a new document 
 	When I go to specical of nomaral page 
 	And I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>" 
@@ -21,8 +21,14 @@ Scenario Outline: Create a new document
 		| Ten nguyen lieu 3  | Ham luong, dang bao che 3 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
 		
 	And I save document info 
-	And I upload attachment files for document with path of file "C:\Users\Administrator\Pictures\Background\tumblr_mwnjhfcLci1qbd81ro1_1280.jpg" 
-	
+	And I upload attachment files for document 
+		| fileType| filePath|
+		| CERTIFICATE|C:\Users\Administrator\Pictures\Background\tumblr_mwnjhfcLci1qbd81ro1_1280.jpg|
+		| QUALITY|C:\Users\Administrator\Pictures\Background\tumblr_mwnjhfcLci1qbd81ro1_1280.jpg|
+		| METHOD|C:\Users\Administrator\Pictures\Background\tumblr_mwnjhfcLci1qbd81ro1_1280.jpg|
+		| OTHER|C:\Users\Administrator\Pictures\Background\tumblr_mwnjhfcLci1qbd81ro1_1280.jpg|
+		
+		
 	Examples: List of valid value 
 		| fileNumber | signWhere |
 		| so1        | diachi1   |
