@@ -1,7 +1,6 @@
 package step;
 
-import java.net.MalformedURLException;
-
+import java.io.IOException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -14,24 +13,32 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import util.PropertiesStore;
 
 public class Hooks {
 	public static WebDriver driver;
 
 	@Before
-	public void openBrowser() throws MalformedURLException {
+	public void openBrowser() throws IOException {
 		System.out.println("Called openBrowser");
-//		System.setProperty("webdriver.chrome.driver",
-//				"C:/Windows/System32/config/systemprofile/.jenkins/jobs/chromedriver.exe");
-//		// driver = new ChromeDriver();
-//
-//		ChromeOptions options = new ChromeOptions();
-//		options.addArguments("--no-sandbox");
-//		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-//		capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-//		driver = new ChromeDriver(capabilities);
+		String browserRunner = PropertiesStore.getProperty("browser");
+		switch (browserRunner) {
+		case "chrome":
+			System.setProperty("webdriver.chrome.driver",
+					"C:/Windows/System32/config/systemprofile/.jenkins/jobs/chromedriver.exe");
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--no-sandbox");
+			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+			driver = new ChromeDriver(capabilities);
+			break;
+		case "firefox":
+			driver = new FirefoxDriver();
+			break;
+		case "coccoc":
+			break;
+		}
 
-		 driver = new FirefoxDriver();
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 	}
