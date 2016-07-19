@@ -44,9 +44,9 @@ public class Specification {
     	 onNew2ddPage.saveMaterialWith(new2ddDetails);
     	 
     }
-    public void goToAttachPage() throws Exception{
+    public void goToAttachPage(String pathFile) throws Exception{
     	AttachmentFilePage onAttachPage = pageStore.get(AttachmentFilePage.class);
-    	onAttachPage.saveAllAttachFiles();
+    	onAttachPage.saveAllAttachFiles(pathFile);
     }
     
     

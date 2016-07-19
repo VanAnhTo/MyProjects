@@ -20,7 +20,7 @@ Scenario Outline: Create a new document
 		| Ten nguyen lieu 3  | Ham luong, dang bao che 3 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
 		
 	And I save document info 
-	And I upload attachment files for document 
+	And I upload attachment files for document with path of file "C:\Users\Administrator\Pictures\Background\tumblr_mwnjhfcLci1qbd81ro1_1280.jpg"
 	
 	Examples: List of valid value 
 		| fileNumber | signWhere |

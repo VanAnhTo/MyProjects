@@ -32,10 +32,10 @@ public class SpecialOfNormal_Add_Steps {
 	PageStore pageStore;
 
 	public SpecialOfNormal_Add_Steps() throws IOException {
-		builder = new LoginDetailBuilder();
-		pageDetailBuilder = new PageDetailBuilder();
-		materialDetailBuilder = new MaterialDetailBuilder();
-		materialDetailList = new ArrayList<MaterialDetail>();
+		this.builder = new LoginDetailBuilder();
+		this.pageDetailBuilder = new PageDetailBuilder();
+		this.materialDetailBuilder = new MaterialDetailBuilder();
+		this.materialDetailList = new ArrayList<MaterialDetail>();
 
 		this.driver = Hooks.driver;
 		this.pageStore = new PageStore(driver);
@@ -81,20 +81,6 @@ public class SpecialOfNormal_Add_Steps {
 		this.materialDetailList = materialDetailList;
 	}
 
-	@And("^I enter material name: \"(.*)\" , ham luong:\"(.*)\", so luong: \"(.*)\", don vi tinh: \"(.*)\" TCCL: \"(.*)\"$")
-	public void i_enter_info_material(String materialName, String content, String amount, String quality, String unit)
-			throws Throwable {
-		materialDetailBuilder.withMaterialName(materialName).withContenMaterial(content).withAmountMaterial(amount)
-				.withQualityMateriall(quality).withUnitMaterial(unit);
-	}
-
-	@And("^I enter SDK cua thuoc: \"(.*)\" , ham luong cua thuoc: \"(.*)\" , dang bao che cua thuoc: \"(.*)\"$")
-	public void i_enter_import_number(String registration, String contenImport, String contrentration)
-			throws Throwable {
-		materialDetailBuilder.withContentImportl(contenImport).withRegistrationNumber(registration)
-				.withContentration(contrentration);
-	}
-
 	@And("^I save document info$")
 	public void i_save_document_info() throws Throwable {
 		pageDetailBuilder.withMaterialDetailList(materialDetailList);
@@ -102,9 +88,9 @@ public class SpecialOfNormal_Add_Steps {
 		user.clickAddNew2ddWith(pageDetail);
 	}
 
-	@And("^I upload attachment files for document$")
-	public void i_upload_attachment_files_document() throws Throwable {
-		user.goToAttachPage();
+	@And("^I upload attachment files for document with path of file \"(.*)\"$")
+	public void i_upload_attachment_files_document(String pathFile) throws Throwable {
+		user.goToAttachPage(pathFile);
 	}
 
 }
