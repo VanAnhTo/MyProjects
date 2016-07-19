@@ -61,31 +61,17 @@ public class HomePage {
 	}
 
 	private void waitForTabLableToAppear() {
-		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
-		wait.until(visibilityOfElementLocated(By.cssSelector(".container.z-div .z-div")));	
+		waitForElement(".container.z-div .z-div");	
 	}
 
 	private void waitForLabelToAppear() {
-		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
-		wait.until(visibilityOfElementLocated(By.cssSelector(".container.z-div .z-div")));
+		waitForElement(".container.z-div .z-div");
 	}
 	
-	/*private void waitForMenuOnHomePageAppear()
+	private void waitForElement(String selector)
 	{
-		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
-		wait.until(visibilityOfElementLocated(By.cssSelector("#tabContent .group:nth-child(1)")));
-	}
-*/
-	private ExpectedCondition<WebElement> visibilityOfElementLocated(final By locator) {
-		return new ExpectedCondition<WebElement>() {
-			public WebElement apply(WebDriver driver) {
-				WebElement toReturn = driver.findElement(locator);
-				if (toReturn.isDisplayed()) {
-					return toReturn;
-				}
-				return null;
-			}
-		};
+		util.WaitFor wait = new util.WaitFor(driver);
+		wait.presenceOfTheElement(By.cssSelector(selector));
 	}
 
 

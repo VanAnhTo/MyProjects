@@ -1,4 +1,4 @@
-package spec;
+package util;
 
 import page.material.add.AttachmentFilePage;
 import page.material.add.NormalPage;
@@ -7,7 +7,6 @@ import domain.detail.account.LoginDetails;
 import domain.detail.material.PageDetail;
 import page.account.HomePage;
 import page.account.LoginPage;
-import util.PageStore;
 
 public class Specification {
 

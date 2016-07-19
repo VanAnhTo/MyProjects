@@ -1,4 +1,4 @@
-package step;
+package step_definitions.material;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,10 +7,8 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 
 import cucumber.api.DataTable;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import domain.builder.account.LoginDetailBuilder;
 import domain.builder.material.MaterialDetailBuilder;
@@ -18,22 +16,35 @@ import domain.builder.material.PageDetailBuilder;
 import domain.detail.account.LoginDetails;
 import domain.detail.material.MaterialDetail;
 import domain.detail.material.PageDetail;
-import scenarios.base.BaseScenario;
+import util.Hooks;
+import util.PageStore;
+import util.Specification;
 
-public class NewSpecialOfNormal {
+public class SpecialOfNormal_Add_Steps {
+
 	public WebDriver driver;
-	public LoginDetailBuilder builder;
-	protected BaseScenario baseScenario;
 
-	public NewSpecialOfNormal() throws IOException {
-		driver = Hooks.driver;
+	LoginDetailBuilder builder;
+	PageDetailBuilder pageDetailBuilder;
+	MaterialDetailBuilder materialDetailBuilder;
+	List<MaterialDetail> materialDetailList;
+	Specification user;
+	PageStore pageStore;
+
+	public SpecialOfNormal_Add_Steps() throws IOException {
 		builder = new LoginDetailBuilder();
-		baseScenario = new BaseScenario(driver);
+		pageDetailBuilder = new PageDetailBuilder();
+		materialDetailBuilder = new MaterialDetailBuilder();
+		materialDetailList = new ArrayList<MaterialDetail>();
+
+		this.driver = Hooks.driver;
+		this.pageStore = new PageStore(driver);
+		this.user = new Specification(pageStore);
 	}
-	
-	@Given("^I open pharmacy website to add$")
-	public void i_open_pharmacy_website() throws Throwable {
-		driver.get("http://203.190.173.37:8080/kinhdoanhduoc/Pages/login.zul");
+
+	@Given("^I open browser and enter link website \"(.*)\"$")
+	public void i_open_browser_and_enter_link_website(String linkWeb) throws Throwable {
+		driver.get(linkWeb);
 	}
 
 	@And("^After I enter username: \"(.*)\" and password: \"(.*)\"$")
@@ -41,7 +52,7 @@ public class NewSpecialOfNormal {
 		builder.withUsername(username).withPassword(password);
 	}
 
-	@And("After I fill login form")
+	@And("I fill login form")
 	public void i_fill_login_form(DataTable loginDataTable) throws Throwable {
 		List<List<String>> result = loginDataTable.raw();
 		String username = result.get(1).get(0);
@@ -52,27 +63,21 @@ public class NewSpecialOfNormal {
 	@And("^I login$")
 	public void i_get_homepage() throws Throwable {
 		LoginDetails loginDetails = builder.build();
-		baseScenario.user.clickLoginWith(loginDetails);
+		user.clickLoginWith(loginDetails);
 	}
 
-	@When("^I go to specical of nomarl page$")
+	@When("^I go to specical of nomaral page$")
 	public void i_go_to_special_of_normal_page() throws Throwable {
-		baseScenario.user.goToAddNew2ddPage();
+		user.goToAddNew2ddPage();
 	}
 
-	PageDetailBuilder pageDetailBuilder = new PageDetailBuilder();
-
-	@When("^I enter file number:\"(.*)\" and Sign where: \"(.*)\"$")
-	public void i_enter_file_number(String fileNumber, String signWhere) throws Throwable {
+	@When("^I enter file number field with value \"(.*)\" and sign where field with value \"(.*)\"$")
+	public void i_enter_file_number_value_and_sign_where_value(String fileNumber, String signWhere) throws Throwable {
 		pageDetailBuilder.withFileNumber(fileNumber).withSignWhere(signWhere);
 	}
 
-	MaterialDetailBuilder materialDetailBuilder = new MaterialDetailBuilder();
-
-	List<MaterialDetail> materialDetailList = new ArrayList<MaterialDetail>();
-
-	@And("I fill material info")
-	public void i_fill_material_info(List<MaterialDetail> materialDetailList) throws Throwable {
+	@And("I enter material info list")
+	public void i_enter_material_info_list(List<MaterialDetail> materialDetailList) throws Throwable {
 		this.materialDetailList = materialDetailList;
 	}
 
@@ -90,15 +95,16 @@ public class NewSpecialOfNormal {
 				.withContentration(contrentration);
 	}
 
-	@And("^I save infomation$")
-	public void i_save_info() throws Throwable {
+	@And("^I save document info$")
+	public void i_save_document_info() throws Throwable {
 		pageDetailBuilder.withMaterialDetailList(materialDetailList);
 		PageDetail pageDetail = pageDetailBuilder.build();
-		baseScenario.user.clickAddNew2ddWith(pageDetail);
+		user.clickAddNew2ddWith(pageDetail);
 	}
-	@And("^I upload document$")
-	public void i_upload_document() throws Throwable {
-		baseScenario.user.goToAttachPage();
+
+	@And("^I upload attachment files for document$")
+	public void i_upload_attachment_files_document() throws Throwable {
+		user.goToAttachPage();
 	}
 
 }

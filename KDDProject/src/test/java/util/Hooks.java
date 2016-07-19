@@ -1,4 +1,4 @@
-package step;
+package util;
 
 import java.io.IOException;
 import org.openqa.selenium.OutputType;
@@ -13,7 +13,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import util.PropertiesStore;
 
 public class Hooks {
 	public static WebDriver driver;

@@ -17,14 +17,6 @@ public class PageStore {
 	WebDriver webDriver;
 	List<Object> pages;
 
-	public PageStore() {
-		// System.setProperty("webdriver.chrome.driver",
-		// "E:/setup/browerdriver/chromedriver.exe");
-		// webDriver = new ChromeDriver();
-		// //webDriver = new FirefoxDriver();
-		// pages = new ArrayList<Object>();
-	}
-
 	public PageStore(WebDriver webDriver) {
 		this.webDriver = webDriver;
 		pages = new ArrayList<Object>();

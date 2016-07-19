@@ -2,6 +2,7 @@ package page.material.add;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -64,7 +65,7 @@ public abstract class PageBase {
 	protected WebElement contentImportField;
 
 	// check box cam ket
-	// @FindBy(css = ".z-checkbox input   ")
+	// @FindBy(css = ".z-checkbox input ")
 	protected WebElement commitedCheckbox;
 
 	// button them nguyen lieu
@@ -74,7 +75,7 @@ public abstract class PageBase {
 	// button luu don hang
 	// @FindBy(css = ".z-window-embedded-cnt-noborder .button.z-button-os")
 	protected WebElement saveListMaterialButton;
-	
+
 	protected WebElement quyCachDongGoiField;
 
 	// cung cap
@@ -102,111 +103,110 @@ public abstract class PageBase {
 	// End Thuoc tinh
 	// ===============================================
 
-
 	protected int positionOfFileNumberField;
 	protected int positionOfSignWhereField;
 	protected int positionOfCopporateCheckBox;
-	
+
 	protected int positionOfMaterialNameFeild;
 	protected int positionOfContenMaterialField;
 	protected int positionOfAmountMaterialField;
 	protected int positionOfQualityMaterialField;
 	protected int positionOfUnitMaterialFeild;
-	
+
 	protected int positionOfProviderMaterialField;
 	protected int positionOfProviderMaterialCombobox;
-	
+
 	protected int positionOfManufacturalMaterialField;
 	protected int positionOfManufacturalMaterialCombobox;
-	
+
 	protected int positionOfContentrationFeild;
 	protected int positionOfRegistrationNumberField;
 	protected int positionOfContentImportFeild;
-	
+
 	protected int positionOfCommitedCheckbox;
 	protected int positionOfAddMaterialButton;
 	protected int positionOfaveListMaterialButton;
-	
-	protected int positionOfQuyCachDongGoi;	
-	
-	public void enterFileNumberFieldAs(String fileNumber){
+
+	protected int positionOfQuyCachDongGoi;
+
+	public void enterFileNumberFieldAs(String fileNumber) {
 		enterTextBoxField(fileNumberField, positionOfFileNumberField, fileNumber);
 	}
-	
-	public void enterAmountMaterialFieldAs(String amountMaterial){
+
+	public void enterAmountMaterialFieldAs(String amountMaterial) {
 		enterTextBoxField(amountMaterialField, positionOfAmountMaterialField, amountMaterial);
 	}
 
-	public void enterQualityMaterialFieldAs(String qualityMaterial){
+	public void enterQualityMaterialFieldAs(String qualityMaterial) {
 		enterTextBoxField(qualityMaterialField, positionOfQualityMaterialField, qualityMaterial);
 	}
-	
-	public void enterSignWhereFieldAs(String signWhere){
+
+	public void enterSignWhereFieldAs(String signWhere) {
 		enterTextBoxField(signWhereField, positionOfSignWhereField, signWhere);
-	}	
-	
-	public void enterContenMaterialFieldAs(String contenMaterial){
+	}
+
+	public void enterContenMaterialFieldAs(String contenMaterial) {
 		enterTextBoxField(contenMaterialField, positionOfContenMaterialField, contenMaterial);
 	}
-	
-	public void enterRegistrationNumberFieldAs(String registrationNumber){
+
+	public void enterRegistrationNumberFieldAs(String registrationNumber) {
 		enterTextBoxField(registrationNumberFeild, positionOfRegistrationNumberField, registrationNumber);
 	}
-	
-	public void enterContentrationFeildAs(String contentration){
+
+	public void enterContentrationFeildAs(String contentration) {
 		enterTextBoxField(contentrationField, positionOfContentrationFeild, contentration);
 	}
 
-	public void enterContentImportFeildAs(String contentration){
+	public void enterContentImportFeildAs(String contentration) {
 		enterTextBoxField(contentImportField, positionOfContentImportFeild, contentration);
 	}
-	
-	public void clickCopporateCheckBox(){
+
+	public void clickCopporateCheckBox() {
 		clickCheckbox(copporateCheckBox, positionOfCopporateCheckBox);
 	}
-	
-	public void enterMaterialNameFieldAs(String materialName){
+
+	public void enterMaterialNameFieldAs(String materialName) {
 		enterComboboxFeild(materialNameField, positionOfMaterialNameFeild, materialName);
 	}
-	
-	public void enterUnitMaterialFieldAs(String unitMaterial){
-		enterComboboxFeild(unitMaterialField, positionOfUnitMaterialFeild, unitMaterial);
-	}	
 
-	public void enterQuyCachDongGoiAs(String quyCachDongGoi){
+	public void enterUnitMaterialFieldAs(String unitMaterial) {
+		enterComboboxFeild(unitMaterialField, positionOfUnitMaterialFeild, unitMaterial);
+	}
+
+	public void enterQuyCachDongGoiAs(String quyCachDongGoi) {
 		enterTextBoxField(quyCachDongGoiField, positionOfQuyCachDongGoi, quyCachDongGoi);
 	}
 
-	//Cong ty cung cap		
-	public void focusOnProviderMaterialField(){
+	// Cong ty cung cap
+	public void focusOnProviderMaterialField() {
 		clickOnChosenTextBox(providerMaterialField, positionOfProviderMaterialField);
 	}
-	
-	public void chooseProviderMaterialCombobox(){
+
+	public void chooseProviderMaterialCombobox() {
 		clickSelectProviderFromCombobox(providerMaterialCombobox, positionOfProviderMaterialCombobox);
 	}
 
-	//Cong ty san xuat
-	public void focusManufacturalMaterialField(){
+	// Cong ty san xuat
+	public void focusManufacturalMaterialField() {
 		clickOnChosenTextBox(manufacturalMaterialField, positionOfManufacturalMaterialField);
 	}
-	
-	public void chooseManufacturalMaterialCombobox(){
+
+	public void chooseManufacturalMaterialCombobox() {
 		clickSelectManufactureFromCombobox(manufacturalMaterialCombobox, positionOfManufacturalMaterialCombobox);
 	}
 
 	// cam ket
-	public void clickCommitedCheckbox(){
+	public void clickCommitedCheckbox() {
 		clickCheckbox(commitedCheckbox, positionOfCommitedCheckbox);
 	}
 
 	// Luu khoan don hang
-	public void clickAddMaterialButton(){
+	public void clickAddMaterialButton() {
 		clickButton(addMaterialButton, positionOfAddMaterialButton);
 	}
 
 	// Luu don hang
-	public void clickSaveListMaterialButton(){
+	public void clickSaveListMaterialButton() {
 		clickButton(saveListMaterialButton, positionOfaveListMaterialButton);
 	}
 
@@ -215,30 +215,37 @@ public abstract class PageBase {
 		textBox.clear();
 		textBox.sendKeys(content);
 	}
+
 	protected void clickCheckbox(WebElement checkBox, int position) {
 		checkBox = allCheckbox.get(position);
 		checkBox.click();
 	}
+
 	protected void enterComboboxFeild(WebElement comboBox, int position, String content) {
 		comboBox = allCombobox.get(position);
 		comboBox.clear();
 		comboBox.sendKeys(content);
 	}
+
 	protected void clickButton(WebElement button, int position) {
 		button = allButton.get(position);
 		button.click();
 	}
+
 	protected void clickOnChosenTextBox(WebElement chosenTextBox, int position) {
 		chosenTextBox = allChosenbox.get(position);
 		chosenTextBox.click();
 	}
+
 	protected void clickSelectProviderFromCombobox(WebElement choosenComboboxProvider, int position) {
 		choosenComboboxProvider = allChosenComboboxChildCungCap.get(position);
 		choosenComboboxProvider.click();
 	}
+
 	protected void clickSelectManufactureFromCombobox(WebElement choosenComboboxManufacture, int position) {
 		choosenComboboxManufacture = allChosenComboboxChildSanXuat.get(position);
 		choosenComboboxManufacture.click();
 	}
+
 
 }

@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
 
-
 import domain.detail.material.MaterialDetail;
 import domain.detail.material.PageDetail;
 import util.PropertiesStore;
