@@ -87,22 +87,4 @@ public class Hooks {
 		driver.manage().window().maximize();
 	}
 
-	@After("@SpecialOfNormal")
-	public void embedScreenshotOfTag(Scenario scenario) {
-
-		if (scenario.isFailed()) {
-			try {
-				scenario.write("Current Page URL is " + driver.getCurrentUrl());
-				// byte[] screenshot = getScreenshotAs(OutputType.BYTES);
-				byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-				scenario.embed(screenshot, "image/png");
-			} catch (WebDriverException somePlatformsDontSupportScreenshots) {
-				System.err.println(somePlatformsDontSupportScreenshots.getMessage());
-			}
-
-		}
-		driver.quit();
-
-	}
-
 }
