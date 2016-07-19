@@ -44,7 +44,7 @@ public class AttachmentFilePage extends PageEvent {
 		tabTepDinhKem.click();
 	}
 
-	public void clickButtonChonTep(String pathFile) throws Exception {
+	public void clickButtonChonTep(String pathFile)  {
 		buttonChonTep.sendKeys(pathFile);
 		waitForUploadFileComplete();
 		clickButtonThemTep();
@@ -58,25 +58,25 @@ public class AttachmentFilePage extends PageEvent {
 		// waitForSaveFileUploadFileCoplete() ;
 	}
 
-	public void chonLoaiTepDangKyKinhDoanh() throws Exception {
+	public void chonLoaiTepDangKyKinhDoanh()  {
 		fileTypeGCNKinhDoanh.click();
 	}
 
-	public void chonLoaiTepTieuChuanChatLuong() throws Exception {
+	public void chonLoaiTepTieuChuanChatLuong()  {
 		fileTypeTCCL.click();
 	}
 
-	public void chonLoaiTepPPKiemNghiem() throws Exception {
+	public void chonLoaiTepPPKiemNghiem()  {
 		fileTypePhuongPhapKiemNghiem.click();
 	}
 
-	public void chonLoaiTepKhac() throws Exception {
+	public void chonLoaiTepKhac()  {
 		fileTypeOther.click();
 	}
 
 	int i = 1;
 
-	public void saveAllAttachFiles(String pathFile) throws Exception {
+	public void saveAllAttachFiles(String pathFile) {
 		chonTabTepDinhKem();
 
 		chonLoaiTepDangKyKinhDoanh();

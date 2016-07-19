@@ -22,7 +22,7 @@ public class Specification {
         
     }
     
-    public void goToAddNew2ddPage() throws InterruptedException{
+    public void goToAddNew2ddPage(){
     	HomePage onHomePage = pageStore.get(HomePage.class);
     	onHomePage.goToCreate2ddPage();
     }
@@ -31,7 +31,7 @@ public class Specification {
     	onHomePage.goToCreate2aPage();
     }
     
-    public void clickAddNew2ddWith(PageDetail new2ddDetails) throws InterruptedException
+    public void clickAddNew2ddWith(PageDetail new2ddDetails)
     {
     	 SpecialOfNormalPage onNew2ddPage = pageStore.get(SpecialOfNormalPage.class);
     	 onNew2ddPage.saveMaterialWith(new2ddDetails);
@@ -44,7 +44,7 @@ public class Specification {
     	 onNew2ddPage.saveMaterialWith(new2ddDetails);
     	 
     }
-    public void goToAttachPage(String pathFile) throws Exception{
+    public void goToAttachPage(String pathFile) {
     	AttachmentFilePage onAttachPage = pageStore.get(AttachmentFilePage.class);
     	onAttachPage.saveAllAttachFiles(pathFile);
     }

@@ -44,7 +44,7 @@ public class HomePage {
 	}
 
 
-	public void goToCreate2ddPage() throws InterruptedException
+	public void goToCreate2ddPage()
 	{
 		clickMenuCreateNL();
 		waitForLabelToAppear();
@@ -52,7 +52,7 @@ public class HomePage {
 		waitForTabLableToAppear();
 	}
 	
-	public void goToCreate2aPage() throws InterruptedException
+	public void goToCreate2aPage()
 	{
 		clickMenuCreateNL();
 		waitForLabelToAppear();
