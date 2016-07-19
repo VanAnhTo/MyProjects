@@ -58,7 +58,7 @@ public class AttachmentFilePage extends PageEvent {
 			this.value = value;
 		}
 	}
-	
+
 	public void saveAllAttachFiles(List<AttachmentDetail> attachmentDetailList) {
 		chonTabTepDinhKem();
 		int i = 0;
@@ -81,7 +81,7 @@ public class AttachmentFilePage extends PageEvent {
 	}
 
 	private void waitForSaveFileUploadFileCoplete(int i) {
-		waitForElement(".z-groupbox-cnt .z-listbox-body table tbody:nth-child(2) tr:nth-child(" + i + ")");
+		waitForElement(".z-groupbox-cnt .z-listbox-body table tbody:nth-child(2) tr:nth-child(" + (i + 1) + ")");
 	}
 
 }

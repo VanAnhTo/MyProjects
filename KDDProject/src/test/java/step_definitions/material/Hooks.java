@@ -62,29 +62,5 @@ public class Hooks {
 
 	}
 	
-	@Before("@SpecialOfNormal")
-	public void openBrowserOfTag() throws IOException {
-		System.out.println("Called openBrowser");
-		String browserRunner = PropertiesStore.getProperty("browser");
-		switch (browserRunner) {
-		case "chrome":
-			System.setProperty("webdriver.chrome.driver",
-					"C:/Windows/System32/config/systemprofile/.jenkins/jobs/chromedriver.exe");
-			ChromeOptions options = new ChromeOptions();
-			options.addArguments("--no-sandbox");
-			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-			driver = new ChromeDriver(capabilities);
-			break;
-		case "firefox":
-			driver = new FirefoxDriver();
-			break;
-		case "coccoc":
-			break;
-		}
-
-		driver.manage().deleteAllCookies();
-		driver.manage().window().maximize();
-	}
 
 }
