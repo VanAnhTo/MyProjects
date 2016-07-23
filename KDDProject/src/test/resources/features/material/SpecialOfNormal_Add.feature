@@ -1,7 +1,7 @@
 Feature: Create a new document in special of normal page 
 	As a business
 	I want to add a new special of normal document
- 	So that I can import drug packages 
+ 	So that I can import many drug packages 
 
 Background: 
 	Given I open browser and enter link website "http://203.190.173.37:8080/kinhdoanhduoc/Pages/login.zul" 
