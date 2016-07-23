@@ -15,6 +15,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import util.AppLogger;
 import util.PropertiesStore;
 
 public class Hooks {
@@ -22,7 +23,7 @@ public class Hooks {
 
 	@Before
 	public void openBrowser() throws IOException {
-		System.out.println("Called openBrowser");
+		AppLogger.logMessage("Called openBrowser");
 		String browserRunner = PropertiesStore.getProperty("browser");
 		switch (browserRunner) {
 		case "chrome":
