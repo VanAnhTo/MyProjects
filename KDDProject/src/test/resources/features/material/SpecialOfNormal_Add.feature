@@ -16,7 +16,7 @@ Feature: Create a new document in special of normal page
     And I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>"
     And I enter material info list
       | materialName      | contentMaterial           | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration       | contentImport      |
-      | Ten nguyen lieu 1 | Ham luong, dang bao che 1 |              1 | tan          | 2015/11/11      | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | Ten nguyen lieu 1 | Ham luong, dang bao che 1 |              a | tan          | 2015/11/11      | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
       | Ten nguyen lieu 2 | Ham luong, dang bao che 2 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
       | Ten nguyen lieu 3 | Ham luong, dang bao che 3 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
     And I save document info

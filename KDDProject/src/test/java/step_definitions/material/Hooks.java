@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-//import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import cucumber.api.Scenario;
@@ -40,12 +40,12 @@ public class Hooks {
 			break;
 		case "coccoc":
 			break;
-//		case "phantom":
-//			String phantomPath = PropertiesStore.getProperty("phantom_path");
-//			File file = new File(phantomPath);	
-//			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
-//			driver = new PhantomJSDriver();
-//			break;
+		case "phantom":
+			String phantomPath = PropertiesStore.getProperty("phantom_path");
+			File file = new File(phantomPath);	
+			System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
+			driver = new PhantomJSDriver();
+			break;
 		}
 
 		driver.manage().deleteAllCookies();
