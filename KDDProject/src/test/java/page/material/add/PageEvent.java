@@ -22,6 +22,10 @@ public class PageEvent extends PageBase {
 	protected void waitForAlert() {
 		waitForElement(".z-notification");
 	}
+	
+	protected void waitForDropdown() {
+		waitForElement(".z-chosenbox-pp.z-chosenbox-pp-hidden");
+	}
 
 	protected void waitForElement(String selector)
 	{

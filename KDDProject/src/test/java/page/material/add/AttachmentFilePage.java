@@ -63,7 +63,7 @@ public class AttachmentFilePage extends PageEvent {
 		chonTabTepDinhKem();
 		int i = 1;
 		for (AttachmentDetail attachmentDetail : attachmentDetailList) {
-			int fileType = AttachmentEnum.valueOf(attachmentDetail.getFileType()).value;
+			int fileType = AttachmentEnum.valueOf(attachmentDetail.getFileType()).value - 1;
 			selectAttachmentFile(fileType);
 			clickButtonChonTep(attachmentDetail.getFilePath());
 			waitForSaveFileUploadFileCoplete(i);

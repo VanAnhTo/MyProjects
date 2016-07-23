@@ -77,8 +77,10 @@ public class SpecialOfNormalPage extends PageEvent {
 
 			this.clickCommitedCheckbox();
 			this.focusOnProviderMaterialField();
+			this.waitForDropdown();
 			this.chooseProviderMaterialCombobox();
 			this.focusManufacturalMaterialField();
+			this.waitForDropdown();
 			this.chooseManufacturalMaterialCombobox();
 			this.clickAddMaterialButton();
 			waitForDataFillOnTableComplete(i);
