@@ -2,11 +2,7 @@ package page.material.add;
 
 import java.io.IOException;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import domain.detail.material.MaterialDetail;
 import domain.detail.material.PageDetail;
@@ -81,24 +77,15 @@ public class SpecialOfNormalPage extends PageEvent {
 
 			this.clickCommitedCheckbox();
 			this.focusOnProviderMaterialField();
-			// waitItemAppear();
 			this.chooseProviderMaterialCombobox();
 			this.focusManufacturalMaterialField();
-			// waitItemAppear();
 			this.chooseManufacturalMaterialCombobox();
 			this.clickAddMaterialButton();
 			waitForDataFillOnTableComplete(i);
 			i++;
-
 		}
 		this.clickSaveListMaterialButton();
 		waitForAlert();
-	}
-
-	protected void waitItemAppear() {
-		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
-		wait.until(
-				ExpectedConditions.presenceOfElementLocated(By.cssSelector(".z-chosenbox-pp.z-chosenbox-pp-hidden")));
 	}
 
 }

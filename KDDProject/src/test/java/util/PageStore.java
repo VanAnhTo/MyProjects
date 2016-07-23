@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 
 /**
@@ -16,14 +14,6 @@ public class PageStore {
 
 	WebDriver webDriver;
 	List<Object> pages;
-
-	public PageStore() {
-		// System.setProperty("webdriver.chrome.driver",
-		// "E:/setup/browerdriver/chromedriver.exe");
-		// webDriver = new ChromeDriver();
-		// //webDriver = new FirefoxDriver();
-		// pages = new ArrayList<Object>();
-	}
 
 	public PageStore(WebDriver webDriver) {
 		this.webDriver = webDriver;

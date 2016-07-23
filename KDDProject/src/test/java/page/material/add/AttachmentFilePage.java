@@ -2,114 +2,86 @@ package page.material.add;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class AttachmentFilePage {
-	
+import domain.detail.material.AttachmentDetail;
+import domain.detail.material.MaterialDetail;
+
+public class AttachmentFilePage extends PageEvent {
+
 	WebDriver driver;
-	public AttachmentFilePage(WebDriver driver) {
-        this.driver = driver;
-    }
-    
-	protected WebElement tabTepDinhKem;
 
+	public AttachmentFilePage(WebDriver driver) {
+		super(driver);
+	}
+
+	protected WebElement tabTepDinhKem;
 	protected WebElement buttonThemTep;
 
 	@FindBy(css = ".z-tabs-header .z-tab-hm span")
 	protected List<WebElement> allTabLable;
-	
+
 	@FindBy(css = "input[type=file]")
 	protected WebElement buttonChonTep;
 
 	@FindBy(css = ".z-groupbox-cnt .button.z-button-os")
 	protected List<WebElement> allButton;
 
-	@FindBy(css = ".z-groupbox-cnt .z-select .z-option:nth-child(1)")
-	protected WebElement fileTypeGCNKinhDoanh;
-
-	@FindBy(css = ".z-groupbox-cnt .z-select .z-option:nth-child(2)")
-	protected WebElement fileTypeTCCL;
-
-	@FindBy(css = ".z-groupbox-cnt .z-select .z-option:nth-child(3)")
-	protected WebElement fileTypePhuongPhapKiemNghiem;
-
-	@FindBy(css = ".z-groupbox-cnt .z-select .z-option:nth-child(4)")
-	protected WebElement fileTypeOther;
+	@FindBy(css = ".z-groupbox-cnt .z-select .z-option")
+	protected List<WebElement> fileType;
 
 	public void chonTabTepDinhKem() {
 		tabTepDinhKem = allTabLable.get(1);
 		tabTepDinhKem.click();
 	}
-	
-	public void clickButtonChonTep() throws Exception{
-		buttonChonTep.sendKeys("C:\\Users\\Admin\\Downloads\\645b96400b048d49937824ef3862f005.jpg");
+
+	public void clickButtonChonTep(String pathFile) {
+		buttonChonTep.sendKeys(pathFile);
 		waitForUploadFileComplete();
 		clickButtonThemTep();
-		
-	}
-	public void clickButtonThemTep(){
 
-		buttonThemTep = allButton.get(5);	
+	}
+
+	public void clickButtonThemTep() {
+
+		buttonThemTep = allButton.get(5);
 		buttonThemTep.click();
-		//waitForSaveFileUploadFileCoplete() ;
 	}
-	
-	public void chonLoaiTepDangKyKinhDoanh() throws Exception
-	{
-		fileTypeGCNKinhDoanh.click();
+
+	public enum AttachmentEnum {
+		CERTIFICATE(1), QUALITY(2), METHOD(3), OTHER(4);
+		private int value;
+
+		private AttachmentEnum(int value) {
+			this.value = value;
+		}
 	}
-	
-	public void chonLoaiTepTieuChuanChatLuong() throws Exception
-	{
-		fileTypeTCCL.click();
-	}
-	public void chonLoaiTepPPKiemNghiem() throws Exception
-	{
-		fileTypePhuongPhapKiemNghiem.click();	
-	}
-	public void chonLoaiTepKhac() throws Exception
-	{
-		fileTypeOther.click();		
-	}
-	int i = 1;
-	public void saveAllAttachFiles() throws Exception
-	{
+
+	public void saveAllAttachFiles(List<AttachmentDetail> attachmentDetailList) {
 		chonTabTepDinhKem();
-		chonLoaiTepDangKyKinhDoanh();
-		clickButtonChonTep();
+		int i = 1;
+		for (AttachmentDetail attachmentDetail : attachmentDetailList) {
+			int fileType = AttachmentEnum.valueOf(attachmentDetail.getFileType()).value;
+			selectAttachmentFile(fileType);
+			clickButtonChonTep(attachmentDetail.getFilePath());
+			waitForSaveFileUploadFileCoplete(i);
+			i++;
+		}
+	}
 
-		chonLoaiTepTieuChuanChatLuong();
-		clickButtonChonTep();
-
-		chonLoaiTepPPKiemNghiem();
-		clickButtonChonTep();
-
-		chonLoaiTepKhac();
-		clickButtonChonTep();
+	private void selectAttachmentFile(int fileType) {
+		this.fileType.get(fileType).click();
 
 	}
-	
+
 	private void waitForUploadFileComplete() {
-		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
-		wait.until(visibilityOfElementLocated(By.cssSelector(".newFile.z-hlayout .z-hlayout-inner .z-label")));
+		waitForElement(".newFile.z-hlayout .z-hlayout-inner .z-label");
 	}
 
-    private ExpectedCondition<WebElement> visibilityOfElementLocated(final By locator) {
-		return new ExpectedCondition<WebElement>() {
-			public WebElement apply(WebDriver driver) {
-				WebElement toReturn = driver.findElement(locator);
-				if (toReturn.isDisplayed()) {
-					return toReturn;
-				}
-				return null;
-			}
-		};
+	private void waitForSaveFileUploadFileCoplete(int i) {
+		waitForElement(".z-groupbox-cnt .z-listbox-body table tbody:nth-child(2) tr:nth-child(" + (i) + ")");
 	}
 
 }

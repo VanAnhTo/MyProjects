@@ -1,13 +1,16 @@
-package spec;
+package util;
 
 import page.material.add.AttachmentFilePage;
 import page.material.add.NormalPage;
 import page.material.add.SpecialOfNormalPage;
+
+import java.util.List;
+
 import domain.detail.account.LoginDetails;
+import domain.detail.material.AttachmentDetail;
 import domain.detail.material.PageDetail;
 import page.account.HomePage;
 import page.account.LoginPage;
-import util.PageStore;
 
 public class Specification {
 
@@ -23,7 +26,7 @@ public class Specification {
         
     }
     
-    public void goToAddNew2ddPage() throws InterruptedException{
+    public void goToAddNew2ddPage(){
     	HomePage onHomePage = pageStore.get(HomePage.class);
     	onHomePage.goToCreate2ddPage();
     }
@@ -32,7 +35,7 @@ public class Specification {
     	onHomePage.goToCreate2aPage();
     }
     
-    public void clickAddNew2ddWith(PageDetail new2ddDetails) throws InterruptedException
+    public void clickAddNew2ddWith(PageDetail new2ddDetails)
     {
     	 SpecialOfNormalPage onNew2ddPage = pageStore.get(SpecialOfNormalPage.class);
     	 onNew2ddPage.saveMaterialWith(new2ddDetails);
@@ -45,9 +48,9 @@ public class Specification {
     	 onNew2ddPage.saveMaterialWith(new2ddDetails);
     	 
     }
-    public void goToAttachPage() throws Exception{
+    public void goToAttachPage(List<AttachmentDetail> attachmentDetail) {
     	AttachmentFilePage onAttachPage = pageStore.get(AttachmentFilePage.class);
-    	onAttachPage.saveAllAttachFiles();
+    	onAttachPage.saveAllAttachFiles(attachmentDetail);
     }
     
     
