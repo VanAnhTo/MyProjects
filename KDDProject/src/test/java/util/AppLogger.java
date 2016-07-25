@@ -8,4 +8,5 @@ public class AppLogger {
 	public static void logMessage(String message) {
 		log.debug(message);
 	}
+
 }
