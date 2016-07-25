@@ -1,6 +1,7 @@
 package util;
 
 import page.material.add.AttachmentFilePage;
+import page.material.add.ListPage;
 import page.material.add.NormalPage;
 import page.material.add.SpecialOfNormalPage;
 
@@ -34,6 +35,16 @@ public class Specification {
     	HomePage onHomePage = pageStore.get(HomePage.class);
     	onHomePage.goToCreate2aPage();
     }
+    
+    public void goToListPage() throws InterruptedException{
+    	HomePage onHomePage = pageStore.get(HomePage.class);
+    	onHomePage.goToListPage();
+    }
+    
+    public void verifyTotalDocument() throws InterruptedException{
+    	ListPage onListPage = pageStore.get(ListPage.class);
+    	onListPage.verifyTotalDocument();
+    	}
     
     public void clickAddNew2ddWith(PageDetail new2ddDetails)
     {

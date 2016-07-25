@@ -18,6 +18,9 @@ public class HomePage {
 
 	@FindBy(css = "#tabContent .group:nth-child(1)")
 	private WebElement menuCreateNL;
+	
+	@FindBy(css = "#tabContent .group:nth-child(2)")
+	private WebElement menuList;
 
 	@FindBy(css = ".container.z-div .z-div span")
 	private List<WebElement> allLabel;
@@ -28,6 +31,10 @@ public class HomePage {
 
 	public void clickMenuCreateNL() {
 		menuCreateNL.click();
+	}
+	
+	public void clickMenuList() {
+		menuList.click();
 	}
 
 	public void clickLabelCreat2dd() {
@@ -56,6 +63,12 @@ public class HomePage {
 		clickLabelCreat2a();
 		waitForTabLableToAppear();
 	}
+	
+	public void goToListPage()
+	{
+		clickMenuList();
+		waitForTableToAppear();
+	}
 
 	private void waitForTabLableToAppear() {
 		waitForElement(".container.z-div .z-div");	
@@ -63,6 +76,10 @@ public class HomePage {
 
 	private void waitForLabelToAppear() {
 		waitForElement(".container.z-div .z-div");
+	}
+	
+	private void waitForTableToAppear() {
+		waitForElement(".z-listbox-body");
 	}
 	
 	private void waitForElement(String selector)
