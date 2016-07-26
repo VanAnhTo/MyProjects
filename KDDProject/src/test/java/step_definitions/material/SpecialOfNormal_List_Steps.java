@@ -71,5 +71,10 @@ public class SpecialOfNormal_List_Steps {
 	public void i_see_total() throws InterruptedException {
 		user.verifyTotalDocument();
 	}
+	
+	@And("I see page number on grid")
+	public void i_see_page_number() throws InterruptedException {
+		user.verifyNumberOfItemOnGrid();
+	}
 
 }

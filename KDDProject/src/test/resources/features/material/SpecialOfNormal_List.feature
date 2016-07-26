@@ -14,3 +14,4 @@ Feature: Search document in special of normal page
   Scenario: Search document
     When I go to specical of list page
     Then I see total of documents per page
+    And I see page number on grid

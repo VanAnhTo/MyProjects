@@ -46,6 +46,11 @@ public class Specification {
     	onListPage.verifyTotalDocument();
     	}
     
+    public void verifyNumberOfItemOnGrid() throws InterruptedException{
+    	ListPage onListPage = pageStore.get(ListPage.class);
+    	onListPage.verifyNumberOfItemOnGrid();
+    	}
+    
     public void clickAddNew2ddWith(PageDetail new2ddDetails)
     {
     	 SpecialOfNormalPage onNew2ddPage = pageStore.get(SpecialOfNormalPage.class);
