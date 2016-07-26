@@ -13,12 +13,9 @@ import util.PropertiesStore;
 
 public class ListPage extends PageEvent {
 
-	public ListPage(WebDriver driver) throws NumberFormatException, IOException {
-		super(driver);
-		itemsPerPage = Integer.parseInt(PropertiesStore.getProperty("itemsPerPage"));
-	}
-
-	protected int itemsPerPage;
+	private int itemsPerPage;
+	
+	private WebElement numberOfPage;
 
 	@FindBy(css = ".z-listbox-body table tr.z-listitem")
 	private List<WebElement> trList;
@@ -29,84 +26,75 @@ public class ListPage extends PageEvent {
 	@FindBy(css = ".z-paging-text")
 	private List<WebElement> listNumberOfPage;
 
-
-	private WebElement numberOfPage;
-
-
 	@FindBy(css = "button.z-paging-last")
 	private WebElement buttonLastPage;
 
-	protected void clickButtonToLastPage() {
-		buttonLastPage.click();
-		waitForLastPageAppear();
+	@FindBy(css = "input.z-paging-inp")
+	private WebElement valuePage;
+
+	public ListPage(WebDriver driver) throws NumberFormatException, IOException {
+		super(driver);
+		itemsPerPage = Integer.parseInt(PropertiesStore.getProperty("itemsPerPage"));
 	}
 
-	protected String getNumberOfPage() {
-		numberOfPage = listNumberOfPage.get(1);
-		return numberOfPage.getText();
-	}
-
-	protected int getListDocumnetPerPage() {
-		return trList.size();
-	}
-
-	protected String getPageInfo() {
-		String pageInfo = pagingInfo.getText();
-		pageInfo = pageInfo.replace("[", "").replace("]", "").replace(" ", "");
-		return pageInfo;
-	}
-	
 	public void verifyTotalDocument() {
 		try {
-			
-//			String range = getPageInfo().substring(0, getPageInfo().indexOf('/'));
-//			String begin = range.substring(0, range.indexOf('-'));
-//			String end = range.substring(range.indexOf('-') + 1, range.length());
-
-			// int startIndex = Integer.parseInt(begin);
-			// int endIndex = Integer.parseInt(end);;
-			
-
-			Assert.assertEquals(findTotalItemsOfList(),countTotalItemsByPage());
-		
-			
-			
+			int totalItemsInList = getTotalItemsByLabel();
+			clickButtonToLastPage();
+			int totalItems = getTotalItemsByGrid();
+			Assert.assertEquals(totalItemsInList, totalItems);
 		} catch (NumberFormatException e) {
 			AppLogger.logMessage(e.getMessage());
 		}
-
 	}
-
-	public int findTotalItemsOfList() {	
+	
+	private int getTotalItemsByLabel() {
 		String totalPerPage = getPageInfo().substring(getPageInfo().indexOf('/') + 1, getPageInfo().length());
 		int totalItemsOfList = Integer.parseInt(totalPerPage);
 		return totalItemsOfList;
 	}
 
-	public int totalPageOfList() {
+	private void clickButtonToLastPage() {
+		buttonLastPage.click();
+		waitForLastPageAppear();
+	}
+
+	private int getTotalItemsByGrid() {
+		int totalPage = getTotalPageByLabel();
+		int numberOfElementInLastPage = getListItemsPerPage();
+		int totalItems = (totalPage - 1) * itemsPerPage + numberOfElementInLastPage;
+		return totalItems;
+	}
+	
+	private String getNumberOfPage() {
+		numberOfPage = listNumberOfPage.get(1);
+		return numberOfPage.getText();
+	}
+
+	private int getListItemsPerPage() {
+		return trList.size();
+	}
+
+	private String getPageInfo() {
+		String pageInfo = pagingInfo.getText();
+		pageInfo = pageInfo.replace("[", "").replace("]", "").replace(" ", "");
+		return pageInfo;
+	}
+
+	private int getTotalPageByLabel() {
 		String numberPaging = getNumberOfPage();
 		numberPaging = numberPaging.replace("/", "").replace(" ", "");
 		int numberPage = Integer.parseInt(numberPaging);
 		return numberPage;
 	}
 
-	public int countTotalItemsByPage() {
-		clickButtonToLastPage();
-		int totalItems = ((totalPageOfList() - 1) * itemsPerPage + getListDocumnetPerPage());
-		return totalItems;
-	}
-	
-	@FindBy(css="input.z-paging-inp")
-	private WebElement valuePage;
-	
-	public String getNumberOfPageOnTextBox()
-	{
+	private String getNumberOfPageOnTextBox() {
 		return valuePage.getText();
 	}
-	
+
 	private void waitForLastPageAppear() {
 		waitForElement("table td:nth-child(9) .z-paging-btn.z-paging-btn-disd");
-		
+
 	}
 
 }
