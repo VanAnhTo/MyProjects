@@ -32,5 +32,11 @@ public class PageEvent extends PageBase {
 		util.WaitFor wait = new util.WaitFor(driver);
 		wait.presenceOfTheElement(By.cssSelector(selector));
 	}
+	
+	protected void waitForUnclickableElement(String selector)
+	{
+		util.WaitFor wait = new util.WaitFor(driver);
+		wait.unclickableOfTheElement(By.cssSelector(selector));
+	}
 
 }
