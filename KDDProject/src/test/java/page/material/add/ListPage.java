@@ -58,7 +58,7 @@ public class ListPage extends PageEvent {
 	public void verifyNumberOfItemOnGrid()
 	{
 //		try {
-			clickButtonToLastPage(); 
+			//clickButtonToLastPage(); 
 			int firstNumberOnGrid = getFirstNumberOnGrid();
 			int startIndex = getFirstNumberOnLabel();
 			int lastNumberOnGri = getLastNumberOnGrid();
@@ -155,7 +155,7 @@ public class ListPage extends PageEvent {
 	
 	private String getNumberOnInput() {
 		pageNumberOnInput = allValuePage.get(0);
-		return pageNumberOnInput.getText();
+		return pageNumberOnInput.getAttribute("value");
 	}
 
 	private int getNumberOfPageOnTextBox() {
