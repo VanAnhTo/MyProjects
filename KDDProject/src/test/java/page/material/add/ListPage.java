@@ -55,13 +55,8 @@ public class ListPage extends PageEvent {
 		try {
 			int totalItemsInList = getTotalItemsByLabel();
 			clickButtonToLastPage();
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			//waitForLastPageButton();
+			waitForJSandJQueryToLoad();
+			AppLogger.logMessage("Số phần tử " + driver.findElements(By.cssSelector(".z-listbox-body table tr.z-listitem")).size());
 			int totalItems = getTotalItemsByGrid();
 			Assert.assertEquals(totalItemsInList, totalItems);
 		} catch (NumberFormatException e) {
@@ -70,29 +65,16 @@ public class ListPage extends PageEvent {
 	}
 
 	public void verifyNumberOfItemOnGrid() {
-		// try {
 		clickButtonToLastPage();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		waitForJSandJQueryToLoad();
 		int firstNumberOnGrid = getStartIndex();
 		int startIndex = getFirstNumberOnLabel();
 		int lastNumberOnGri = getEndIndex();
-		int endINdex = getEndNumberOnLabel();
-		
-		int index = getIndex();
-		
+		int endINdex = getEndNumberOnLabel();	
+		int index = getIndex();		
 		Assert.assertEquals(firstNumberOnGrid, startIndex);
-		Assert.assertEquals(lastNumberOnGri, endINdex);
-		
+		Assert.assertEquals(lastNumberOnGri, endINdex);		
 		Assert.assertEquals(index, endINdex);
-
-		// } catch (NumberFormatException e) {
-		// AppLogger.logMessage(e.getMessage());
-		// }
 	}
 
 	private int getTotalItemsByLabel() {
@@ -103,13 +85,13 @@ public class ListPage extends PageEvent {
 
 	private void clickButtonToLastPage() {
 		buttonLastPage.click();
-		// int numberOnTextBox = getNumberOfPageOnTextBox();
-		// waitForNextPageAppear(numberOnTextBox);
 	}
 
 	private int getTotalItemsByGrid() {
 		int totalPage = getTotalPageByLabel();
 		int numberOfElementInLastPage = getListItemsPerPage();
+		AppLogger.logMessage("Tổng số trang: " + totalPage);
+		AppLogger.logMessage("Số items trên grid: " + numberOfElementInLastPage);
 		int totalItems = (totalPage - 1) * itemsPerPage + numberOfElementInLastPage;
 		return totalItems;
 	}
@@ -191,15 +173,6 @@ public class ListPage extends PageEvent {
 		String numberOnTextBoxList = getNumberOnInput();
 		int numberOnTextBox = Integer.parseInt(numberOnTextBoxList);
 		return numberOnTextBox;
-	}
-
-	private void waitForNextPageAppear() {
-		waitForElement("table td:nth-child(9) .z-paging-btn.z-paging-btn-disd");
-
-	}
-
-	private void waitForLastPageButton() {
-		waitForUnclickableElement("button.z-paging-last");
 	}
 
 }
