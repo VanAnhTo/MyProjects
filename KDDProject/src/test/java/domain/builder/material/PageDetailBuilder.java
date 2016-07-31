@@ -6,10 +6,15 @@ import domain.detail.material.PageDetail;
 import domain.detail.material.MaterialDetail;
 
 public class PageDetailBuilder {
-	
+
 	private String fileNumber;
 	private String signWhere;
 	private List<MaterialDetail> materialDetailList;
+
+	public PageDetailBuilder() {
+		fileNumber ="0";
+		signWhere ="HN";
+	}
 
 	public PageDetailBuilder withFileNumber(String fileNumber) {
 		this.fileNumber = fileNumber;
@@ -27,6 +32,7 @@ public class PageDetailBuilder {
 	}
 
 	public PageDetail build() {
+
 		return new PageDetail(fileNumber, signWhere, materialDetailList);
 	}
 

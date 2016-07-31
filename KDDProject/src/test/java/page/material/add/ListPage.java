@@ -5,12 +5,10 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriver.Options;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-import com.sun.org.apache.bcel.internal.generic.Select;
 
 import util.AppLogger;
 import util.PropertiesStore;
@@ -18,12 +16,14 @@ import util.PropertiesStore;
 public class ListPage extends PageEvent {
 
 	private int itemsPerPage;
-	private WebElement firstOrderNumber;
-	private WebElement lastOrderNumber;
+/*	private WebElement firstOrderNumber;
+	private WebElement lastOrderNumber;*/
 
 	private WebElement pageNumberOnInput;
 
 	private WebElement numberOfPage;
+	
+	//Grid
 
 	@FindBy(css = ".z-listbox-body table tr.z-listitem")
 	private List<WebElement> trList;
@@ -45,7 +45,8 @@ public class ListPage extends PageEvent {
 
 	@FindBy(css = "table tbody:nth-child(2) tr:last-child td:nth-child(2)")
 	private WebElement endIndex;
-
+	
+	
 	public ListPage(WebDriver driver) throws NumberFormatException, IOException {
 		super(driver);
 		itemsPerPage = Integer.parseInt(PropertiesStore.getProperty("itemsPerPage"));
@@ -125,7 +126,7 @@ public class ListPage extends PageEvent {
 		return numberPage;
 	}
 
-	private int getFirstNumberOnGrid() {
+/*	private int getFirstNumberOnGrid() {
 		int numberOnTextBox = getNumberOfPageOnTextBox();
 		int totalPage = getTotalPageByLabel();
 		int firstNumberOnGrid = (totalPage - numberOnTextBox) * itemsPerPage + 1;
@@ -138,7 +139,7 @@ public class ListPage extends PageEvent {
 		int itemsPerPage = getListItemsPerPage();
 		int firstNumberOnGrid = (totalPage - numberOnTextBox) * itemsPerPage + itemsPerPage;
 		return firstNumberOnGrid;
-	}
+	}*/
 
 	private int getStartIndex() {
 		return Integer.parseInt(startIndex.getText());

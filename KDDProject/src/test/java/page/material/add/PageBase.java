@@ -221,6 +221,8 @@ public abstract class PageBase {
 	}
 
 	protected void enterComboboxFeild(WebElement comboBox, int position, String content) {
+
+		
 		comboBox = allCombobox.get(position);
 		comboBox.clear();
 		comboBox.sendKeys(content);

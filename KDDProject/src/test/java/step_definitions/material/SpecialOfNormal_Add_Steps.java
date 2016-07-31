@@ -73,7 +73,7 @@ public class SpecialOfNormal_Add_Steps {
 
 	@When("^I enter file number field with value \"(.*)\" and sign where field with value \"(.*)\"$")
 	public void i_enter_file_number_value_and_sign_where_value(String fileNumber, String signWhere) {
-		pageDetailBuilder.withFileNumber(fileNumber).withSignWhere(signWhere);
+		pageDetailBuilder.withSignWhere(signWhere);
 	}
 
 	@And("I enter material info list")
