@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import domain.detail.material.AttachmentDetail;
-import domain.detail.material.MaterialDetail;
 
 public class AttachmentFilePage extends PageEvent {
 

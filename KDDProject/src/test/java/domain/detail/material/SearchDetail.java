@@ -1,5 +1,7 @@
 package domain.detail.material;
 
+
+
 public class SearchDetail {
 
 	private String orderType;
@@ -23,8 +25,38 @@ public class SearchDetail {
 		}
 	}
 
-	public SearchDetail() {
-		int orderType = OrderTypeEnum.valueOf(getOrderType()).value;
+	public enum StatusEnum {
+		ALL(1);
+		private int value;
+
+		private StatusEnum(int value) {
+			this.value = value;
+		}
+	}
+
+	public enum SubstanceEnum {
+		ALL(1);
+		private int value;
+
+		private SubstanceEnum(int value) {
+			this.value = value;
+		}
+	}
+
+	public SearchDetail(String orderType, String status, String certificateNumber, String materialName,
+			String issuedDateFrom, String issuedDateTo, String createdDateFrom, String createdDateTo,
+			String orderNumber, String substance) {
+
+		this.orderType = orderType;
+		this.status = status;
+		this.certificateNumber = certificateNumber;
+		this.materialName = materialName;
+		this.issuedDateFrom = issuedDateFrom;
+		this.issuedDateTo = issuedDateTo;
+		this.createdDateFrom = createdDateFrom;
+		this.createdDateTo = createdDateTo;
+		this.orderNumber = orderNumber;
+		this.substance = substance;
 	}
 
 	public String getOrderType() {

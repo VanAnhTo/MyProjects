@@ -11,15 +11,6 @@ public class SearchPage {
 		@FindBy(css = ".z-groupbox-cnt .z-select")
 		private List<WebElement> comboboxes;
 		
-		@FindBy(css="tr:nth-child(2) td:nth-child(2) .z-select option:nth-child(2)")
-		private WebElement orderTypeSpecialOfNormarl;
-		
-		@FindBy(css="tr:nth-child(2) td:nth-child(4) .z-select option:nth-child(2)")
-		private WebElement statusBeSent;
-						
-		@FindBy(css="tr:nth-child(6) td:nth-child(4) .z-select option:nth-child(4)")
-		private WebElement substanceZiprasidone;
-		
 		@FindBy(css = ".z-groupbox-cnt .z-textbox")
 		private List<WebElement> textBoxes;
 		
@@ -31,18 +22,6 @@ public class SearchPage {
 		
 		@FindBy(css = ".z-groupbox-cnt .button.z-button-os")
 		private List<WebElement> buttons;
-		
-		@FindBy(css="tr:nth-child(4) td:nth-child(2) i.z-datebox-btn")
-		private WebElement dateBoxFromDate;
-		
-		@FindBy(css="tr:nth-child(4) td:nth-child(4) i.z-datebox-btn")
-		private WebElement dateBoxToDate;
-		
-		@FindBy(css="tr:nth-child(5) td:nth-child(2) i.z-datebox-btn")
-		private WebElement dateBoxCreatedDateFrom;
-		
-		@FindBy(css="tr:nth-child(5) td:nth-child(4) i.z-datebox-btn")
-		private WebElement dateBoxCreatedDateTo;
 		
 		private WebElement cbxOrderType;
 		private WebElement cbxStatus;
@@ -62,8 +41,8 @@ public class SearchPage {
 		private int positionOfStatusField;
 		private int positionOfCertificateNumberField;
 		private int positionOfMaterialNameField;
-		private int positionOfDateFromField;
-		private int positionOfDateToField;
+		private int positionOfIssuedDateFromField;
+		private int positionOfIssuedDateToField;
 		private int positionOfCreatedDateFromField;
 		private int positionOfCreatedDateToField;
 		private int positionOfOrderNumberField;
@@ -73,6 +52,10 @@ public class SearchPage {
 		private int positionOfSearchButton;
 		private int positionOfClearButton;
 		
+		public void selectOrderType(int fileType) {
+			this.comboboxes.get(fileType).click();
+		}
+
 		public void enterCertificateNumberFieldAs(String certificateNumber) {
 			enterTextBoxField(txtCertificateNumber, positionOfCertificateNumberField, certificateNumber);
 		}
@@ -86,11 +69,11 @@ public class SearchPage {
 		}
 		
 		public void enterIssuedDateFromFieldAs(String issuedDateFrom) {
-			enterDatePickerField(dprIssuedFrom, positionOfDateFromField, issuedDateFrom);
+			enterDatePickerField(dprIssuedFrom, positionOfIssuedDateFromField, issuedDateFrom);
 		}
 		
 		public void enterIssuedDateToFieldAs(String issuedDateTo) {
-			enterDatePickerField(dprIssuedTo, positionOfDateToField, issuedDateTo);
+			enterDatePickerField(dprIssuedTo, positionOfIssuedDateToField, issuedDateTo);
 		}
 		
 		public void enterCreatedDateFromFieldAs(String createdDateFrom) {

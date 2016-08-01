@@ -13,8 +13,8 @@ public class MaterialDetail {
 	private String quyCachDongGoi;
 
 	public MaterialDetail(String materialName, String contentMaterial, String unitMaterial, String amountMaterial,
-			String qualityMaterial, String registrationNumber, String contentration, String contentImport, String quyCachDongGoi) {
-
+			String qualityMaterial, String registrationNumber, String contentration, String contentImport,
+			String quyCachDongGoi) {
 		this.materialName = materialName;
 		this.contentMaterial = contentMaterial;
 		this.unitMaterial = unitMaterial;
@@ -24,11 +24,9 @@ public class MaterialDetail {
 		this.contentration = contentration;
 		this.contentImport = contentImport;
 		this.quyCachDongGoi = quyCachDongGoi;
-
 	}
-	
-	public String getQuyCachDongGoi()
-	{
+
+	public String getQuyCachDongGoi() {
 		return quyCachDongGoi;
 	}
 
