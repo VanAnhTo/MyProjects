@@ -3,6 +3,7 @@ package util;
 import page.material.add.AttachmentFilePage;
 import page.material.add.ListPage;
 import page.material.add.NormalPage;
+import page.material.add.SearchPage;
 import page.material.add.SpecialOfNormalPage;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 import domain.detail.account.LoginDetails;
 import domain.detail.material.AttachmentDetail;
 import domain.detail.material.PageDetail;
+import domain.detail.material.SearchDetail;
 import page.account.HomePage;
 import page.account.LoginPage;
 
@@ -46,6 +48,11 @@ public class Specification {
     	onListPage.verifyTotalDocument();
     	}
     
+    public void verifyResultOfSearch() throws InterruptedException{
+    	ListPage onListPage = pageStore.get(ListPage.class);
+    	onListPage.verifyTotalDocument();
+   }
+    
     public void verifyNumberOfItemOnGrid() throws InterruptedException{
     	ListPage onListPage = pageStore.get(ListPage.class);
     	onListPage.verifyNumberOfItemOnGrid();
@@ -67,6 +74,11 @@ public class Specification {
     public void goToAttachPage(List<AttachmentDetail> attachmentDetail) {
     	AttachmentFilePage onAttachPage = pageStore.get(AttachmentFilePage.class);
     	onAttachPage.saveAllAttachFiles(attachmentDetail);
+    }
+
+	public void clickSearchOrder(SearchDetail searchDetail) {
+    	SearchPage onSearchPage = pageStore.get(SearchPage.class);
+    	onSearchPage.searchOrderSpecialOfNormal(searchDetail);
     }
     
     

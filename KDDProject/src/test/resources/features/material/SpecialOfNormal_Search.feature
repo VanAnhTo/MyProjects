@@ -10,6 +10,7 @@ Feature: Search orders special of normal are created
       | 010203123 |      123 |
     And I login
 
+
   Scenario: Searching with defaut data
     Given I go to specical of list page
     And I click the button Search
@@ -17,13 +18,16 @@ Feature: Search orders special of normal are created
     Then I see total of documents per page
     And I see page number on grid
 
-@wip
-  Scenario Outline: Title of your scenario outline
-    Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
+ @search
+  Scenario Outline: Searching with order number
+    Given I go to specical of list page 
+    
+    When I want to search with order number: "<orderNumber>", created date from: "<createdDateFrom>", created date to: "<createdDateTo>"
+    And I click the button Search
+    Then I see the results of searching on the list
+    Then I see total of documents per page
+    And I see page number on grid
 
     Examples: 
-      | name  | value | status  |
-      | name1 |     5 | success |
-      | name2 |     7 | Fail    |
+      | orderNumber | createdDateFrom | createdDateTo |
+      | SDH         | 12/06/2016      | 15/06/2016    |

@@ -221,8 +221,6 @@ public abstract class PageBase {
 	}
 
 	protected void enterComboboxFeild(WebElement comboBox, int position, String content) {
-
-		
 		comboBox = allCombobox.get(position);
 		comboBox.clear();
 		comboBox.sendKeys(content);
@@ -247,6 +245,5 @@ public abstract class PageBase {
 		choosenComboboxManufacture = allChosenComboboxChildSanXuat.get(position);
 		choosenComboboxManufacture.click();
 	}
-
 
 }
