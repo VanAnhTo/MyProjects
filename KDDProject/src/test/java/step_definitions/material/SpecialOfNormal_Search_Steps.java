@@ -1,5 +1,8 @@
 package step_definitions.material;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.openqa.selenium.WebDriver;
 
 import cucumber.api.java.en.And;
@@ -25,21 +28,43 @@ public class SpecialOfNormal_Search_Steps {
 		this.user = new Specification(pageStore);
 	}
 
+	/*
+	 * @When(
+	 * "I want to search with order number: \"(.*)\", created date from: \"(.*)\", created date to: \"(.*)\""
+	 * ) public void i_search_with_order_number(String orderNumber, String
+	 * createdDateFrom, String createdDateTo) throws InterruptedException {
+	 * searchDetailBuilder.withOrderNumber(orderNumber).withCreatedDateFrom(
+	 * createdDateFrom) .withCreatedDateTo(createdDateTo); }
+	 */
+
 	@When("I want to search with order number: \"(.*)\", created date from: \"(.*)\", created date to: \"(.*)\"")
 	public void i_search_with_order_number(String orderNumber, String createdDateFrom, String createdDateTo)
 			throws InterruptedException {
-		searchDetailBuilder.withOrderNumber(orderNumber).withCreatedDateFrom(createdDateFrom)
-				.withCreatedDateTo(createdDateTo);
+
+		if (createdDateFrom == null) {
+			searchDetailBuilder.withOrderNumber(orderNumber).withCreatedDateFrom(createdDateFrom)
+					.withCreatedDateTo(createdDateTo);
+		}
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		sdf.setLenient(false);
+		try {
+			sdf.parse(createdDateFrom);
+			searchDetailBuilder.withOrderNumber(orderNumber).withCreatedDateFrom(createdDateFrom)
+					.withCreatedDateTo(createdDateTo);
+			
+		} catch (Exception e) {
+			user.verifyAlertDate();
+		}
+
 	}
-	
+
+	@When("I search with invalid issued date: \"(.*)\"")
+	public void i_search_with_invalid_date(String createdDateFrom) throws InterruptedException {
+		searchDetailBuilder.withCreatedDateFrom(createdDateFrom);
+	}
+
 	@And("I click the button Search$")
 	public void i_search_the_orders_invalid_time() {
-		SearchDetail searchDetail = searchDetailBuilder.build();
-		user.clickSearchOrder(searchDetail);
-	}
-	
-	@And("I click the button Search$")
-	public void i_search_the_orders() {
 		SearchDetail searchDetail = searchDetailBuilder.build();
 		user.clickSearchOrder(searchDetail);
 	}
@@ -48,7 +73,10 @@ public class SpecialOfNormal_Search_Steps {
 	public void i_see_total() throws InterruptedException {
 		user.verifyTotalDocument();
 	}
-	
-	
+
+	@Then("I see the error tooltip")
+	public void i_see_error_tooltip() throws InterruptedException {
+		user.verifyAlertDate();
+	}
 
 }

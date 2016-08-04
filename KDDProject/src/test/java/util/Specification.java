@@ -17,69 +17,73 @@ import page.account.LoginPage;
 
 public class Specification {
 
-    PageStore pageStore;
+	PageStore pageStore;
 
-    public Specification(PageStore pageStore) {
-        this.pageStore = pageStore;
-    }
+	public Specification(PageStore pageStore) {
+		this.pageStore = pageStore;
+	}
 
-    public void clickLoginWith(LoginDetails loginDetails) {
-        LoginPage onLoginPage = pageStore.get(LoginPage.class);
-        onLoginPage.loginToMainPage(loginDetails);
-        
-    }
-    
-    public void goToAddNew2ddPage(){
-    	HomePage onHomePage = pageStore.get(HomePage.class);
-    	onHomePage.goToCreate2ddPage();
-    }
-    public void goToAddNew2aPage() throws InterruptedException{
-    	HomePage onHomePage = pageStore.get(HomePage.class);
-    	onHomePage.goToCreate2aPage();
-    }
-    
-    public void goToListPage() throws InterruptedException{
-    	HomePage onHomePage = pageStore.get(HomePage.class);
-    	onHomePage.goToListPage();
-    }
-    
-    public void verifyTotalDocument() throws InterruptedException{
-    	ListPage onListPage = pageStore.get(ListPage.class);
-    	onListPage.verifyTotalDocument();
-    	}
-    
-    public void verifyResultOfSearch() throws InterruptedException{
-    	ListPage onListPage = pageStore.get(ListPage.class);
-    	onListPage.verifyTotalDocument();
-   }
-    
-    public void verifyNumberOfItemOnGrid() throws InterruptedException{
-    	ListPage onListPage = pageStore.get(ListPage.class);
-    	onListPage.verifyNumberOfItemOnGrid();
-    	}
-    
-    public void clickAddNew2ddWith(PageDetail new2ddDetails)
-    {
-    	 SpecialOfNormalPage onNew2ddPage = pageStore.get(SpecialOfNormalPage.class);
-    	 onNew2ddPage.saveMaterialWith(new2ddDetails);
-    	 
-    }
-    
-    public void clickAddNew2aWith(PageDetail new2ddDetails) throws InterruptedException
-    {
-    	 NormalPage onNew2ddPage = pageStore.get(NormalPage.class);
-    	 onNew2ddPage.saveMaterialWith(new2ddDetails);
-    	 
-    }
-    public void goToAttachPage(List<AttachmentDetail> attachmentDetail) {
-    	AttachmentFilePage onAttachPage = pageStore.get(AttachmentFilePage.class);
-    	onAttachPage.saveAllAttachFiles(attachmentDetail);
-    }
+	public void clickLoginWith(LoginDetails loginDetails) {
+		LoginPage onLoginPage = pageStore.get(LoginPage.class);
+		onLoginPage.loginToMainPage(loginDetails);
+
+	}
+
+	public void goToAddNew2ddPage() {
+		HomePage onHomePage = pageStore.get(HomePage.class);
+		onHomePage.goToCreate2ddPage();
+	}
+
+	public void goToAddNew2aPage() throws InterruptedException {
+		HomePage onHomePage = pageStore.get(HomePage.class);
+		onHomePage.goToCreate2aPage();
+	}
+
+	public void goToListPage() throws InterruptedException {
+		HomePage onHomePage = pageStore.get(HomePage.class);
+		onHomePage.goToListPage();
+	}
+
+	public void verifyTotalDocument() throws InterruptedException {
+		ListPage onListPage = pageStore.get(ListPage.class);
+		onListPage.verifyTotalDocument();
+	}
+
+	public void verifyResultOfSearch() throws InterruptedException {
+		ListPage onListPage = pageStore.get(ListPage.class);
+		onListPage.verifyTotalDocument();
+	}
+
+	public void verifyNumberOfItemOnGrid() throws InterruptedException {
+		ListPage onListPage = pageStore.get(ListPage.class);
+		onListPage.verifyNumberOfItemOnGrid();
+	}
+
+	public void clickAddNew2ddWith(PageDetail new2ddDetails) {
+		SpecialOfNormalPage onNew2ddPage = pageStore.get(SpecialOfNormalPage.class);
+		onNew2ddPage.saveMaterialWith(new2ddDetails);
+
+	}
+
+	public void clickAddNew2aWith(PageDetail new2ddDetails) throws InterruptedException {
+		NormalPage onNew2ddPage = pageStore.get(NormalPage.class);
+		onNew2ddPage.saveMaterialWith(new2ddDetails);
+
+	}
+
+	public void goToAttachPage(List<AttachmentDetail> attachmentDetail) {
+		AttachmentFilePage onAttachPage = pageStore.get(AttachmentFilePage.class);
+		onAttachPage.saveAllAttachFiles(attachmentDetail);
+	}
 
 	public void clickSearchOrder(SearchDetail searchDetail) {
-    	SearchPage onSearchPage = pageStore.get(SearchPage.class);
-    	onSearchPage.searchOrderSpecialOfNormal(searchDetail);
-    }
-    
-    
+		SearchPage onSearchPage = pageStore.get(SearchPage.class);
+		onSearchPage.searchOrderSpecialOfNormal(searchDetail);
+	}
+
+	public void verifyAlertDate() {
+		SearchPage onSearchPage = pageStore.get(SearchPage.class);
+		onSearchPage.assertAlertDatePickerInvalid();
+	}
+
 }

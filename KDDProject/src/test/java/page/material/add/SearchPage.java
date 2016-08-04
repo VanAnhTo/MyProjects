@@ -82,7 +82,7 @@ public class SearchPage extends PageEvent {
 		positionOfSearchButton = Integer.parseInt(PropertiesStore.getProperty("PositionOfSearchButton"));
 		positionOfClearButton = Integer.parseInt(PropertiesStore.getProperty("PositionOfClearButton"));
 
-		expectedErrorInDatePicker = PropertiesStore.getProperty("PositionOfClearButton");
+		expectedErrorInDatePicker = PropertiesStore.getProperty("ExpectedErrorInDatePicker");
 	}
 
 	public void searchOrderSpecialOfNormal(SearchDetail searchDetail) {
