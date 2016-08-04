@@ -25,6 +25,19 @@ public class SpecialOfNormal_Search_Steps {
 		this.user = new Specification(pageStore);
 	}
 
+	@When("I want to search with order number: \"(.*)\", created date from: \"(.*)\", created date to: \"(.*)\"")
+	public void i_search_with_order_number(String orderNumber, String createdDateFrom, String createdDateTo)
+			throws InterruptedException {
+		searchDetailBuilder.withOrderNumber(orderNumber).withCreatedDateFrom(createdDateFrom)
+				.withCreatedDateTo(createdDateTo);
+	}
+	
+	@And("I click the button Search$")
+	public void i_search_the_orders_invalid_time() {
+		SearchDetail searchDetail = searchDetailBuilder.build();
+		user.clickSearchOrder(searchDetail);
+	}
+	
 	@And("I click the button Search$")
 	public void i_search_the_orders() {
 		SearchDetail searchDetail = searchDetailBuilder.build();
@@ -35,11 +48,7 @@ public class SpecialOfNormal_Search_Steps {
 	public void i_see_total() throws InterruptedException {
 		user.verifyTotalDocument();
 	}
+	
+	
 
-	@When("I want to search with order number: \"(.*)\", created date from: \"(.*)\", created date to: \"(.*)\"")
-	public void i_search_with_order_number(String orderNumber, String createdDateFrom, String createdDateTo)
-			throws InterruptedException {
-		searchDetailBuilder.withOrderNumber(orderNumber).withCreatedDateFrom(createdDateFrom)
-				.withCreatedDateTo(createdDateTo);
-	}
 }

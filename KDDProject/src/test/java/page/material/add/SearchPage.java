@@ -6,14 +6,12 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-
+import org.testng.Assert;
 
 import domain.detail.material.SearchDetail;
 import util.PropertiesStore;
 
-public class SearchPage {
-	WebDriver driver;
+public class SearchPage extends PageEvent {
 	// Search
 
 	@FindBy(css = ".z-groupbox-cnt .z-select")
@@ -30,6 +28,9 @@ public class SearchPage {
 
 	@FindBy(css = ".z-groupbox-cnt .button.z-button-os")
 	private List<WebElement> buttons;
+
+	@FindBy(css = ".z-popup-cnt .z-errbox-center")
+	private WebElement alertInvalidDate;
 
 	private WebElement cbxOrderType;
 	private WebElement cbxStatus;
@@ -60,7 +61,10 @@ public class SearchPage {
 	protected int positionOfSearchButton;
 	protected int positionOfClearButton;
 
-	public SearchPage() throws NumberFormatException, IOException {
+	private String expectedErrorInDatePicker;
+
+	public SearchPage(WebDriver driver) throws NumberFormatException, IOException {
+		super(driver);
 		positionOfOrderTypeField = Integer.parseInt(PropertiesStore.getProperty("PositionOfOrderTyPeField"));
 		positionOfStatusField = Integer.parseInt(PropertiesStore.getProperty("PositionOfStatusField"));
 		positionOfCertificateNumberField = Integer
@@ -77,6 +81,8 @@ public class SearchPage {
 
 		positionOfSearchButton = Integer.parseInt(PropertiesStore.getProperty("PositionOfSearchButton"));
 		positionOfClearButton = Integer.parseInt(PropertiesStore.getProperty("PositionOfClearButton"));
+
+		expectedErrorInDatePicker = PropertiesStore.getProperty("PositionOfClearButton");
 	}
 
 	public void searchOrderSpecialOfNormal(SearchDetail searchDetail) {
@@ -88,10 +94,25 @@ public class SearchPage {
 		this.enterIssuedDateFromFieldAs(searchDetail.getIssuedDateFrom());
 		this.enterIssuedDateToFieldAs(searchDetail.getIssuedDateTo());
 		this.clickSearchButton();
+		waitForJSandJQueryToLoad();
+	}
+
+	public void assertAlertDatePickerInvalid() {
+		String actualErrorAlert = getErrorAlertBox();
+		String expectedErrorAlert = getExpectedErrorAlert(expectedErrorInDatePicker);
+		Assert.assertEquals(actualErrorAlert, expectedErrorAlert);
 	}
 
 	public void selectOrderType(int fileType) {
 		this.comboboxes.get(fileType).click();
+	}
+
+	private String getErrorAlertBox() {
+		return alertInvalidDate.getText();
+	}
+
+	private String getExpectedErrorAlert(String exError) {
+		return this.expectedErrorInDatePicker = exError;
 	}
 
 	public void enterCertificateNumberFieldAs(String certificateNumber) {
@@ -146,7 +167,7 @@ public class SearchPage {
 		button = buttons.get(position);
 		button.click();
 	}
-	
+
 	protected void selectCombobox(WebElement combobox, int position) {
 		combobox = comboboxes.get(position);
 		combobox.click();
