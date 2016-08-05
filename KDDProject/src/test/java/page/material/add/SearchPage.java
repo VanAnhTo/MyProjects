@@ -1,6 +1,8 @@
 package page.material.add;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
@@ -8,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import bsh.ParseException;
 import domain.detail.material.SearchDetail;
 import util.PropertiesStore;
 
@@ -62,6 +65,7 @@ public class SearchPage extends PageEvent {
 	protected int positionOfClearButton;
 
 	private String expectedErrorInDatePicker;
+	private String dateFormat;
 
 	public SearchPage(WebDriver driver) throws NumberFormatException, IOException {
 		super(driver);
@@ -83,6 +87,9 @@ public class SearchPage extends PageEvent {
 		positionOfClearButton = Integer.parseInt(PropertiesStore.getProperty("PositionOfClearButton"));
 
 		expectedErrorInDatePicker = PropertiesStore.getProperty("ExpectedErrorInDatePicker");
+
+		dateFormat = PropertiesStore.getProperty("DateFormat");
+
 	}
 
 	public void searchOrderSpecialOfNormal(SearchDetail searchDetail) {
@@ -93,8 +100,19 @@ public class SearchPage extends PageEvent {
 		this.enterCreatedDateToFieldAs(searchDetail.getCreatedDateTo());
 		this.enterIssuedDateFromFieldAs(searchDetail.getIssuedDateFrom());
 		this.enterIssuedDateToFieldAs(searchDetail.getIssuedDateTo());
-		this.clickSearchButton();
-		waitForJSandJQueryToLoad();
+		this.enterCreatedDateFromFieldAs(searchDetail.getCreatedDateFrom());
+		this.enterCreatedDateToFieldAs(searchDetail.getCreatedDateTo());
+		this.enterIssuedDateFromFieldAs(searchDetail.getIssuedDateFrom());
+		this.enterIssuedDateToFieldAs(searchDetail.getIssuedDateTo());
+		if (!isThisDateValid(searchDetail.getCreatedDateTo()) 
+				|| !isThisDateValid(searchDetail.getCreatedDateFrom())
+				|| !isThisDateValid(searchDetail.getIssuedDateFrom())
+				|| !isThisDateValid(searchDetail.getIssuedDateTo())) {
+			assertAlertDatePickerInvalid();
+		} else {
+			this.clickSearchButton();
+			waitForJSandJQueryToLoad();
+		}
 	}
 
 	public void assertAlertDatePickerInvalid() {

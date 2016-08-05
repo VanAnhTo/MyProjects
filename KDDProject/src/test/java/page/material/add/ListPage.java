@@ -9,21 +9,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-
 import util.AppLogger;
 import util.PropertiesStore;
 
 public class ListPage extends PageEvent {
 
 	private int itemsPerPage;
-/*	private WebElement firstOrderNumber;
-	private WebElement lastOrderNumber;*/
 
 	private WebElement pageNumberOnInput;
 
 	private WebElement numberOfPage;
-	
-	//Grid
+
+	// Grid
 
 	@FindBy(css = ".z-listbox-body table tr.z-listitem")
 	private List<WebElement> trList;
@@ -45,24 +42,23 @@ public class ListPage extends PageEvent {
 
 	@FindBy(css = "table tbody:nth-child(2) tr:last-child td:nth-child(2)")
 	private WebElement endIndex;
-	
-	
+
+	@FindBy(css = ".z-listbox-empty-body")
+	private WebElement emptyTable;
+
 	public ListPage(WebDriver driver) throws NumberFormatException, IOException {
 		super(driver);
 		itemsPerPage = Integer.parseInt(PropertiesStore.getProperty("itemsPerPage"));
 	}
 
 	public void verifyTotalDocument() {
-		try {
 			int totalItemsInList = getTotalItemsByLabel();
 			clickButtonToLastPage();
 			waitForJSandJQueryToLoad();
-			AppLogger.logMessage("Số phần tử " + driver.findElements(By.cssSelector(".z-listbox-body table tr.z-listitem")).size());
+			AppLogger.logMessage(
+					"Số phần tử " + driver.findElements(By.cssSelector(".z-listbox-body table tr.z-listitem")).size());
 			int totalItems = getTotalItemsByGrid();
 			Assert.assertEquals(totalItemsInList, totalItems);
-		} catch (NumberFormatException e) {
-			AppLogger.logMessage(e.getMessage());
-		}
 	}
 
 	public void verifyNumberOfItemOnGrid() {
@@ -71,10 +67,10 @@ public class ListPage extends PageEvent {
 		int firstNumberOnGrid = getStartIndex();
 		int startIndex = getFirstNumberOnLabel();
 		int lastNumberOnGri = getEndIndex();
-		int endINdex = getEndNumberOnLabel();	
-		int index = getIndex();		
+		int endINdex = getEndNumberOnLabel();
+		int index = getIndex();
 		Assert.assertEquals(firstNumberOnGrid, startIndex);
-		Assert.assertEquals(lastNumberOnGri, endINdex);		
+		Assert.assertEquals(lastNumberOnGri, endINdex);
 		Assert.assertEquals(index, endINdex);
 	}
 
@@ -83,7 +79,7 @@ public class ListPage extends PageEvent {
 		int totalItemsOfList = Integer.parseInt(totalPerPage);
 		return totalItemsOfList;
 	}
-
+	
 	private void clickButtonToLastPage() {
 		buttonLastPage.click();
 	}
@@ -96,7 +92,7 @@ public class ListPage extends PageEvent {
 		int totalItems = (totalPage - 1) * itemsPerPage + numberOfElementInLastPage;
 		return totalItems;
 	}
-	
+
 	private int getIndex() {
 		int currentPage = getNumberOfPageOnTextBox();
 		int numberOfElementInLastPage = getListItemsPerPage();
@@ -126,20 +122,18 @@ public class ListPage extends PageEvent {
 		return numberPage;
 	}
 
-/*	private int getFirstNumberOnGrid() {
-		int numberOnTextBox = getNumberOfPageOnTextBox();
-		int totalPage = getTotalPageByLabel();
-		int firstNumberOnGrid = (totalPage - numberOnTextBox) * itemsPerPage + 1;
-		return firstNumberOnGrid;
-	}
-
-	private int getLastNumberOnGrid() {
-		int numberOnTextBox = getNumberOfPageOnTextBox();
-		int totalPage = getTotalPageByLabel();
-		int itemsPerPage = getListItemsPerPage();
-		int firstNumberOnGrid = (totalPage - numberOnTextBox) * itemsPerPage + itemsPerPage;
-		return firstNumberOnGrid;
-	}*/
+	/*
+	 * private int getFirstNumberOnGrid() { int numberOnTextBox =
+	 * getNumberOfPageOnTextBox(); int totalPage = getTotalPageByLabel(); int
+	 * firstNumberOnGrid = (totalPage - numberOnTextBox) * itemsPerPage + 1;
+	 * return firstNumberOnGrid; }
+	 * 
+	 * private int getLastNumberOnGrid() { int numberOnTextBox =
+	 * getNumberOfPageOnTextBox(); int totalPage = getTotalPageByLabel(); int
+	 * itemsPerPage = getListItemsPerPage(); int firstNumberOnGrid = (totalPage
+	 * - numberOnTextBox) * itemsPerPage + itemsPerPage; return
+	 * firstNumberOnGrid; }
+	 */
 
 	private int getStartIndex() {
 		return Integer.parseInt(startIndex.getText());

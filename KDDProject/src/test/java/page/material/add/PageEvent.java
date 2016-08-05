@@ -1,5 +1,8 @@
 package page.material.add;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -57,6 +60,27 @@ public class PageEvent extends PageBase {
 	{
 		util.WaitFor wait = new util.WaitFor(driver);
 		wait.waitForJSandJQueryToLoad();
+	}
+	public boolean isThisDateValid(String dateToValidate) {
+
+		if (dateToValidate == "") {
+			return true;
+		}
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		sdf.setLenient(false);
+
+		try {
+			Date date = sdf.parse(dateToValidate);
+			System.out.println(date);
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
 	}
 
 }

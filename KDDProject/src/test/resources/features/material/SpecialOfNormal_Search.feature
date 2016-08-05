@@ -28,7 +28,7 @@ Feature: Search orders special of normal are created
 
     Examples: 
       | orderNumber | createdDateFrom | createdDateTo |
-      | SDH         | ccc        | 1/1/2016      |
+      | vvv         | 1/1/2016            | 1/1/2016      |
 
   Scenario Outline: Searching with order number
     Given I go to specical of list page

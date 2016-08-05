@@ -40,21 +40,8 @@ public class SpecialOfNormal_Search_Steps {
 	@When("I want to search with order number: \"(.*)\", created date from: \"(.*)\", created date to: \"(.*)\"")
 	public void i_search_with_order_number(String orderNumber, String createdDateFrom, String createdDateTo)
 			throws InterruptedException {
-
-		if (createdDateFrom == null) {
-			searchDetailBuilder.withOrderNumber(orderNumber).withCreatedDateFrom(createdDateFrom)
-					.withCreatedDateTo(createdDateTo);
-		}
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		sdf.setLenient(false);
-		try {
-			sdf.parse(createdDateFrom);
-			searchDetailBuilder.withOrderNumber(orderNumber).withCreatedDateFrom(createdDateFrom)
-					.withCreatedDateTo(createdDateTo);
-			
-		} catch (Exception e) {
-			user.verifyAlertDate();
-		}
+		searchDetailBuilder.withOrderNumber(orderNumber).withCreatedDateFrom(createdDateFrom)
+				.withCreatedDateTo(createdDateTo);
 
 	}
 
