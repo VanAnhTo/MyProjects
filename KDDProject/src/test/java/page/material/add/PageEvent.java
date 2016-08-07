@@ -56,34 +56,16 @@ public class PageEvent extends PageBase {
 		util.WaitFor wait = new util.WaitFor(driver);
 		wait.waitForJSandJQueryToLoad();
 	}
-
-	public boolean isThisDateValid(String dateToValidate) {
-
-		if (dateToValidate == "") {
-			return true;
-		}
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		sdf.setLenient(false);
-
-		try {
-			Date date = sdf.parse(dateToValidate);
-			System.out.println(date);
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-			return false;
-		}
-
-		return true;
+	
+	protected boolean isThisDateValid(String dateToValidate) {
+		util.Datetime date = new util.Datetime();
+		return date.isThisDateValid(dateToValidate);
 	}
-
-	public Date convertToDate(String dateToValidate) throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		sdf.setLenient(false);
-
-		Date date = sdf.parse(dateToValidate);
-		return date;
+	
+	protected Date convertToDate(String dateToValidate) throws ParseException {
+		util.Datetime date = new util.Datetime();
+		return date.convertToDate(dateToValidate);
 	}
+	
 
 }
