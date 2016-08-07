@@ -64,8 +64,6 @@ public class SpecialOfNormal_Search_Steps {
 	public void i_see_total() throws InterruptedException {
 		user.verifyTotalDocument();
 	}
-
-
 	
 	@Then("I see empty message")
 	public void i_see_empty_message() throws InterruptedException {
@@ -82,7 +80,7 @@ public class SpecialOfNormal_Search_Steps {
 		user.verifyWarningMessaage();
 	}
 	
-	@Then("(I see the over maxlength messsage|I see the error tooltip)")
+	@Then("(I see the over maxlength messsage)")
 	public void i_see_over_maxthlength_message() throws InterruptedException {
 		user.verifyOverMaxMessaage();
 	}

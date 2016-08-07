@@ -4,11 +4,11 @@ Feature: Search document in special of normal page
   So that I can import many drug packages
 
   Background: 
-    Given I open website "http://203.190.173.37:8080/kinhdoanhduoc/Pages/login.zul"
-    And I enter login form
+    Given I open browser and enter link website "http://203.190.173.37:8080/kinhdoanhduoc/Pages/login.zul"
+    And I fill login form
       | username  | password |
       | 010203123 |      123 |
-    And I logged in
+    And I login
 
   @list
   Scenario: Search document

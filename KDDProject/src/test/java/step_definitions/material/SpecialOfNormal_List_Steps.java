@@ -5,15 +5,11 @@ import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 
-import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import domain.builder.account.LoginDetailBuilder;
 import domain.builder.material.MaterialDetailBuilder;
 import domain.builder.material.PageDetailBuilder;
-import domain.detail.account.LoginDetails;
 import domain.detail.material.MaterialDetail;
 import util.PageStore;
 import util.Specification;
@@ -22,7 +18,6 @@ public class SpecialOfNormal_List_Steps {
 
 	public WebDriver driver;
 
-	LoginDetailBuilder builder;
 	PageDetailBuilder pageDetailBuilder;
 	MaterialDetailBuilder materialDetailBuilder;
 	List<MaterialDetail> materialDetailList;
@@ -30,7 +25,6 @@ public class SpecialOfNormal_List_Steps {
 	PageStore pageStore;
 
 	public SpecialOfNormal_List_Steps() {
-		this.builder = new LoginDetailBuilder();
 		this.pageDetailBuilder = new PageDetailBuilder();
 		this.materialDetailBuilder = new MaterialDetailBuilder();
 		this.materialDetailList = new ArrayList<MaterialDetail>();
@@ -38,25 +32,6 @@ public class SpecialOfNormal_List_Steps {
 		this.driver = Hooks.driver;
 		this.pageStore = new PageStore(driver);
 		this.user = new Specification(pageStore);
-	}
-
-	@Given("^I open website \"(.*)\"$")
-	public void i_open_browser_and_enter_link_website(String linkWeb) {
-		driver.get(linkWeb);
-	}
-
-	@And("I enter login form")
-	public void i_fill_login_form(DataTable loginDataTable) {
-		List<List<String>> result = loginDataTable.raw();
-		String username = result.get(1).get(0);
-		String password = result.get(1).get(1);
-		builder.withUsername(username).withPassword(password);
-	}
-
-	@And("^I logged in$")
-	public void i_get_homepage() {
-		LoginDetails loginDetails = builder.build();
-		user.clickLoginWith(loginDetails);
 	}
 
 	@When("I go to specical of list page")
