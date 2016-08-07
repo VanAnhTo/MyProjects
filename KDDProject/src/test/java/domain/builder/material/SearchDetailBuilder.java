@@ -1,7 +1,6 @@
 package domain.builder.material;
 
 import domain.detail.material.SearchDetail;
-import page.material.add.SearchPage.OrderTypeEnum;
 
 public class SearchDetailBuilder {
 	private String orderType;

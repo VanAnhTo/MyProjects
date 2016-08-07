@@ -44,25 +44,15 @@ public class AttachmentFilePage extends PageEvent {
 	}
 
 	public void clickButtonThemTep() {
-
 		buttonThemTep = allButton.get(5);
 		buttonThemTep.click();
-	}
-
-	public enum AttachmentEnum {
-		CERTIFICATE(1), QUALITY(2), METHOD(3), OTHER(4);
-		private int value;
-
-		private AttachmentEnum(int value) {
-			this.value = value;
-		}
 	}
 
 	public void saveAllAttachFiles(List<AttachmentDetail> attachmentDetailList) {
 		chonTabTepDinhKem();
 		int i = 1;
 		for (AttachmentDetail attachmentDetail : attachmentDetailList) {
-			int fileType = AttachmentEnum.valueOf(attachmentDetail.getFileType()).value - 1;
+			int fileType = Enum.AttachmentEnum.valueOf(attachmentDetail.getFileType()).value - 1;
 			selectAttachmentFile(fileType);
 			clickButtonChonTep(attachmentDetail.getFilePath());
 			waitForSaveFileUploadFileCoplete(i);

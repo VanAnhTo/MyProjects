@@ -13,9 +13,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import bsh.ParseException;
 import domain.detail.material.SearchDetail;
-import page.material.add.AttachmentFilePage.AttachmentEnum;
 import util.PropertiesStore;
 
 public class SearchPage extends PageEvent {
@@ -112,15 +110,6 @@ public class SearchPage extends PageEvent {
 
 	}
 
-	public enum OrderTypeEnum {
-		ALL(1), SPECIALOFNORMAL(2), NORMAL(3);
-		private int value;
-
-		private OrderTypeEnum(int value) {
-			this.value = value;
-		}
-	}
-
 	private void selectOrderType(int orderType) {
 		Select sltOrderType = new Select(this.comboboxes.get(0));
 		sltOrderType.selectByIndex(orderType);
@@ -140,9 +129,9 @@ public class SearchPage extends PageEvent {
 
 	public void searchOrderSpecialOfNormal(SearchDetail searchDetail) {
 		((JavascriptExecutor) driver)
-				.executeScript("document.getElementsByClassName(\"z-textbox\")[2].setAttribute('maxlength','60');");
-
-		int orderType = OrderTypeEnum.valueOf(searchDetail.getOrderType()).value;
+		.executeScript("document.getElementsByClassName(\"z-textbox\")[2].setAttribute('maxlength','60');");
+		
+		int orderType = Enum.OrderTypeEnum.valueOf(searchDetail.getOrderType()).value;
 		this.selectOrderType(orderType);
 		this.selectStatus();
 		this.selectSubstance();
