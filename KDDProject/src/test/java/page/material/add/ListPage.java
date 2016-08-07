@@ -55,8 +55,6 @@ public class ListPage extends PageEvent {
 			int totalItemsInList = getTotalItemsByLabel();
 			clickButtonToLastPage();
 			waitForJSandJQueryToLoad();
-			AppLogger.logMessage(
-					"Số phần tử " + driver.findElements(By.cssSelector(".z-listbox-body table tr.z-listitem")).size());
 			int totalItems = getTotalItemsByGrid();
 			Assert.assertEquals(totalItemsInList, totalItems);
 	}
@@ -73,6 +71,11 @@ public class ListPage extends PageEvent {
 		Assert.assertEquals(lastNumberOnGri, endINdex);
 		Assert.assertEquals(index, endINdex);
 	}
+	
+	public void verifyEmptyList() {
+		int totalItemsInList = getListItemsPerPage();
+		Assert.assertEquals(totalItemsInList, 0);
+	}	
 
 	private int getTotalItemsByLabel() {
 		String totalPerPage = getPageInfo().substring(getPageInfo().indexOf('/') + 1, getPageInfo().length());
@@ -107,6 +110,7 @@ public class ListPage extends PageEvent {
 
 	private int getListItemsPerPage() {
 		return trList.size();
+		
 	}
 
 	private String getPageInfo() {

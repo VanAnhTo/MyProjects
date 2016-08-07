@@ -16,33 +16,6 @@ public class SearchDetail {
 	private String orderNumber;
 	private String substance;
 
-	public enum OrderTypeEnum {
-		ALL(1), SPECIALOFNORMAL(2), NORMAL(3);
-		private int value;
-
-		private OrderTypeEnum(int value) {
-			this.value = value;
-		}
-	}
-
-	public enum StatusEnum {
-		ALL(1);
-		private int value;
-
-		private StatusEnum(int value) {
-			this.value = value;
-		}
-	}
-
-	public enum SubstanceEnum {
-		ALL(1);
-		private int value;
-
-		private SubstanceEnum(int value) {
-			this.value = value;
-		}
-	}
-
 	public SearchDetail(String orderType, String status, String certificateNumber, String materialName,
 			String issuedDateFrom, String issuedDateTo, String createdDateFrom, String createdDateTo,
 			String orderNumber, String substance) {

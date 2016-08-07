@@ -1,11 +1,11 @@
 package page.material.add;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
 
 public class PageEvent extends PageBase {
 
@@ -13,9 +13,9 @@ public class PageEvent extends PageBase {
 
 	public PageEvent(WebDriver driver) {
 		this.driver = driver;
-		
+
 	}
-	
+
 	protected void waitForDataFillOnTableComplete(int i) {
 		waitForElement(".z-listbox-body table tbody:nth-child(2) tr:nth-child(" + i + ")");
 	}
@@ -23,50 +23,45 @@ public class PageEvent extends PageBase {
 	protected void waitForTextboxFeildAppear() {
 		waitForElement(".z-groupbox-cnt .z-textbox");
 	}
-	
+
 	protected void waitForAlert() {
 		waitForElement(".z-notification");
 	}
-	
+
 	protected void waitForDropdown() {
 		waitForElement(".z-chosenbox-pp.z-chosenbox-pp-hidden");
 	}
 
-	protected void waitForElement(String selector)
-	{
+	protected void waitForElement(String selector) {
 		util.WaitFor wait = new util.WaitFor(driver);
 		wait.presenceOfTheElement(By.cssSelector(selector));
 	}
-	
-	protected void waitForLoad()
-	{
+
+	protected void waitForLoad() {
 		util.WaitFor wait = new util.WaitFor(driver);
 		wait.waitForLoad();
 	}
-	
-	protected void waitForReady()
-	{
+
+	protected void waitForReady() {
 		util.WaitFor wait = new util.WaitFor(driver);
 		wait.waitForReady();
 	}
-	
-	protected void waitForHidden(String selector)
-	{
+
+	protected void waitForHidden(String selector) {
 		util.WaitFor wait = new util.WaitFor(driver);
 		wait.hiddenOfTheElement(By.cssSelector(selector));
 	}
-	
-	protected void waitForJSandJQueryToLoad()
-	{
+
+	protected void waitForJSandJQueryToLoad() {
 		util.WaitFor wait = new util.WaitFor(driver);
 		wait.waitForJSandJQueryToLoad();
 	}
+
 	public boolean isThisDateValid(String dateToValidate) {
 
 		if (dateToValidate == "") {
 			return true;
 		}
-
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		sdf.setLenient(false);
 
@@ -81,6 +76,14 @@ public class PageEvent extends PageBase {
 		}
 
 		return true;
+	}
+
+	public Date convertToDate(String dateToValidate) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		sdf.setLenient(false);
+
+		Date date = sdf.parse(dateToValidate);
+		return date;
 	}
 
 }

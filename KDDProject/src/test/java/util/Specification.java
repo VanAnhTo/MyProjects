@@ -85,5 +85,26 @@ public class Specification {
 		SearchPage onSearchPage = pageStore.get(SearchPage.class);
 		onSearchPage.assertAlertDatePickerInvalid();
 	}
+	public void verifyEmptyMessage() {
+		SearchPage onSearchPage = pageStore.get(SearchPage.class);
+		onSearchPage.assertEmptyMessage();
+	}
+	
+	public void verifyEmptyList() {
+		ListPage onListPage = pageStore.get(ListPage.class);
+		onListPage.verifyEmptyList();
+	}
+	
+	public void verifyWarningMessaage() {
+		SearchPage onSearchPage = pageStore.get(SearchPage.class);
+		onSearchPage.assertRangDateWarning();
+	}
+	
+	public void verifyOverMaxMessaage() {
+		SearchPage onSearchPage = pageStore.get(SearchPage.class);
+		onSearchPage.assertMaxlength(50);
+	}
+	
+	
 
 }

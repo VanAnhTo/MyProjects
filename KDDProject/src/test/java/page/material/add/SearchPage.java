@@ -5,35 +5,55 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import bsh.ParseException;
 import domain.detail.material.SearchDetail;
+import page.material.add.AttachmentFilePage.AttachmentEnum;
 import util.PropertiesStore;
 
 public class SearchPage extends PageEvent {
 	// Search
 
+	@CacheLookup
 	@FindBy(css = ".z-groupbox-cnt .z-select")
 	private List<WebElement> comboboxes;
 
+	@CacheLookup
 	@FindBy(css = ".z-groupbox-cnt .z-textbox")
 	private List<WebElement> textBoxes;
 
+	@CacheLookup
 	@FindBy(css = ".z-groupbox-cnt .z-datebox-inp")
 	private List<WebElement> dateBoxes;
 
+	@CacheLookup
 	@FindBy(css = ".z-groupbox-cnt .z-datebox-btn")
 	private List<WebElement> datePicker;
 
+	@CacheLookup
 	@FindBy(css = ".z-groupbox-cnt .button.z-button-os")
 	private List<WebElement> buttons;
 
 	@FindBy(css = ".z-popup-cnt .z-errbox-center")
-	private WebElement alertInvalidDate;
+	private WebElement alertInvalid;
+
+	@CacheLookup
+	@FindBy(css = ".z-listbox-empty-body")
+	private WebElement tbdEmpty;
+
+	@CacheLookup
+	@FindBy(css = ".z-listbox-empty-body tr td")
+	private WebElement tdMessage;
+
+	@FindBy(css = ".z-notification.z-notification-warning div div")
+	private WebElement divNotification;
 
 	private WebElement cbxOrderType;
 	private WebElement cbxStatus;
@@ -92,7 +112,40 @@ public class SearchPage extends PageEvent {
 
 	}
 
+	public enum OrderTypeEnum {
+		ALL(1), SPECIALOFNORMAL(2), NORMAL(3);
+		private int value;
+
+		private OrderTypeEnum(int value) {
+			this.value = value;
+		}
+	}
+
+	private void selectOrderType(int orderType) {
+		Select sltOrderType = new Select(this.comboboxes.get(0));
+		sltOrderType.selectByIndex(orderType);
+	}
+
+	private void selectStatus() {
+		Select sltOrderType = new Select(this.comboboxes.get(1));
+		sltOrderType.selectByVisibleText("Đã nộp");
+	}
+
+	private void selectSubstance() {
+		Select sltOrderType = new Select(this.comboboxes.get(2));
+		int Min = 1;
+		int Max = 10;
+		sltOrderType.selectByIndex(Min + (int)(Math.random() * ((Max - Min) + 1)));
+	}
+
 	public void searchOrderSpecialOfNormal(SearchDetail searchDetail) {
+		((JavascriptExecutor) driver)
+				.executeScript("document.getElementsByClassName(\"z-textbox\")[2].setAttribute('maxlength','60');");
+
+		int orderType = OrderTypeEnum.valueOf(searchDetail.getOrderType()).value;
+		this.selectOrderType(orderType);
+		this.selectStatus();
+		this.selectSubstance();
 		this.enterCertificateNumberFieldAs(searchDetail.getCertificateNumber());
 		this.enterMaterialNameFieldAs(searchDetail.getMaterialName());
 		this.enterOrderNumberFieldAs(searchDetail.getOrderNumber());
@@ -104,15 +157,76 @@ public class SearchPage extends PageEvent {
 		this.enterCreatedDateToFieldAs(searchDetail.getCreatedDateTo());
 		this.enterIssuedDateFromFieldAs(searchDetail.getIssuedDateFrom());
 		this.enterIssuedDateToFieldAs(searchDetail.getIssuedDateTo());
-		if (!isThisDateValid(searchDetail.getCreatedDateTo()) 
-				|| !isThisDateValid(searchDetail.getCreatedDateFrom())
+		this.clickSearchButton();
+		if (isValidInput(searchDetail)) {
+			waitForJSandJQueryToLoad();
+		}
+	}
+
+	private boolean isValidInput(SearchDetail searchDetail) {
+
+		if (searchDetail.getCertificateNumber().length() > 50) {
+			assertMaxlength(50);
+			return false;
+		}
+		if (searchDetail.getMaterialName().length() > 100) {
+			assertMaxlength(100);
+			return false;
+		}
+		if (searchDetail.getOrderNumber().length() > 50) {
+			assertMaxlength(50);
+			return false;
+		}
+
+		if (!isThisDateValid(searchDetail.getCreatedDateTo()) || !isThisDateValid(searchDetail.getCreatedDateFrom())
 				|| !isThisDateValid(searchDetail.getIssuedDateFrom())
 				|| !isThisDateValid(searchDetail.getIssuedDateTo())) {
 			assertAlertDatePickerInvalid();
-		} else {
-			this.clickSearchButton();
-			waitForJSandJQueryToLoad();
+			return false;
 		}
+		if (searchDetail.getCreatedDateTo() != null && searchDetail.getCreatedDateFrom() != null) {
+			try {
+				Date createdDateFrom = convertToDate(searchDetail.getCreatedDateFrom());
+				Date createdDateTo = convertToDate(searchDetail.getCreatedDateTo());
+				if (createdDateFrom.compareTo(createdDateTo) > 0) {
+					waitForElement(".z-notification.z-notification-warning");
+					assertRangDateWarning();
+					return false;
+				}
+
+			} catch (java.text.ParseException e) {
+
+				e.printStackTrace();
+			}
+		}
+		if (searchDetail.getIssuedDateFrom() != null && searchDetail.getIssuedDateTo() != null) {
+			try {
+				Date createdDateFrom = convertToDate(searchDetail.getIssuedDateFrom());
+				Date createdDateTo = convertToDate(searchDetail.getIssuedDateTo());
+				if (createdDateFrom.compareTo(createdDateTo) > 0) {
+					waitForElement(".z-notification.z-notification-warning");
+					assertRangDateWarning();
+					return false;
+				}
+
+			} catch (java.text.ParseException e) {
+
+				e.printStackTrace();
+			}
+		}
+		return true;
+	}
+
+	public void assertRangDateWarning() {
+		String actualErrorAlert = divNotification.getText();
+		String expectedErrorAlert = "Thời gian từ ngày không được lớn hơn đến ngày";
+		Assert.assertEquals(actualErrorAlert, expectedErrorAlert);
+	}
+
+	public void assertMaxlength(int length) {
+		String actualErrorAlert = getErrorAlertBox();
+		String expectedErrorAlert = "Bạn nhập nội dung quá dài, Độ dài cho phép " + length + " ký tự.";
+		Assert.assertEquals(actualErrorAlert, expectedErrorAlert);
 	}
 
 	public void assertAlertDatePickerInvalid() {
@@ -121,12 +235,18 @@ public class SearchPage extends PageEvent {
 		Assert.assertEquals(actualErrorAlert, expectedErrorAlert);
 	}
 
-	public void selectOrderType(int fileType) {
-		this.comboboxes.get(fileType).click();
+	public void assertEmptyMessage() {
+		if (tbdEmpty.isDisplayed()) {
+			String actualErrorAlert = tdMessage.getText();
+			String expectedErrorAlert = "Không có đơn hàng nào";
+			Assert.assertEquals(actualErrorAlert, expectedErrorAlert);
+		} else {
+			Assert.assertEquals(1, 2);
+		}
 	}
 
 	private String getErrorAlertBox() {
-		return alertInvalidDate.getText();
+		return alertInvalid.getText();
 	}
 
 	private String getExpectedErrorAlert(String exError) {

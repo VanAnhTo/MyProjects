@@ -1,6 +1,7 @@
 package domain.builder.material;
 
 import domain.detail.material.SearchDetail;
+import page.material.add.SearchPage.OrderTypeEnum;
 
 public class SearchDetailBuilder {
 	private String orderType;
@@ -16,6 +17,7 @@ public class SearchDetailBuilder {
 	private String substance;
 
 	public SearchDetailBuilder() {
+		orderType = "SPECIALOFNORMAL";
 		certificateNumber = "";
 		materialName = "";
 		issuedDateFrom = "";
@@ -45,22 +47,14 @@ public class SearchDetailBuilder {
 		return this;
 	}
 
-	public SearchDetailBuilder withIssuedDateFrom(String issuedDateFrom) {
+	public SearchDetailBuilder withIssuedDateFrom(String issuedDateFrom, String issuedDateTo) {
 		this.issuedDateFrom = issuedDateFrom;
-		return this;
-	}
-
-	public SearchDetailBuilder withIssuedDateTo(String issuedDateTo) {
 		this.issuedDateTo = issuedDateTo;
 		return this;
 	}
 
-	public SearchDetailBuilder withCreatedDateFrom(String createdDateFrom) {
+	public SearchDetailBuilder withCreatedDate(String createdDateFrom, String createdDateTo) {
 		this.createdDateFrom = createdDateFrom;
-		return this;
-	}
-
-	public SearchDetailBuilder withCreatedDateTo(String createdDateTo) {
 		this.createdDateTo = createdDateTo;
 		return this;
 	}
