@@ -6,9 +6,10 @@ import org.openqa.selenium.WebDriver;
 
 import domain.detail.material.MaterialDetail;
 import domain.detail.material.PageDetail;
+import page.base.WaitForEvent;
 import util.PropertiesStore;
 
-public class SpecialOfNormalPage extends PageEvent {
+public class SpecialOfNormalPage extends WaitForEvent {
 
 	WebDriver driver;
 

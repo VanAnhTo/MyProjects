@@ -1,9 +1,8 @@
 package util;
 
 import page.material.add.AttachmentFilePage;
-import page.material.add.ListPage;
 import page.material.add.NormalPage;
-import page.material.add.SearchPage;
+import page.material.add.MaterialSearchPage;
 import page.material.add.SpecialOfNormalPage;
 
 import java.util.List;
@@ -14,6 +13,8 @@ import domain.detail.material.PageDetail;
 import domain.detail.material.SearchDetail;
 import page.account.HomePage;
 import page.account.LoginPage;
+import page.base.ListPage;
+import page.base.ValidatedTextField;
 
 public class Specification {
 
@@ -77,16 +78,16 @@ public class Specification {
 	}
 
 	public void clickSearchOrder(SearchDetail searchDetail) {
-		SearchPage onSearchPage = pageStore.get(SearchPage.class);
+		MaterialSearchPage onSearchPage = pageStore.get(MaterialSearchPage.class);
 		onSearchPage.searchOrderSpecialOfNormal(searchDetail);
 	}
 
 	public void verifyAlertDate() {
-		SearchPage onSearchPage = pageStore.get(SearchPage.class);
-		onSearchPage.assertAlertDatePickerInvalid();
+		MaterialSearchPage onSearchPage = pageStore.get(MaterialSearchPage.class);
+		((ValidatedTextField) onSearchPage).assertAlertDatePickerInvalid();
 	}
 	public void verifyEmptyMessage() {
-		SearchPage onSearchPage = pageStore.get(SearchPage.class);
+		MaterialSearchPage onSearchPage = pageStore.get(MaterialSearchPage.class);
 		onSearchPage.assertEmptyMessage();
 	}
 	
@@ -96,12 +97,12 @@ public class Specification {
 	}
 	
 	public void verifyWarningMessaage() {
-		SearchPage onSearchPage = pageStore.get(SearchPage.class);
+		MaterialSearchPage onSearchPage = pageStore.get(MaterialSearchPage.class);
 		onSearchPage.assertRangDateWarning();
 	}
 	
 	public void verifyOverMaxMessaage() {
-		SearchPage onSearchPage = pageStore.get(SearchPage.class);
+		MaterialSearchPage onSearchPage = pageStore.get(MaterialSearchPage.class);
 		onSearchPage.assertMaxlength(50);
 	}
 	

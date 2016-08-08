@@ -1,6 +1,6 @@
 package page.material.add;
 
-public class Enum {
+public class MaterialEnum {
 
 	public enum AttachmentEnum {
 		CERTIFICATE(1), QUALITY(2), METHOD(3), OTHER(4);

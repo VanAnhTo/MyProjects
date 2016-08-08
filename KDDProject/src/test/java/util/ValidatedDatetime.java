@@ -4,9 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Datetime {
+public class ValidatedDatetime {
 
-	public boolean isThisDateValid(String dateToValidate) {
+	public static boolean isThisDateValid(String dateToValidate) {
 
 		if (dateToValidate == "") {
 			return true;
@@ -27,7 +27,7 @@ public class Datetime {
 		return true;
 	}
 
-	public Date convertToDate(String dateToValidate) throws ParseException {
+	public static Date convertToDate(String dateToValidate) throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		sdf.setLenient(false);
 

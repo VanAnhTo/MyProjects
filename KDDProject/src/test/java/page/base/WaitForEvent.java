@@ -1,71 +1,58 @@
-package page.material.add;
+package page.base;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class PageEvent extends PageBase {
+import page.material.add.MaterialPageBase;
 
-	WebDriver driver;
+public class WaitForEvent extends MaterialPageBase {
 
-	public PageEvent(WebDriver driver) {
+	protected static WebDriver driver;
+
+	public WaitForEvent(WebDriver driver) {
 		this.driver = driver;
-
 	}
 
-	protected void waitForDataFillOnTableComplete(int i) {
+	public void waitForDataFillOnTableComplete(int i) {
 		waitForElement(".z-listbox-body table tbody:nth-child(2) tr:nth-child(" + i + ")");
 	}
 
-	protected void waitForTextboxFeildAppear() {
+	public void waitForTextboxFeildAppear() {
 		waitForElement(".z-groupbox-cnt .z-textbox");
 	}
 
-	protected void waitForAlert() {
+	public void waitForAlert() {
 		waitForElement(".z-notification");
 	}
 
-	protected void waitForDropdown() {
+	public void waitForDropdown() {
 		waitForElement(".z-chosenbox-pp.z-chosenbox-pp-hidden");
 	}
 
-	protected void waitForElement(String selector) {
+	public static void waitForElement(String selector) {
 		util.WaitFor wait = new util.WaitFor(driver);
 		wait.presenceOfTheElement(By.cssSelector(selector));
 	}
 
-	protected void waitForLoad() {
+	public void waitForLoad() {
 		util.WaitFor wait = new util.WaitFor(driver);
 		wait.waitForLoad();
 	}
 
-	protected void waitForReady() {
+	public void waitForReady() {
 		util.WaitFor wait = new util.WaitFor(driver);
 		wait.waitForReady();
 	}
 
-	protected void waitForHidden(String selector) {
+	public void waitForHidden(String selector) {
 		util.WaitFor wait = new util.WaitFor(driver);
 		wait.hiddenOfTheElement(By.cssSelector(selector));
 	}
 
-	protected void waitForJSandJQueryToLoad() {
+	public static void waitForJSandJQueryToLoad() {
 		util.WaitFor wait = new util.WaitFor(driver);
 		wait.waitForJSandJQueryToLoad();
 	}
 	
-	protected boolean isThisDateValid(String dateToValidate) {
-		util.Datetime date = new util.Datetime();
-		return date.isThisDateValid(dateToValidate);
-	}
-	
-	protected Date convertToDate(String dateToValidate) throws ParseException {
-		util.Datetime date = new util.Datetime();
-		return date.convertToDate(dateToValidate);
-	}
-	
-
 }

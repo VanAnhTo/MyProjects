@@ -1,4 +1,4 @@
-package page.material.add;
+package page.base;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,7 +12,7 @@ import org.testng.Assert;
 import util.AppLogger;
 import util.PropertiesStore;
 
-public class ListPage extends PageEvent {
+public class ListPage extends WaitForEvent {
 
 	private int itemsPerPage;
 

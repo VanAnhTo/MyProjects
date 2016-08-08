@@ -7,8 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import domain.detail.material.AttachmentDetail;
+import page.base.WaitForEvent;
 
-public class AttachmentFilePage extends PageEvent {
+public class AttachmentFilePage extends WaitForEvent {
 
 	WebDriver driver;
 
@@ -52,7 +53,7 @@ public class AttachmentFilePage extends PageEvent {
 		chonTabTepDinhKem();
 		int i = 1;
 		for (AttachmentDetail attachmentDetail : attachmentDetailList) {
-			int fileType = Enum.AttachmentEnum.valueOf(attachmentDetail.getFileType()).value - 1;
+			int fileType = MaterialEnum.AttachmentEnum.valueOf(attachmentDetail.getFileType()).value - 1;
 			selectAttachmentFile(fileType);
 			clickButtonChonTep(attachmentDetail.getFilePath());
 			waitForSaveFileUploadFileCoplete(i);

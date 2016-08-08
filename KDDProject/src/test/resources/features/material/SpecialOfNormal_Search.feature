@@ -59,6 +59,6 @@ Feature: Search orders special of normal are created
   @search
   Scenario: Searching with over maxlength order number
     Given I go to specical of list page
-    When I search with a order number not in database : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, se"
+    When I search with a order number not in database : "Lorem ipsum dolor sit amet, consectetur"
     And I click the button Search
     Then I see the over maxlength messsage
