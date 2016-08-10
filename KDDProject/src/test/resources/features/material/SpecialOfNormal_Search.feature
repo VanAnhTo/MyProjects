@@ -46,6 +46,7 @@ Feature: Search orders special of normal are created
     Then I see empty message
     And Empty order on the grid
 
+  @search
   Scenario Outline: Searching with order number
     Given I go to specical of list page
     When I want to search with order number: "<orderNumber>", created date from: "<createdDateFrom>", created date to: "<createdDateTo>"
@@ -54,11 +55,10 @@ Feature: Search orders special of normal are created
 
     Examples: 
       | orderNumber | createdDateFrom | createdDateTo |
-      |             | 1/1/2016        | 1/1/2015      |
+      |             | 1/1/2015        | 1/1/2015      |
 
-  @search
   Scenario: Searching with over maxlength order number
     Given I go to specical of list page
-    When I search with a order number not in database : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, se"
+    When I search with a order number not in database : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, seddddddddddddd"
     And I click the button Search
     Then I see the over maxlength messsage
