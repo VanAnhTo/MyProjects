@@ -1,10 +1,5 @@
 package util;
 
-import page.material.add.AttachmentFilePage;
-import page.material.add.ListPage;
-import page.material.add.NormalPage;
-import page.material.add.SearchPage;
-import page.material.add.SpecialOfNormalPage;
 
 import java.util.List;
 
@@ -14,6 +9,11 @@ import domain.detail.material.PageDetail;
 import domain.detail.material.SearchDetail;
 import page.account.HomePage;
 import page.account.LoginPage;
+import page.material.AttachmentFilePage;
+import page.material.GridPage;
+import page.material.NormalMaterialPage;
+import page.material.NormalMaterialSearchPage;
+import page.material.SpecialNormalMaterialPage;
 
 public class Specification {
 
@@ -45,28 +45,28 @@ public class Specification {
 	}
 
 	public void verifyTotalDocument() throws InterruptedException {
-		ListPage onListPage = pageStore.get(ListPage.class);
+		GridPage onListPage = pageStore.get(GridPage.class);
 		onListPage.verifyTotalDocument();
 	}
 
 	public void verifyResultOfSearch() throws InterruptedException {
-		ListPage onListPage = pageStore.get(ListPage.class);
+		GridPage onListPage = pageStore.get(GridPage.class);
 		onListPage.verifyTotalDocument();
 	}
 
 	public void verifyNumberOfItemOnGrid() throws InterruptedException {
-		ListPage onListPage = pageStore.get(ListPage.class);
+		GridPage onListPage = pageStore.get(GridPage.class);
 		onListPage.verifyNumberOfItemOnGrid();
 	}
 
 	public void clickAddNew2ddWith(PageDetail new2ddDetails) {
-		SpecialOfNormalPage onNew2ddPage = pageStore.get(SpecialOfNormalPage.class);
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
 		onNew2ddPage.saveMaterialWith(new2ddDetails);
 
 	}
 
 	public void clickAddNew2aWith(PageDetail new2ddDetails) throws InterruptedException {
-		NormalPage onNew2ddPage = pageStore.get(NormalPage.class);
+		NormalMaterialPage onNew2ddPage = pageStore.get(NormalMaterialPage.class);
 		onNew2ddPage.saveMaterialWith(new2ddDetails);
 
 	}
@@ -77,31 +77,31 @@ public class Specification {
 	}
 
 	public void clickSearchOrder(SearchDetail searchDetail) {
-		SearchPage onSearchPage = pageStore.get(SearchPage.class);
+		NormalMaterialSearchPage onSearchPage = pageStore.get(NormalMaterialSearchPage.class);
 		onSearchPage.searchOrderSpecialOfNormal(searchDetail);
 	}
 
 	public void verifyAlertDate() {
-		SearchPage onSearchPage = pageStore.get(SearchPage.class);
+		NormalMaterialSearchPage onSearchPage = pageStore.get(NormalMaterialSearchPage.class);
 		onSearchPage.assertAlertDatePickerInvalid();
 	}
 	public void verifyEmptyMessage() {
-		SearchPage onSearchPage = pageStore.get(SearchPage.class);
+		NormalMaterialSearchPage onSearchPage = pageStore.get(NormalMaterialSearchPage.class);
 		onSearchPage.assertEmptyMessage();
 	}
 	
 	public void verifyEmptyList() {
-		ListPage onListPage = pageStore.get(ListPage.class);
+		GridPage onListPage = pageStore.get(GridPage.class);
 		onListPage.verifyEmptyList();
 	}
 	
 	public void verifyWarningMessaage() {
-		SearchPage onSearchPage = pageStore.get(SearchPage.class);
+		NormalMaterialSearchPage onSearchPage = pageStore.get(NormalMaterialSearchPage.class);
 		onSearchPage.assertRangDateWarning();
 	}
 	
 	public void verifyOverMaxMessaage() {
-		SearchPage onSearchPage = pageStore.get(SearchPage.class);
+		NormalMaterialSearchPage onSearchPage = pageStore.get(NormalMaterialSearchPage.class);
 		onSearchPage.assertMaxlength(50);
 	}
 	
