@@ -4,14 +4,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DatetimeUtil {
+public class ValidatedDatetime {
 
-	public static boolean isThisDateValid(String dateToValidate, String dateFormat) {
+	public static boolean isThisDateValid(String dateToValidate) {
 
 		if (dateToValidate == "") {
 			return true;
 		}
-		SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		sdf.setLenient(false);
 
 		try {
