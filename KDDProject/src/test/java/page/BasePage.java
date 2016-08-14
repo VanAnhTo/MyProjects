@@ -9,11 +9,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import util.PropertiesStore;
 
 public class BasePage {
 	WebDriver driver;
+	
+	protected String expectedEmptyMessage ="Trường bắt buộc nhập";
 
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
@@ -112,5 +115,11 @@ public class BasePage {
 	protected void clickOnChosenTextBox(List<WebElement> allChosenbox, WebElement chosenTextBox, int position) {
 		chosenTextBox = allChosenbox.get(position);
 		chosenTextBox.click();
+	}
+	public void verifyInvalidMessage(String expectedErrorAlert)
+	{
+		String actualErrorAlert = getErrorAlertBox();
+		Assert.assertEquals(actualErrorAlert, expectedErrorAlert);
+
 	}
 }

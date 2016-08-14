@@ -66,8 +66,14 @@ public class Specification {
 	}
 
 	public void clickAddNew2aWith(PageDetail new2ddDetails) throws InterruptedException {
-		NormalMaterialPage onNew2ddPage = pageStore.get(NormalMaterialPage.class);
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
 		onNew2ddPage.saveMaterialWith(new2ddDetails);
+
+	}
+	
+	public void verifyInvalidMessage(PageDetail pageDetail) throws InterruptedException {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.verifyEmptyMessage(pageDetail);
 
 	}
 
@@ -83,7 +89,7 @@ public class Specification {
 
 	public void verifyAlertDate() {
 		NormalMaterialSearchPage onSearchPage = pageStore.get(NormalMaterialSearchPage.class);
-		onSearchPage.assertAlertDatePickerInvalid();
+		//onSearchPage.assertAlertDatePickerInvalid();
 	}
 	public void verifyEmptyMessage() {
 		NormalMaterialSearchPage onSearchPage = pageStore.get(NormalMaterialSearchPage.class);

@@ -5,6 +5,7 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 public class AddBasePage extends BasePage {
 
@@ -31,6 +32,9 @@ public class AddBasePage extends BasePage {
 	protected WebElement btnAdd;
 	protected WebElement btnSave;
 	protected WebElement txtQuyCachDongGoi;
+	
+	
+	
 	// cung cap
 	@FindBy(css = ".z-chosenbox-sel div:nth-child(2)")
 	private List<WebElement> allChosenComboboxChildCungCap;
@@ -172,5 +176,8 @@ public class AddBasePage extends BasePage {
 		choosenComboboxManufacture = allChosenComboboxChildSanXuat.get(position);
 		choosenComboboxManufacture.click();
 	}
+	
+	
+	
 
 }

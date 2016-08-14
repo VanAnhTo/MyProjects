@@ -3,6 +3,7 @@ package page.material;
 import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 import domain.detail.material.MaterialDetail;
 import domain.detail.material.PageDetail;
@@ -79,5 +80,7 @@ public final class NormalMaterialPage extends AddBasePage {
 		this.clickSaveListMaterialButton();
 		waitForAlert();
 	}
+	
+	
 
 }

@@ -41,7 +41,7 @@ public class SpecialOfNormal_Add_Steps {
 
 	@When("^I enter file number field with value \"(.*)\" and sign where field with value \"(.*)\"$")
 	public void i_enter_file_number_value_and_sign_where_value(String fileNumber, String signWhere) {
-		pageDetailBuilder.withSignWhere(signWhere);
+		pageDetailBuilder.withFileNumber(fileNumber).withSignWhere(signWhere);
 	}
 
 	@And("I enter material info list")
@@ -59,6 +59,12 @@ public class SpecialOfNormal_Add_Steps {
 	@And("^I upload attachment files for document$")
 	public void i_upload_attachment_files_document(List<AttachmentDetail> attachmentDetail) {
 		user.goToAttachPage(attachmentDetail);
+	}
+	
+	@And("^I see the message invalid value$")
+	public void i_see_message_invalid_values() throws InterruptedException {
+		PageDetail pageDetail = pageDetailBuilder.build();
+		user.verifyInvalidMessage(pageDetail);
 	}
 
 }

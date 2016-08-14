@@ -73,7 +73,7 @@ public class NormalMaterialSearchPage extends BasePage {
 	protected int positionOfSearchButton;
 	protected int positionOfClearButton;
 
-	private String expectedErrorInDatePicker;
+	//private String expectedErrorInDatePicker;
 	private String dateFormat;
 
 	public NormalMaterialSearchPage(WebDriver driver) throws NumberFormatException, IOException {
@@ -92,8 +92,8 @@ public class NormalMaterialSearchPage extends BasePage {
 		positionOfSubstanceField = Integer.parseInt(PropertiesStore.getProperty("PositionOfSubstanceField"));
 		positionOfSearchButton = Integer.parseInt(PropertiesStore.getProperty("PositionOfSearchButton"));
 		positionOfClearButton = Integer.parseInt(PropertiesStore.getProperty("PositionOfClearButton"));
-		expectedErrorInDatePicker = PropertiesStore.getProperty("ExpectedErrorInDatePicker");
-
+		//expectedErrorInDatePicker = PropertiesStore.getProperty("ExpectedErrorInDatePicker");
+		dateFormat = PropertiesStore.getProperty("DateFormat");
 	}
 
 	private void selectOrderType(int orderType) {
@@ -186,7 +186,7 @@ public class NormalMaterialSearchPage extends BasePage {
 				|| !DatetimeUtil.isThisDateValid(searchDetail.getCreatedDateFrom(), dateFormat)
 				|| !DatetimeUtil.isThisDateValid(searchDetail.getIssuedDateFrom(), dateFormat)
 				|| !DatetimeUtil.isThisDateValid(searchDetail.getIssuedDateTo(), dateFormat)) {
-			assertAlertDatePickerInvalid();
+			verifyInvalidMessage("Bạn vui lòng nhập đúng định dạng ngày: dd/MM/yyyy");
 			return false;
 		}
 		return true;
@@ -195,7 +195,7 @@ public class NormalMaterialSearchPage extends BasePage {
 	private boolean validateInvalidDate(String[] dates) {
 		for (int i = 0; i < dates.length; i++) {
 			if (!DatetimeUtil.isThisDateValid(dates[i], dateFormat)) {
-				assertAlertDatePickerInvalid();
+				verifyInvalidMessage("Bạn vui lòng nhập đúng định dạng ngày: dd/MM/yyyy");
 				return false;
 			}
 		}
@@ -243,11 +243,6 @@ public class NormalMaterialSearchPage extends BasePage {
 		Assert.assertEquals(actualErrorAlert, expectedErrorAlert);
 	}
 
-	public void assertAlertDatePickerInvalid() {
-		String actualErrorAlert = getErrorAlertBox();
-		String expectedErrorAlert = getExpectedErrorAlert(expectedErrorInDatePicker);
-		Assert.assertEquals(actualErrorAlert, expectedErrorAlert);
-	}
 
 	public void assertEmptyMessage() {
 		if (tbdEmpty.isDisplayed()) {
@@ -259,9 +254,9 @@ public class NormalMaterialSearchPage extends BasePage {
 		}
 	}
 
-	private String getExpectedErrorAlert(String exError) {
+	/*private String getExpectedErrorAlert(String exError) {
 		return this.expectedErrorInDatePicker = exError;
-	}
+	}*/
 
 	public void enterCertificateNumberFieldAs(String certificateNumber) {
 		enterTextBoxField(txtCertificateNumber, positionOfCertificateNumberField, certificateNumber);

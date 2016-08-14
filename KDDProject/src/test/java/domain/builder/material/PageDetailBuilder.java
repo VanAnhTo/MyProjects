@@ -12,8 +12,6 @@ public class PageDetailBuilder {
 	private List<MaterialDetail> materialDetailList;
 
 	public PageDetailBuilder() {
-		fileNumber ="0";
-		signWhere ="HN";
 	}
 
 	public PageDetailBuilder withFileNumber(String fileNumber) {

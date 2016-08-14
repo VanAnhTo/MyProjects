@@ -29,7 +29,8 @@ Feature: Search orders special of normal are created
       | orderNumber | createdDateFrom | createdDateTo |
       |             | 1/1/2016        | 1/1/2015      |
 
-  Scenario Outline: Searching with order number
+  @search
+  Scenario Outline: Searching invalid date
     Given I go to specical of list page
     When I search with invalid issued date: "<createdDateFrom>"
     And I click the button Search
@@ -39,6 +40,7 @@ Feature: Search orders special of normal are created
       | createdDateFrom |
       | aaaaaa          |
 
+
   Scenario: Searching empty result
     Given I go to specical of list page
     When I search with a order number not in database : "vvvvv"
@@ -46,7 +48,7 @@ Feature: Search orders special of normal are created
     Then I see empty message
     And Empty order on the grid
 
-  @search
+
   Scenario Outline: Searching with order number
     Given I go to specical of list page
     When I want to search with order number: "<orderNumber>", created date from: "<createdDateFrom>", created date to: "<createdDateTo>"
@@ -55,7 +57,8 @@ Feature: Search orders special of normal are created
 
     Examples: 
       | orderNumber | createdDateFrom | createdDateTo |
-      |             | 1/1/2015        | 1/1/2015      |
+      |        1234 | cccF            | 1/1/2015      |
+      
 
   Scenario: Searching with over maxlength order number
     Given I go to specical of list page
