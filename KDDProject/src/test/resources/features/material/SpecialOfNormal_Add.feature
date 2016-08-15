@@ -31,7 +31,7 @@ Feature: Create a new document in special of normal material page
       | SDH/2016/01 | Ha Noi    |
 
   @hoangnl
-  Scenario Outline: Create order with empty order number
+  Scenario Outline: Create order not successfully with empty order number
     When I go to specical of nomaral page
     And I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>"
     And I enter material info list
@@ -45,3 +45,89 @@ Feature: Create a new document in special of normal material page
     Examples: List of valid value
       | fileNumber | signWhere |
       |            | Ha Noi    |
+
+  Scenario Outline: Create order not successfully with empty sign place
+    When I go to specical of nomaral page
+    And I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>"
+    And I enter material info list
+      | materialName      | contentMaterial           | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration       | contentImport      |
+      | Ten nguyen lieu 1 | Ham luong, dang bao che 1 |              3 | tan          | 2015/11/11      | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | Ten nguyen lieu 2 | Ham luong, dang bao che 2 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | Ten nguyen lieu 3 | Ham luong, dang bao che 3 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+    And I save document info
+    Then I see the message invalid value
+
+    Examples: List of valid value
+      | fileNumber  | signWhere |
+      | SDH/2016/02 |           |
+
+  Scenario Outline: Create order not successfully with empty materia on grid
+    When I go to specical of nomaral page
+    And I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>"
+    And I save document info
+    Then I see the message invalid value
+
+    Examples: List of valid value
+      | fileNumber | signWhere |
+      |            | Ha Noi    |
+
+  Scenario Outline: Add material to grid not successfully with empty material name
+    When I go to specical of nomaral page
+    And I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>"
+    And I enter material info list
+      | materialName      | contentMaterial           | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration       | contentImport      |
+      | Ten nguyen lieu 1 | Ham luong, dang bao che 1 |              3 | tan          | 2015/11/11      | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      |                   | Ham luong, dang bao che 2 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | Ten nguyen lieu 3 | Ham luong, dang bao che 3 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+    And I add material to grid
+    Then I see an error message
+
+    Examples: List of valid value
+      | fileNumber  | signWhere |
+      | SDH/2016/02 | Ha Noi    |
+
+  Scenario Outline: Add material to grid successfully with empty contenmaterial
+    When I go to specical of nomaral page
+    And I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>"
+    And I enter material info list
+      | materialName      | contentMaterial           | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration       | contentImport      |
+      | Ten nguyen lieu 1 | Ham luong, dang bao che 1 |              3 | tan          | 2015/11/11      | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | Ten nguyen lieu 2 |                           |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | Ten nguyen lieu 3 | Ham luong, dang bao che 3 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+    And I add material to grid
+    And I save document info
+    Then I see an success message
+
+    Examples: List of valid value
+      | fileNumber  | signWhere |
+      | SDH/2016/02 | Ha Noi    |
+
+  Scenario Outline: Add material to grid not successfully with empty amout of material
+    When I go to specical of nomaral page
+    And I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>"
+    And I enter material info list
+      | materialName      | contentMaterial           | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration       | contentImport      |
+      | Ten nguyen lieu 1 | Ham luong, dang bao che 1 |              3 | tan          | 2015/11/11      | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | Ten nguyen lieu 2 | Ham luong, dang bao che 2 |                | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | Ten nguyen lieu 3 | Ham luong, dang bao che 3 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+    And I add material to grid
+    Then I see an error message
+
+    Examples: List of valid value
+      | fileNumber  | signWhere |
+      | SDH/2016/02 | Ha Noi    |
+
+Scenario Outline: Add material to grid not successfully with invalid value amout of material
+    When I go to specical of nomaral page
+    And I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>"
+    And I enter material info list
+      | materialName      | contentMaterial           | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration       | contentImport      |
+      | Ten nguyen lieu 1 | Ham luong, dang bao che 1 |              3 | tan          | 2015/11/11      | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | Ten nguyen lieu 2 | Ham luong, dang bao che 2 |            abc | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | Ten nguyen lieu 3 | Ham luong, dang bao che 3 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+    And I add material to grid
+    Then I see an error message
+
+    Examples: List of valid value
+      | fileNumber  | signWhere |
+      | SDH/2016/02 | Ha Noi    |
