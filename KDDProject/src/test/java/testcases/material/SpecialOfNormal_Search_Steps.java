@@ -8,6 +8,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import domain.builder.material.SearchDetailBuilder;
 import domain.detail.material.SearchDetail;
+import page.account.HomePage;
 import page.material.search.SpecialNormalDetailSearchPage;
 import util.PageStore;
 
@@ -26,9 +27,10 @@ public class SpecialOfNormal_Search_Steps {
 	}
 	
 	@Given("I navigate to search form")
-	public void i_navigate_to_search(String createdDateFrom, String createdDateTo)
+	public void i_navigate_to_search()
 			throws InterruptedException {
-		searchDetailBuilder.withCreatedDate(createdDateFrom, createdDateTo);
+		HomePage onHomePage = pageStore.get(HomePage.class);
+		onHomePage.goToListPage();
 
 	}
 
