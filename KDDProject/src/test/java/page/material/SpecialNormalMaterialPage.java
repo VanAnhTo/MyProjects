@@ -139,4 +139,93 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 		}
 		return false;
 	}
+
+	public void addMaterialToGrid(PageDetail pageDetail) {
+		waitForTextboxFeildAppear();
+		this.clickCopporateCheckBox();
+		if (pageDetail.getFileNumber() != null) {
+			this.enterFileNumberFieldAs(pageDetail.getFileNumber());
+		}
+		if (pageDetail.getSignWhere() != null) {
+			this.enterSignWhereFieldAs(pageDetail.getSignWhere());
+		}
+
+		int i = 1;
+		for (MaterialDetail materialDetail : pageDetail.getMaterialDetailList()) {
+			if (materialDetail.getAmountMaterial() != null) {
+				this.enterAmountMaterialFieldAs(materialDetail.getAmountMaterial());
+			}
+			if (materialDetail.getContenMaterial() != null) {
+				this.enterContenMaterialFieldAs(materialDetail.getContenMaterial());
+			}
+			if (materialDetail.getMaterialName() != null) {
+				this.enterMaterialNameFieldAs(materialDetail.getMaterialName());
+			}
+			if (materialDetail.getUnitMaterial() != null) {
+				this.enterUnitMaterialFieldAs(materialDetail.getUnitMaterial());
+			}
+			if (materialDetail.getRegistrationNumber() != null) {
+				this.enterRegistrationNumberFieldAs(materialDetail.getRegistrationNumber());
+			}
+			if (materialDetail.getContentImportl() != null) {
+				this.enterContentImportFeildAs(materialDetail.getContentImportl());
+			}
+			if (materialDetail.getContentration() != null) {
+				this.enterContentrationFeildAs(materialDetail.getContentration());
+			}
+			if (materialDetail.getQualityMateriall() != null) {
+				this.enterQualityMaterialFieldAs(materialDetail.getQualityMateriall());
+			}
+			this.clickCommitedCheckbox();
+			this.focusOnProviderMaterialField();
+			this.waitForDropdown();
+			this.chooseProviderMaterialCombobox();
+			this.focusManufacturalMaterialField();
+			this.waitForDropdown();
+			this.chooseManufacturalMaterialCombobox();
+
+			this.clickAddMaterialButton();
+			waitForDataFillOnTableComplete(i);
+			i++;
+		}
+		
+	}
+	
+	
+
+	public void verifyErrorMessage(PageDetail pageDetail) {
+		if (validateEmptyField(pageDetail.getFileNumber())) {
+			return;
+		}
+		if (validateEmptyField(pageDetail.getSignWhere())) {
+			return;
+		}
+		int i = 1;
+		for (MaterialDetail materialDetail : pageDetail.getMaterialDetailList()) {
+			if (validateEmptyField(materialDetail.getAmountMaterial())) {
+				return;
+			}
+			if (validateEmptyField(materialDetail.getQualityMateriall())) {
+				return;
+			}
+			if (validateEmptyField(materialDetail.getMaterialName())) {
+				return;
+			}
+			if (validateEmptyField(materialDetail.getRegistrationNumber())) {
+				return;
+			}
+			i++;
+		}
+		waitForAlert();
+		
+	}
+
+	public void clickSaveOrder() {
+		this.clickSaveListMaterialButton();
+	}
+
+	public void verifySuccessMessage(PageDetail pageDetail) {
+		verifySuccessMessage("Lưu thông tin thành công");
+		return;	
+	}
 }

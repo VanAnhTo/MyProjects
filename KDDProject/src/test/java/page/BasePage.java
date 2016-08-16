@@ -15,8 +15,8 @@ import util.PropertiesStore;
 
 public class BasePage {
 	WebDriver driver;
-	
-	protected String expectedEmptyMessage ="Trường bắt buộc nhập";
+
+	protected String expectedEmptyMessage = "Trường bắt buộc nhập";
 
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
@@ -29,7 +29,10 @@ public class BasePage {
 	}
 
 	@FindBy(css = ".z-notification.z-notification-warning div div")
-	protected WebElement divNotification;
+	protected WebElement divNotificationWarning;
+	
+	@FindBy(css = ".z-notification.z-notification-info div")
+	protected WebElement divNotificationInfo;
 
 	@FindBy(css = ".z-popup-cnt .z-errbox-center")
 	private WebElement divErrorBox;
@@ -38,13 +41,20 @@ public class BasePage {
 	@FindBy(css = ".z-groupbox-cnt .z-select")
 	protected List<WebElement> comboboxes;
 
+	protected String getPopupMessageWarning() {
+		return divNotificationWarning.getText();
+	}
+	
+	protected String getPopupMessageInfo() {
+		return divNotificationInfo.getText();
+	}
 
 	protected String getErrorAlertBox() {
 		return divErrorBox.getText();
 	}
 
 	protected String dateFormat;
-	
+
 	protected void waitForDataFillOnTableComplete(int i) {
 		waitForElement(".z-listbox-body table tbody:nth-child(2) tr:nth-child(" + i + ")");
 	}
@@ -116,10 +126,15 @@ public class BasePage {
 		chosenTextBox = allChosenbox.get(position);
 		chosenTextBox.click();
 	}
-	public void verifyInvalidMessage(String expectedErrorAlert)
-	{
+
+	public void verifyInvalidMessage(String expectedErrorAlert) {
 		String actualErrorAlert = getErrorAlertBox();
 		Assert.assertEquals(actualErrorAlert, expectedErrorAlert);
 
+	}
+
+	public void verifySuccessMessage(String expectedSuccessMessage) {
+		String actualMessage = getPopupMessageInfo();
+		Assert.assertEquals(actualMessage, expectedSuccessMessage);
 	}
 }

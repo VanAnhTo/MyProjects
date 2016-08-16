@@ -231,7 +231,7 @@ public class NormalMaterialSearchPage extends BasePage {
 	}
 
 	public void assertRangDateWarning() {
-		String actualErrorAlert = divNotification.getText();
+		String actualErrorAlert = divNotificationWarning.getText();
 		String expectedErrorAlert = "Thời gian từ ngày không được lớn hơn đến ngày";
 		Assert.assertEquals(actualErrorAlert, expectedErrorAlert);
 	}

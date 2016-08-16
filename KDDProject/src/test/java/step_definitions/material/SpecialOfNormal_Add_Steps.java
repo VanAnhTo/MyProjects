@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import domain.builder.material.MaterialDetailBuilder;
 import domain.builder.material.PageDetailBuilder;
@@ -49,6 +50,26 @@ public class SpecialOfNormal_Add_Steps {
 		this.materialDetailList = materialDetailList;
 	}
 
+	
+	
+	@And("I add material to grid")
+	public void i_add_material_to_grid() {
+		pageDetailBuilder.withMaterialDetailList(materialDetailList);
+		PageDetail pageDetail = pageDetailBuilder.build();
+		user.clickAddMaterialToGrid(pageDetail);
+	}
+	
+	
+	
+	@And("I save order")
+	public void i_save_order() {
+		/*pageDetailBuilder.withMaterialDetailList(materialDetailList);
+		PageDetail pageDetail = pageDetailBuilder.build();*/
+		user.clickSaveOrder();
+	}
+	
+	
+
 	@And("^I save document info$")
 	public void i_save_document_info() {
 		pageDetailBuilder.withMaterialDetailList(materialDetailList);
@@ -65,6 +86,19 @@ public class SpecialOfNormal_Add_Steps {
 	public void i_see_message_invalid_values() throws InterruptedException {
 		PageDetail pageDetail = pageDetailBuilder.build();
 		user.verifyInvalidMessage(pageDetail);
+	}
+	
+	
+	@Then("I see an error message")
+	public void i_see_an_error_message() throws InterruptedException {
+		PageDetail pageDetail = pageDetailBuilder.build();
+		user.verifyErrorMessage(pageDetail);
+	}
+	
+	@Then("I see an success message")
+	public void i_see_an_success_message() throws InterruptedException {
+		PageDetail pageDetail = pageDetailBuilder.build();
+		user.verifySuccessMessage(pageDetail);
 	}
 
 }

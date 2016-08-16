@@ -66,7 +66,7 @@ public class Specification {
 	}
 
 	public void clickAddNew2aWith(PageDetail new2ddDetails) throws InterruptedException {
-		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		NormalMaterialPage onNew2ddPage = pageStore.get(NormalMaterialPage.class);
 		onNew2ddPage.saveMaterialWith(new2ddDetails);
 
 	}
@@ -109,6 +109,27 @@ public class Specification {
 	public void verifyOverMaxMessaage() {
 		NormalMaterialSearchPage onSearchPage = pageStore.get(NormalMaterialSearchPage.class);
 		onSearchPage.assertMaxlength(50);
+	}
+
+	public void clickAddMaterialToGrid(PageDetail pageDetail) {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.addMaterialToGrid(pageDetail);	
+	}
+
+	public void verifyErrorMessage(PageDetail pageDetail) {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.verifyErrorMessage(pageDetail);
+	}
+
+	public void clickSaveOrder() {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.clickSaveOrder();
+	}
+
+	public void verifySuccessMessage(PageDetail pageDetail) {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.verifySuccessMessage(pageDetail);
+		
 	}
 	
 	
