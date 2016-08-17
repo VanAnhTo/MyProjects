@@ -31,7 +31,7 @@ public class BasePage {
 	@FindBy(css = ".z-notification.z-notification-warning div div")
 	protected WebElement divNotificationWarning;
 	
-	@FindBy(css = ".z-notification.z-notification-info div")
+	@FindBy(css = ".z-notification.z-notification-info div div")
 	protected WebElement divNotificationInfo;
 
 	@FindBy(css = ".z-popup-cnt .z-errbox-center")
@@ -134,6 +134,7 @@ public class BasePage {
 	}
 
 	public void verifySuccessMessage(String expectedSuccessMessage) {
+		waitForAlert();
 		String actualMessage = getPopupMessageInfo();
 		Assert.assertEquals(actualMessage, expectedSuccessMessage);
 	}

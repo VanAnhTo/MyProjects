@@ -185,10 +185,16 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 			this.chooseManufacturalMaterialCombobox();
 
 			this.clickAddMaterialButton();
+			//verifyEmptyMessage()
 			waitForDataFillOnTableComplete(i);
 			i++;
 		}
 		
+	}
+	
+	public void verifyErrorMessageForMaterialName(){
+		waitForElement(".z-popup-cnt .z-errbox-center");
+		verifyInvalidMessage("Trường bắt buộc nhập");
 	}
 	
 	

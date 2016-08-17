@@ -92,7 +92,7 @@ public class SpecialOfNormal_Add_Steps {
 	@Then("I see an error message")
 	public void i_see_an_error_message() throws InterruptedException {
 		PageDetail pageDetail = pageDetailBuilder.build();
-		user.verifyErrorMessage(pageDetail);
+		user.verifyErrorMessageForMaterialName(pageDetail);
 	}
 	
 	@Then("I see an success message")

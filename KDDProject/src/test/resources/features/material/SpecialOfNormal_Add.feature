@@ -71,7 +71,7 @@ Feature: Create a new document in special of normal material page
       | fileNumber | signWhere |
       |            | Ha Noi    |
 
- @hoangnl
+
   Scenario Outline: Add material to grid not successfully with empty material name
     When I go to specical of nomaral page
     And I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>"
@@ -86,7 +86,7 @@ Feature: Create a new document in special of normal material page
       | fileNumber  | signWhere |
       | SDH/2016/02 | Ha Noi    |
 
- @hoangnl
+
   Scenario Outline: Add material to grid successfully with empty contenmaterial
     When I go to specical of nomaral page
     And I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>"
@@ -103,6 +103,7 @@ Feature: Create a new document in special of normal material page
       | fileNumber  | signWhere |
       | SDH/2016/02 | Ha Noi    |
 
+ @hoangnl
   Scenario Outline: Add material to grid not successfully with empty amout of material
     When I go to specical of nomaral page
     And I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>"
@@ -111,7 +112,7 @@ Feature: Create a new document in special of normal material page
       | Ten nguyen lieu 1 | Ham luong, dang bao che 1 |              3 | tan          | 2015/11/11      | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
       | Ten nguyen lieu 2 | Ham luong, dang bao che 2 |                | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
       | Ten nguyen lieu 3 | Ham luong, dang bao che 3 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
-    #And I add material to grid
+    And I add material to grid
     Then I see an error message
 
     Examples: List of valid value
