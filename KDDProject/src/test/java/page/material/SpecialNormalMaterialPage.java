@@ -140,70 +140,6 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 		return false;
 	}
 
-	public void addMaterialToGrid(PageDetail pageDetail) {
-		waitForTextboxFeildAppear();
-		this.clickCopporateCheckBox();
-		if (pageDetail.getFileNumber() != null) {
-			this.enterFileNumberFieldAs(pageDetail.getFileNumber());
-		}
-		if (pageDetail.getSignWhere() != null) {
-			this.enterSignWhereFieldAs(pageDetail.getSignWhere());
-		}
-
-		int i = 1;
-		for (MaterialDetail materialDetail : pageDetail.getMaterialDetailList()) {
-			if (materialDetail.getAmountMaterial() != null) {
-				this.enterAmountMaterialFieldAs(materialDetail.getAmountMaterial());
-			} else {
-				this.clickAddMaterialButton();
-				this.verifyEmptyMessage();
-			}
-			if (materialDetail.getContenMaterial() != null) {
-				this.enterContenMaterialFieldAs(materialDetail.getContenMaterial());
-			}
-			if (materialDetail.getMaterialName() != null) {
-				this.enterMaterialNameFieldAs(materialDetail.getMaterialName());
-			} else {
-				this.clickAddMaterialButton();
-				this.verifyEmptyMessage();
-			}
-			if (materialDetail.getUnitMaterial() != null) {
-				this.enterUnitMaterialFieldAs(materialDetail.getUnitMaterial());
-			} else {
-				this.clickAddMaterialButton();
-				this.verifyEmptyMessage();
-			}
-			if (materialDetail.getRegistrationNumber() != null) {
-				this.enterRegistrationNumberFieldAs(materialDetail.getRegistrationNumber());
-			}
-			if (materialDetail.getContentImportl() != null) {
-				this.enterContentImportFeildAs(materialDetail.getContentImportl());
-			}
-			if (materialDetail.getContentration() != null) {
-				this.enterContentrationFeildAs(materialDetail.getContentration());
-			}
-			if (materialDetail.getQualityMateriall() != null) {
-				this.enterQualityMaterialFieldAs(materialDetail.getQualityMateriall());
-			} else {
-				this.clickAddMaterialButton();
-				this.verifyEmptyMessage();
-			}
-			this.clickCommitedCheckbox();
-			this.focusOnProviderMaterialField();
-			this.waitForDropdown();
-			this.chooseProviderMaterialCombobox();
-			this.focusManufacturalMaterialField();
-			this.waitForDropdown();
-			this.chooseManufacturalMaterialCombobox();
-
-			this.clickAddMaterialButton();
-			// verifyEmptyMessage()
-			waitForDataFillOnTableComplete(i);
-			i++;
-		}
-
-	}
-
 	public void verifyEmptyMessage() {
 		waitForElement(".z-popup-cnt .z-errbox-center");
 		verifyInvalidMessage("Trường bắt buộc nhập");
@@ -243,5 +179,105 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	public void verifySuccessMessage(PageDetail pageDetail) {
 		verifySuccessMessage("Lưu thông tin thành công");
 		return;
+	}
+
+	public void clickSaveWithoutOrderNumber(PageDetail pageDetail) {
+		waitForTextboxFeildAppear();
+		this.enterSignWhereFieldAs(pageDetail.getSignWhere());
+		this.clickSaveListMaterialButton();
+	}
+
+	public void clickSaveWithoutSignPlace(PageDetail pageDetail) {
+		waitForTextboxFeildAppear();
+		this.enterFileNumberFieldAs(pageDetail.getFileNumber());
+		this.clickSaveListMaterialButton();
+	}
+
+	public void clickSaveWithoutMaterialDetais(PageDetail pageDetail) {
+		waitForTextboxFeildAppear();
+		this.enterFileNumberFieldAs(pageDetail.getFileNumber());
+		this.enterSignWhereFieldAs(pageDetail.getSignWhere());
+		this.clickSaveListMaterialButton();
+	}
+
+	public void clickAddWithoutMaterialName(PageDetail pageDetail) {
+		for (MaterialDetail materialDetail : pageDetail.getMaterialDetailList()) {
+			this.enterUnitMaterialFieldAs(materialDetail.getUnitMaterial());
+			this.enterAmountMaterialFieldAs(materialDetail.getAmountMaterial());
+			this.enterContenMaterialFieldAs(materialDetail.getContenMaterial());
+			this.enterQualityMaterialFieldAs(materialDetail.getQualityMateriall());
+			this.enterRegistrationNumberFieldAs(materialDetail.getRegistrationNumber());
+			this.enterContentImportFeildAs(materialDetail.getContentImportl());
+			this.enterContentrationFeildAs(materialDetail.getContentration());
+			this.clickCommitedCheckbox();
+			this.focusOnProviderMaterialField();
+			this.waitForDropdown();
+			this.chooseProviderMaterialCombobox();
+			this.focusManufacturalMaterialField();
+			this.waitForDropdown();
+			this.chooseManufacturalMaterialCombobox();
+			this.clickAddMaterialButton();
+		}
+	}
+
+	public void clickSaveWithoutContentMaterial(PageDetail pageDetail) {
+		for (MaterialDetail materialDetail : pageDetail.getMaterialDetailList()) {
+			this.enterMaterialNameFieldAs(materialDetail.getMaterialName());
+			this.enterAmountMaterialFieldAs(materialDetail.getAmountMaterial());
+			this.enterUnitMaterialFieldAs(materialDetail.getUnitMaterial());
+			this.enterQualityMaterialFieldAs(materialDetail.getQualityMateriall());
+			this.enterRegistrationNumberFieldAs(materialDetail.getRegistrationNumber());
+			this.enterContentImportFeildAs(materialDetail.getContentImportl());
+			this.enterContentrationFeildAs(materialDetail.getContentration());
+			this.clickCommitedCheckbox();
+			this.focusOnProviderMaterialField();
+			this.waitForDropdown();
+			this.chooseProviderMaterialCombobox();
+			this.focusManufacturalMaterialField();
+			this.waitForDropdown();
+			this.chooseManufacturalMaterialCombobox();
+			this.clickAddMaterialButton();
+		}
+	}
+
+	public void clickSaveWithoutAmount(PageDetail pageDetail) {
+		for (MaterialDetail materialDetail : pageDetail.getMaterialDetailList()) {
+			this.enterMaterialNameFieldAs(materialDetail.getMaterialName());
+			this.enterContenMaterialFieldAs(materialDetail.getContenMaterial());
+			this.enterAmountMaterialFieldAs(materialDetail.getAmountMaterial());
+			this.enterUnitMaterialFieldAs(materialDetail.getUnitMaterial());
+			this.enterRegistrationNumberFieldAs(materialDetail.getRegistrationNumber());
+			this.enterContentImportFeildAs(materialDetail.getContentImportl());
+			this.enterContentrationFeildAs(materialDetail.getContentration());
+			this.clickCommitedCheckbox();
+			this.focusOnProviderMaterialField();
+			this.waitForDropdown();
+			this.chooseProviderMaterialCombobox();
+			this.focusManufacturalMaterialField();
+			this.waitForDropdown();
+			this.chooseManufacturalMaterialCombobox();
+			this.clickAddMaterialButton();
+		}
+		
+	}
+
+	public void clickSaveWithoutQuality(PageDetail pageDetail) {
+		for (MaterialDetail materialDetail : pageDetail.getMaterialDetailList()) {
+			this.enterMaterialNameFieldAs(materialDetail.getMaterialName());
+			this.enterContenMaterialFieldAs(materialDetail.getContenMaterial());
+			this.enterUnitMaterialFieldAs(materialDetail.getUnitMaterial());
+			this.enterQualityMaterialFieldAs(materialDetail.getQualityMateriall());
+			this.enterRegistrationNumberFieldAs(materialDetail.getRegistrationNumber());
+			this.enterContentImportFeildAs(materialDetail.getContentImportl());
+			this.enterContentrationFeildAs(materialDetail.getContentration());
+			this.clickCommitedCheckbox();
+			this.focusOnProviderMaterialField();
+			this.waitForDropdown();
+			this.chooseProviderMaterialCombobox();
+			this.focusManufacturalMaterialField();
+			this.waitForDropdown();
+			this.chooseManufacturalMaterialCombobox();
+			this.clickAddMaterialButton();
+		}
 	}
 }

@@ -111,9 +111,9 @@ public class Specification {
 		onSearchPage.assertMaxlength(50);
 	}
 
-	public void clickAddMaterialToGrid(PageDetail pageDetail) {
+	public void clickAddWithoutMaterialName(PageDetail pageDetail) {
 		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
-		onNew2ddPage.addMaterialToGrid(pageDetail);	
+		onNew2ddPage.clickAddWithoutMaterialName(pageDetail);	
 	}
 
 	public void verifyErrorMessage(PageDetail pageDetail) {
@@ -136,6 +136,36 @@ public class Specification {
 		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
 		onNew2ddPage.verifyEmptyMessage();
 		
+	}
+
+	public void clickSaveWithoutOderNumber(PageDetail pageDetail) {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.clickSaveWithoutOrderNumber(pageDetail);	
+	}
+
+	public void clickSaveWithoutSignPlace(PageDetail pageDetail) {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.clickSaveWithoutSignPlace(pageDetail);	
+	}
+
+	public void clickSaveWithoutMaterialDetais(PageDetail pageDetail) {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.clickSaveWithoutMaterialDetais(pageDetail);	
+	}
+
+	public void clickSaveWithoutContentMaterial(PageDetail pageDetail) {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.clickSaveWithoutContentMaterial(pageDetail);
+	}
+
+	public void clickSaveWithoutAmount(PageDetail pageDetail) {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.clickSaveWithoutAmount(pageDetail);
+	}
+
+	public void clickSaveWithoutQuality(PageDetail pageDetail) {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.clickSaveWithoutQuality(pageDetail);
 	}
 	
 	
