@@ -154,15 +154,24 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 		for (MaterialDetail materialDetail : pageDetail.getMaterialDetailList()) {
 			if (materialDetail.getAmountMaterial() != null) {
 				this.enterAmountMaterialFieldAs(materialDetail.getAmountMaterial());
+			} else {
+				this.clickAddMaterialButton();
+				this.verifyEmptyMessage();
 			}
 			if (materialDetail.getContenMaterial() != null) {
 				this.enterContenMaterialFieldAs(materialDetail.getContenMaterial());
 			}
 			if (materialDetail.getMaterialName() != null) {
 				this.enterMaterialNameFieldAs(materialDetail.getMaterialName());
+			} else {
+				this.clickAddMaterialButton();
+				this.verifyEmptyMessage();
 			}
 			if (materialDetail.getUnitMaterial() != null) {
 				this.enterUnitMaterialFieldAs(materialDetail.getUnitMaterial());
+			} else {
+				this.clickAddMaterialButton();
+				this.verifyEmptyMessage();
 			}
 			if (materialDetail.getRegistrationNumber() != null) {
 				this.enterRegistrationNumberFieldAs(materialDetail.getRegistrationNumber());
@@ -175,6 +184,9 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 			}
 			if (materialDetail.getQualityMateriall() != null) {
 				this.enterQualityMaterialFieldAs(materialDetail.getQualityMateriall());
+			} else {
+				this.clickAddMaterialButton();
+				this.verifyEmptyMessage();
 			}
 			this.clickCommitedCheckbox();
 			this.focusOnProviderMaterialField();
@@ -185,19 +197,17 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 			this.chooseManufacturalMaterialCombobox();
 
 			this.clickAddMaterialButton();
-			//verifyEmptyMessage()
+			// verifyEmptyMessage()
 			waitForDataFillOnTableComplete(i);
 			i++;
 		}
-		
+
 	}
-	
-	public void verifyErrorMessageForMaterialName(){
+
+	public void verifyEmptyMessage() {
 		waitForElement(".z-popup-cnt .z-errbox-center");
 		verifyInvalidMessage("Trường bắt buộc nhập");
 	}
-	
-	
 
 	public void verifyErrorMessage(PageDetail pageDetail) {
 		if (validateEmptyField(pageDetail.getFileNumber())) {
@@ -223,7 +233,7 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 			i++;
 		}
 		waitForAlert();
-		
+
 	}
 
 	public void clickSaveOrder() {
@@ -232,6 +242,6 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 
 	public void verifySuccessMessage(PageDetail pageDetail) {
 		verifySuccessMessage("Lưu thông tin thành công");
-		return;	
+		return;
 	}
 }

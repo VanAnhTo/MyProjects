@@ -134,7 +134,7 @@ public class Specification {
 	
 	public void verifyErrorMessageForMaterialName(PageDetail pageDetail) {
 		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
-		onNew2ddPage.verifyErrorMessageForMaterialName();
+		onNew2ddPage.verifyEmptyMessage();
 		
 	}
 	
