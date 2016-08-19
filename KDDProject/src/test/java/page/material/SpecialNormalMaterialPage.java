@@ -140,7 +140,7 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 		return false;
 	}
 
-	public void verifyEmptyMessage() {
+	public void verifyInvalidMessage() {
 		waitForElement(".z-popup-cnt .z-errbox-center");
 		verifyInvalidMessage("Trường bắt buộc nhập");
 	}
@@ -201,6 +201,7 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	}
 
 	public void clickAddWithoutMaterialName(PageDetail pageDetail) {
+		waitForTextboxFeildAppear();
 		for (MaterialDetail materialDetail : pageDetail.getMaterialDetailList()) {
 			this.enterUnitMaterialFieldAs(materialDetail.getUnitMaterial());
 			this.enterAmountMaterialFieldAs(materialDetail.getAmountMaterial());
@@ -221,6 +222,7 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	}
 
 	public void clickSaveWithoutContentMaterial(PageDetail pageDetail) {
+		waitForTextboxFeildAppear();
 		for (MaterialDetail materialDetail : pageDetail.getMaterialDetailList()) {
 			this.enterMaterialNameFieldAs(materialDetail.getMaterialName());
 			this.enterAmountMaterialFieldAs(materialDetail.getAmountMaterial());
@@ -241,6 +243,7 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	}
 
 	public void clickSaveWithoutAmount(PageDetail pageDetail) {
+		waitForTextboxFeildAppear();
 		for (MaterialDetail materialDetail : pageDetail.getMaterialDetailList()) {
 			this.enterMaterialNameFieldAs(materialDetail.getMaterialName());
 			this.enterContenMaterialFieldAs(materialDetail.getContenMaterial());
@@ -262,6 +265,7 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	}
 
 	public void clickSaveWithoutQuality(PageDetail pageDetail) {
+		waitForTextboxFeildAppear();
 		for (MaterialDetail materialDetail : pageDetail.getMaterialDetailList()) {
 			this.enterMaterialNameFieldAs(materialDetail.getMaterialName());
 			this.enterContenMaterialFieldAs(materialDetail.getContenMaterial());
@@ -279,5 +283,10 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 			this.chooseManufacturalMaterialCombobox();
 			this.clickAddMaterialButton();
 		}
+	}
+
+	public void verifyWarningMessage(PageDetail pageDetail) {
+		verifyWarningMessage("Bạn phải nhập ít nhất 01 nguyên liệu");
+		return;
 	}
 }

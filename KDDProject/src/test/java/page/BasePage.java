@@ -34,6 +34,7 @@ public class BasePage {
 	@FindBy(css = ".z-notification.z-notification-info div div")
 	protected WebElement divNotificationInfo;
 
+
 	@FindBy(css = ".z-popup-cnt .z-errbox-center")
 	private WebElement divErrorBox;
 
@@ -41,11 +42,15 @@ public class BasePage {
 	@FindBy(css = ".z-groupbox-cnt .z-select")
 	protected List<WebElement> comboboxes;
 
-	protected String getPopupMessageWarning() {
+	protected String getPopupWarningMessage() {
 		return divNotificationWarning.getText();
 	}
 	
 	protected String getPopupMessageInfo() {
+		return divNotificationInfo.getText();
+	}
+	
+	protected String getPopupInfoMessage() {
 		return divNotificationInfo.getText();
 	}
 
@@ -137,5 +142,11 @@ public class BasePage {
 		waitForAlert();
 		String actualMessage = getPopupMessageInfo();
 		Assert.assertEquals(actualMessage, expectedSuccessMessage);
+	}
+	
+	public void verifyWarningMessage(String expectedWarningMessage) {
+		waitForAlert();
+		String actualMessage = getPopupWarningMessage();
+		Assert.assertEquals(actualMessage, expectedWarningMessage);
 	}
 }

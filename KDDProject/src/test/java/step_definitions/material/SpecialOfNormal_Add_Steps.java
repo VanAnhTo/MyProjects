@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import domain.builder.material.MaterialDetailBuilder;
@@ -35,24 +36,29 @@ public class SpecialOfNormal_Add_Steps {
 		this.user = new Specification(pageStore);
 	}
 
-	@When("^I go to specical of nomaral page$")
+	@Given("^I go to specical of nomaral page$")
 	public void i_go_to_special_of_normal_page() {
 		user.goToAddNew2ddPage();
 	}
 
-	@When("^I enter file number field with value \"(.*)\" and sign where field with value \"(.*)\"$")
+	@When("I enter file number field with value \"(.*)\" and sign where field with value \"(.*)\"")
 	public void i_enter_file_number_value_and_sign_where_value(String fileNumber, String signWhere) {
 		pageDetailBuilder.withFileNumber(fileNumber).withSignWhere(signWhere);
 	}
 
-	@When("I enter sign where field with value \"(.*)\"")
+	@When("I fill sign where field with value \"(.*)\"")
 	public void i_enter_file_number_value(String signWhere) {
 		pageDetailBuilder.withSignWhere(signWhere);
 	}
 
-	@When("I enter file number field with value \"(.*)\"")
+	@When("I fill file number field with value \"(.*)\"")
 	public void i_enter_sign_where_value(String fileNumber) {
 		pageDetailBuilder.withFileNumber(fileNumber);
+	}
+	
+	@When("I enter material detail")
+	public void i_add_material_detail_to_grid(List<MaterialDetail> materialDetailList) {
+		this.materialDetailList = materialDetailList;
 	}
 	
 	@And("I enter material info list")
@@ -76,11 +82,6 @@ public class SpecialOfNormal_Add_Steps {
 	public void i_save_without_material_details() {
 		PageDetail pageDetail = pageDetailBuilder.build();
 		user.clickSaveWithoutMaterialDetais(pageDetail);
-	}
-
-	@And("I enter material detail")
-	public void i_add_material_detail_to_grid(List<MaterialDetail> materialDetailList) {
-		this.materialDetailList = materialDetailList;
 	}
 
 	@And("I add without material name")
@@ -117,6 +118,12 @@ public class SpecialOfNormal_Add_Steps {
 		PageDetail pageDetail = pageDetailBuilder.build();
 		user.clickAddNew2ddWith(pageDetail);
 	}
+	
+	@And("I save order")
+	public void i_save_order() {
+		PageDetail pageDetail = pageDetailBuilder.build();
+		user.saveOrder(pageDetail);
+	}
 
 	@And("^I upload attachment files for document$")
 	public void i_upload_attachment_files_document(List<AttachmentDetail> attachmentDetail) {
@@ -135,10 +142,16 @@ public class SpecialOfNormal_Add_Steps {
 		user.verifyErrorMessageForMaterialName(pageDetail);
 	}
 
-	@Then("I see an success message")
+	@Then("I see the success message")
 	public void i_see_an_success_message() throws InterruptedException {
 		PageDetail pageDetail = pageDetailBuilder.build();
 		user.verifySuccessMessage(pageDetail);
+	}
+	
+	@Then("I see the warning message")
+	public void i_see_the_warning_message() throws InterruptedException {
+		PageDetail pageDetail = pageDetailBuilder.build();
+		user.verifyWarningMessage(pageDetail);
 	}
 
 }

@@ -73,7 +73,7 @@ public class Specification {
 	
 	public void verifyInvalidMessage(PageDetail pageDetail) throws InterruptedException {
 		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
-		onNew2ddPage.verifyEmptyMessage(pageDetail);
+		onNew2ddPage.verifyInvalidMessage();
 
 	}
 
@@ -134,7 +134,7 @@ public class Specification {
 	
 	public void verifyErrorMessageForMaterialName(PageDetail pageDetail) {
 		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
-		onNew2ddPage.verifyEmptyMessage();
+		onNew2ddPage.verifyInvalidMessage();
 		
 	}
 
@@ -166,6 +166,16 @@ public class Specification {
 	public void clickSaveWithoutQuality(PageDetail pageDetail) {
 		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
 		onNew2ddPage.clickSaveWithoutQuality(pageDetail);
+	}
+
+	public void verifyWarningMessage(PageDetail pageDetail) {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.verifyWarningMessage(pageDetail);
+	}
+
+	public void saveOrder(PageDetail pageDetail) {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.clickSaveWithoutMaterialDetais(pageDetail);	
 	}
 	
 	
