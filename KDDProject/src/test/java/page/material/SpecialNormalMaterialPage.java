@@ -3,13 +3,35 @@ package page.material;
 import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import domain.detail.material.MaterialDetail;
 import domain.detail.material.PageDetail;
 import page.AddBasePage;
+import util.AppLogger;
 import util.PropertiesStore;
 
 public class SpecialNormalMaterialPage extends AddBasePage {
+
+	@FindBy(css = ".z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(2) div")
+	private WebElement tdTenNguyenLieu;
+
+	@FindBy(css = ".z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(3) span.z-label")
+	private WebElement tdDonViTinh;
+
+	@FindBy(css = ".z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(4) span.z-label")
+	private WebElement tdSoLuong;
+
+	@FindBy(css = ".z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(5) span.z-label")
+	private WebElement tdTieuChuanChatLuong;
+
+	@FindBy(css = ".z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(8) span.z-label")
+	private WebElement tdSoDangKy;
+
+	@FindBy(css = ".z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(9) span.z-label")
+	private WebElement tdNongDoHamLuong;
 
 	public SpecialNormalMaterialPage(WebDriver driver) throws NumberFormatException, IOException {
 		super(driver);
@@ -261,7 +283,7 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 			this.chooseManufacturalMaterialCombobox();
 			this.clickAddMaterialButton();
 		}
-		
+
 	}
 
 	public void clickSaveWithoutQuality(PageDetail pageDetail) {
@@ -288,5 +310,21 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	public void verifyWarningMessage(PageDetail pageDetail) {
 		verifyWarningMessage("Bạn phải nhập ít nhất 01 nguyên liệu");
 		return;
+	}
+
+	public void verifyMaterialOnGrid(PageDetail pageDetail) {
+		waitForDataFillOnTableComplete(1);
+//		String js = "document.querySelector('.z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(2) span.z-label').innerHTML.replace(\"\r\",\"\").replace(\"\n\",\"\");";
+		//excuteJavaScript(js);
+		String actualResult = pageDetail.getMaterialDetailList().get(0).getMaterialName() 
+				+ pageDetail.getMaterialDetailList().get(0).getContenMaterial();
+		AppLogger.logMessage("actual result: " + actualResult);
+		String expectedResult = getTenNguyenLieu();
+		AppLogger.logMessage("expected result: " + expectedResult);
+		Assert.assertEquals(actualResult, expectedResult);
+	}
+
+	private String getTenNguyenLieu() {
+		return tdTenNguyenLieu.getAttribute("textContent");
 	}
 }

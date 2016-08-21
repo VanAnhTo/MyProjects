@@ -62,7 +62,7 @@ Feature: Create a new document in special of normal material page
     Then I see an error message
 
   #
-  Scenario: Add material to grid successfully with empty contenmaterial
+  Scenario: Add material to grid successfully with empty content material
     Given I go to specical of nomaral page
     When I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>"
     When I enter material detail
@@ -82,7 +82,6 @@ Feature: Create a new document in special of normal material page
     Then I see an error message
 
   #--
-  @add
   Scenario: Add material to grid not successfully with empty quality of material
     Given I go to specical of nomaral page
     When I enter material detail
@@ -90,3 +89,12 @@ Feature: Create a new document in special of normal material page
       | Ten nguyen lieu 2 | Ham luong, dang bao che 2 |              1 | tan          |                 | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
     And I save without quality of material
     Then I see an error message
+
+  @add
+  Scenario: Add material to grid successfully with empty content material
+    Given I go to specical of nomaral page
+    When I enter material detail
+      | materialName      | contentMaterial         | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration       | contentImport      |
+      | Ten nguyen lieu 2 | Ham luong, dang bao che |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+    And I save without content material
+    Then I see a material on grid

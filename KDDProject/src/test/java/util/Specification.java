@@ -177,6 +177,11 @@ public class Specification {
 		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
 		onNew2ddPage.clickSaveWithoutMaterialDetais(pageDetail);	
 	}
+
+	public void verifyMaterialOnGrid(PageDetail pageDetail) {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.verifyMaterialOnGrid(pageDetail);
+	}
 	
 	
 

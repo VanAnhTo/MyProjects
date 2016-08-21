@@ -153,5 +153,11 @@ public class SpecialOfNormal_Add_Steps {
 		PageDetail pageDetail = pageDetailBuilder.build();
 		user.verifyWarningMessage(pageDetail);
 	}
+	
+	@Then("I see a material on grid")
+	public void i_see_the_material_on_grid() throws InterruptedException {
+		PageDetail pageDetail = pageDetailBuilder.build();
+		user.verifyMaterialOnGrid(pageDetail);
+	}
 
 }
