@@ -1,6 +1,5 @@
 package util;
 
-
 import java.util.List;
 
 import domain.detail.account.LoginDetails;
@@ -70,7 +69,7 @@ public class Specification {
 		onNew2ddPage.saveMaterialWith(new2ddDetails);
 
 	}
-	
+
 	public void verifyInvalidMessage(PageDetail pageDetail) throws InterruptedException {
 		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
 		onNew2ddPage.verifyInvalidMessage();
@@ -89,23 +88,24 @@ public class Specification {
 
 	public void verifyAlertDate() {
 		NormalMaterialSearchPage onSearchPage = pageStore.get(NormalMaterialSearchPage.class);
-		//onSearchPage.assertAlertDatePickerInvalid();
+		// onSearchPage.assertAlertDatePickerInvalid();
 	}
+
 	public void verifyEmptyMessage() {
 		NormalMaterialSearchPage onSearchPage = pageStore.get(NormalMaterialSearchPage.class);
 		onSearchPage.assertEmptyMessage();
 	}
-	
+
 	public void verifyEmptyList() {
 		GridPage onListPage = pageStore.get(GridPage.class);
 		onListPage.verifyEmptyList();
 	}
-	
+
 	public void verifyWarningMessaage() {
 		NormalMaterialSearchPage onSearchPage = pageStore.get(NormalMaterialSearchPage.class);
 		onSearchPage.assertRangDateWarning();
 	}
-	
+
 	public void verifyOverMaxMessaage() {
 		NormalMaterialSearchPage onSearchPage = pageStore.get(NormalMaterialSearchPage.class);
 		onSearchPage.assertMaxlength(50);
@@ -113,7 +113,7 @@ public class Specification {
 
 	public void clickAddWithoutMaterialName(PageDetail pageDetail) {
 		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
-		onNew2ddPage.clickAddWithoutMaterialName(pageDetail);	
+		onNew2ddPage.clickAddWithoutMaterialName(pageDetail);
 	}
 
 	public void verifyErrorMessage(PageDetail pageDetail) {
@@ -129,28 +129,28 @@ public class Specification {
 	public void verifySuccessMessage(PageDetail pageDetail) {
 		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
 		onNew2ddPage.verifySuccessMessage(pageDetail);
-		
+
 	}
-	
+
 	public void verifyErrorMessageForMaterialName(PageDetail pageDetail) {
 		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
 		onNew2ddPage.verifyInvalidMessage();
-		
+
 	}
 
 	public void clickSaveWithoutOderNumber(PageDetail pageDetail) {
 		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
-		onNew2ddPage.clickSaveWithoutOrderNumber(pageDetail);	
+		onNew2ddPage.clickSaveWithoutOrderNumber(pageDetail);
 	}
 
 	public void clickSaveWithoutSignPlace(PageDetail pageDetail) {
 		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
-		onNew2ddPage.clickSaveWithoutSignPlace(pageDetail);	
+		onNew2ddPage.clickSaveWithoutSignPlace(pageDetail);
 	}
 
 	public void clickSaveWithoutMaterialDetais(PageDetail pageDetail) {
 		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
-		onNew2ddPage.clickSaveWithoutMaterialDetais(pageDetail);	
+		onNew2ddPage.clickSaveWithoutMaterialDetais(pageDetail);
 	}
 
 	public void clickSaveWithoutContentMaterial(PageDetail pageDetail) {
@@ -175,14 +175,22 @@ public class Specification {
 
 	public void saveOrder(PageDetail pageDetail) {
 		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
-		onNew2ddPage.clickSaveWithoutMaterialDetais(pageDetail);	
+		onNew2ddPage.clickSaveWithoutMaterialDetais(pageDetail);
 	}
 
 	public void verifyMaterialOnGrid(PageDetail pageDetail) {
 		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
 		onNew2ddPage.verifyMaterialOnGrid(pageDetail);
 	}
-	
-	
+
+	public void clickAddOrderWithoutCheckbox(PageDetail pageDetail) {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.clickAddOrderWithoutCheckbox(pageDetail);
+	}
+
+	public void verifyWarningCheckboxRequireCheckCheckbox(PageDetail pageDetail) {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.verifyWarningCheckboxRequireCheckCheckbox(pageDetail);
+	}
 
 }

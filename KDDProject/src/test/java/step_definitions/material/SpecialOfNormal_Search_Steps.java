@@ -75,7 +75,7 @@ public class SpecialOfNormal_Search_Steps {
 		user.verifyEmptyList();
 	}
 	
-	@Then("I see a warning message")
+	@Then("I see warning message")
 	public void i_see_warning_message() throws InterruptedException {
 		user.verifyWarningMessaage();
 	}

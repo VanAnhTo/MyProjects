@@ -314,9 +314,11 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 
 	public void verifyMaterialOnGrid(PageDetail pageDetail) {
 		waitForDataFillOnTableComplete(1);
-//		String js = "document.querySelector('.z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(2) span.z-label').innerHTML.replace(\"\r\",\"\").replace(\"\n\",\"\");";
-		//excuteJavaScript(js);
-		String actualResult = pageDetail.getMaterialDetailList().get(0).getMaterialName() 
+		// String js = "document.querySelector('.z-listbox-body table
+		// tbody:nth-child(2) tr:nth-child(1) td:nth-child(2)
+		// span.z-label').innerHTML.replace(\"\r\",\"\").replace(\"\n\",\"\");";
+		// excuteJavaScript(js);
+		String actualResult = pageDetail.getMaterialDetailList().get(0).getMaterialName()
 				+ pageDetail.getMaterialDetailList().get(0).getContenMaterial();
 		AppLogger.logMessage("actual result: " + actualResult);
 		String expectedResult = getTenNguyenLieu();
@@ -327,4 +329,36 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	private String getTenNguyenLieu() {
 		return tdTenNguyenLieu.getAttribute("textContent");
 	}
+
+	public void clickAddOrderWithoutCheckbox(PageDetail pageDetail) {
+		waitForTextboxFeildAppear();
+		this.clickCopporateCheckBox();
+		this.enterFileNumberFieldAs(pageDetail.getFileNumber());
+		this.enterSignWhereFieldAs(pageDetail.getSignWhere());
+		for (MaterialDetail materialDetail : pageDetail.getMaterialDetailList()) {
+			this.enterAmountMaterialFieldAs(materialDetail.getAmountMaterial());
+			this.enterContenMaterialFieldAs(materialDetail.getContenMaterial());
+			this.enterMaterialNameFieldAs(materialDetail.getMaterialName());
+			this.enterUnitMaterialFieldAs(materialDetail.getUnitMaterial());
+			this.enterRegistrationNumberFieldAs(materialDetail.getRegistrationNumber());
+			this.enterContentImportFeildAs(materialDetail.getContentImportl());
+			this.enterContentrationFeildAs(materialDetail.getContentration());
+			this.enterQualityMaterialFieldAs(materialDetail.getQualityMateriall());
+			
+			this.focusOnProviderMaterialField();
+			this.waitForDropdown();
+			this.chooseProviderMaterialCombobox();
+			this.focusManufacturalMaterialField();
+			this.waitForDropdown();
+			this.chooseManufacturalMaterialCombobox();
+			
+			this.clickAddMaterialButton();
+		}
+	}
+
+	public void verifyWarningCheckboxRequireCheckCheckbox(PageDetail pageDetail) {
+		verifyWarningMessage("Bạn phải chọn cam kết của doanh nghiệp");
+		return;
+	}
+
 }

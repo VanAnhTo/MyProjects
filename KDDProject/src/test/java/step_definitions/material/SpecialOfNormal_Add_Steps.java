@@ -124,6 +124,13 @@ public class SpecialOfNormal_Add_Steps {
 		PageDetail pageDetail = pageDetailBuilder.build();
 		user.saveOrder(pageDetail);
 	}
+		
+	@And("I add order to grid without checkbox commited")
+	public void i_save_order_without_check_checkbox() {
+		pageDetailBuilder.withMaterialDetailList(materialDetailList);
+		PageDetail pageDetail = pageDetailBuilder.build();
+		user.clickAddOrderWithoutCheckbox(pageDetail);
+	}
 
 	@And("^I upload attachment files for document$")
 	public void i_upload_attachment_files_document(List<AttachmentDetail> attachmentDetail) {
@@ -146,6 +153,12 @@ public class SpecialOfNormal_Add_Steps {
 	public void i_see_an_success_message() throws InterruptedException {
 		PageDetail pageDetail = pageDetailBuilder.build();
 		user.verifySuccessMessage(pageDetail);
+	}
+	
+	@Then("I see a warning message require check checkbox")
+	public void i_see_a_warning_message_require_checkbox_commited() throws InterruptedException {
+		PageDetail pageDetail = pageDetailBuilder.build();
+		user.verifyWarningCheckboxRequireCheckCheckbox(pageDetail);
 	}
 	
 	@Then("I see the warning message")

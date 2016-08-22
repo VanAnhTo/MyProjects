@@ -53,7 +53,7 @@ Feature: Search orders special of normal are created
     Given I go to specical of list page
     When I want to search with order number: "<orderNumber>", created date from: "<createdDateFrom>", created date to: "<createdDateTo>"
     And I click the button Search
-    Then I see a warning message
+    Then I see warning message
 
     Examples: 
       | orderNumber | createdDateFrom | createdDateTo |
