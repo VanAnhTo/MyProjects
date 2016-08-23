@@ -193,4 +193,9 @@ public class Specification {
 		onNew2ddPage.verifyWarningCheckboxRequireCheckCheckbox(pageDetail);
 	}
 
+	public void clickAddOrderToGrid(PageDetail pageDetail) {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.clickAddOrderToGrid(pageDetail);
+	}
+
 }

@@ -59,7 +59,7 @@ public class MaterialDetail {
 
 	}
 
-	public String getContentImportl() {
+	public String getContentImport() {
 		return contentImport;
 	}
 }

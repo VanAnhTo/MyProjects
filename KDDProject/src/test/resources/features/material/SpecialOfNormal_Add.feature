@@ -14,10 +14,10 @@ Feature: Create a new document in special of normal material page
     Given I go to specical of nomaral page
     When I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>"
     And I enter material info list
-      | materialName      | contentMaterial           | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration       | contentImport      |
-      | Ten nguyen lieu 1 | Ham luong, dang bao che 1 |              3 | tan          | 2015/11/11      | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
-      | Ten nguyen lieu 2 | Ham luong, dang bao che 2 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
-      | Ten nguyen lieu 3 | Ham luong, dang bao che 3 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | materialName      | contentMaterial           | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration     | contentImport   |
+      | Ten nguyen lieu 1 | Ham luong, dang bao che 1 |              3 | tan          | 2015/11/11      | SDK cua thuoc duoc SX | Nong do cua thuoc | Ham luong thuoc |
+      | Ten nguyen lieu 2 | Ham luong, dang bao che 2 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Nong do cua thuoc | Ham luong thuoc |
+      | Ten nguyen lieu 3 | Ham luong, dang bao che 3 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Nong do cua thuoc | Ham luong thuoc |
     And I save document info
     Then I see the success message
     And I upload attachment files for document
@@ -56,8 +56,8 @@ Feature: Create a new document in special of normal material page
   Scenario: Add material to grid fail with empty material name
     Given I go to specical of nomaral page
     When I enter material detail
-      | materialName | contentMaterial           | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration       | contentImport      |
-      |              | Ham luong, dang bao che 1 |              3 | tan          | 2015/11/11      | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | materialName | contentMaterial           | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration     | contentImport   |
+      |              | Ham luong, dang bao che 1 |              3 | tan          | 2015/11/11      | SDK cua thuoc duoc SX | Nong do cua thuoc | Ham luong thuoc |
     And I add without material name
     Then I see an error message
 
@@ -66,8 +66,8 @@ Feature: Create a new document in special of normal material page
     Given I go to specical of nomaral page
     When I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>"
     When I enter material detail
-      | materialName      | contentMaterial | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration       | contentImport      |
-      | Ten nguyen lieu 2 |                 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | materialName      | contentMaterial | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration     | contentImport   |
+      | Ten nguyen lieu 2 |                 |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Nong do cua thuoc | Ham luong thuoc |
     And I save without content material
     And I save order
     Then I see the success message
@@ -76,8 +76,8 @@ Feature: Create a new document in special of normal material page
   Scenario: Add material to grid fail with empty amout of material
     Given I go to specical of nomaral page
     When I enter material detail
-      | materialName      | contentMaterial           | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration       | contentImport      |
-      | Ten nguyen lieu 2 | Ham luong, dang bao che 2 |                | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | materialName      | contentMaterial           | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration     | contentImport   |
+      | Ten nguyen lieu 2 | Ham luong, dang bao che 2 |                | tan          | ISO             | SDK cua thuoc duoc SX | Nong do cua thuoc | Ham luong thuoc |
     And I save without amount of material
     Then I see an error message
 
@@ -85,19 +85,20 @@ Feature: Create a new document in special of normal material page
   Scenario: Add material to grid fail with empty quality of material
     Given I go to specical of nomaral page
     When I enter material detail
-      | materialName      | contentMaterial           | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration       | contentImport      |
-      | Ten nguyen lieu 2 | Ham luong, dang bao che 2 |              1 | tan          |                 | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | materialName      | contentMaterial           | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration     | contentImport   |
+      | Ten nguyen lieu 2 | Ham luong, dang bao che 2 |              1 | tan          |                 | SDK cua thuoc duoc SX | Nong do cua thuoc | Ham luong thuoc |
     And I save without quality of material
     Then I see an error message
 
   #
-  @wip
+  @add
   Scenario: Add material to grid successful with empty content material
     Given I go to specical of nomaral page
-    When I enter material detail
+    When I enter file number field with value "SDH/2016/01" and sign where field with value "Ha Noi"
+    And I enter material info list
       | materialName      | contentMaterial         | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration       | contentImport      |
       | Ten nguyen lieu 2 | Ham luong, dang bao che |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
-    And I save without content material
+    And I add to grid
     Then I see a material on grid
 
   #
@@ -105,19 +106,18 @@ Feature: Create a new document in special of normal material page
     Given I go to specical of nomaral page
     When I enter file number field with value "SDH/2016/01" and sign where field with value "Ha Noi"
     And I enter material info list
-      | materialName      | contentMaterial         | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration      | contentImport       |
-      | Ten nguyen lieu 2 | Ham luong, dang bao che |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Dang bao che thuoc | Ham luong cua thuoc |
+      | materialName      | contentMaterial         | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration     | contentImport   |
+      | Ten nguyen lieu 2 | Ham luong, dang bao che |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Nong do cua thuoc | Ham luong thuoc |
     And I add order to grid without checkbox commited
     Then I see a warning message require check checkbox
 
   #
-  @add
   Scenario Outline: Save material successful with multi case values of order number, place sign, material name
     Given I go to specical of nomaral page
     When I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>"
     And I enter material info list
-      | materialName   | contentMaterial           | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration       | contentImport      |
-      | <materialName> | Ham luong, dang bao che 1 |              3 | tan          | 2015/11/11      | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+      | materialName   | contentMaterial           | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration     | contentImport   |
+      | <materialName> | Ham luong, dang bao che 1 |              3 | tan          | 2015/11/11      | SDK cua thuoc duoc SX | Nong do cua thuoc | Ham luong thuoc |
     And I save document info
     Then I see the success message
 

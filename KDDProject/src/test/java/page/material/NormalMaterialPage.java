@@ -64,7 +64,7 @@ public final class NormalMaterialPage extends AddBasePage {
 			this.enterMaterialNameFieldAs(materialDetail.getMaterialName());
 			this.enterUnitMaterialFieldAs(materialDetail.getUnitMaterial());
 			this.enterRegistrationNumberFieldAs(materialDetail.getRegistrationNumber());
-			this.enterContentImportFeildAs(materialDetail.getContentImportl());
+			this.enterContentImportFeildAs(materialDetail.getContentImport());
 			this.enterContentrationFeildAs(materialDetail.getContentration());
 			this.enterQualityMaterialFieldAs(materialDetail.getQualityMateriall());
 			this.enterQuyCachDongGoiAs(materialDetail.getQuyCachDongGoi());

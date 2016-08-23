@@ -14,7 +14,7 @@ import org.testng.Assert;
 import util.PropertiesStore;
 
 public class BasePage {
-	WebDriver driver;
+	protected WebDriver driver;
 
 	protected String expectedEmptyMessage = "Trường bắt buộc nhập";
 
