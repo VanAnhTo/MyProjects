@@ -92,7 +92,7 @@ Feature: Create a new document in special of normal material page
 
   #
   @add
-  Scenario: Add material to grid successful with empty content material
+  Scenario: Add and verify material successful on grid
     Given I go to specical of nomaral page
     When I enter file number field with value "SDH/2016/01" and sign where field with value "Ha Noi"
     And I enter material info list

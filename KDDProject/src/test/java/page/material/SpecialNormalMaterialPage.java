@@ -325,8 +325,8 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	}
 	
 	private void verifyMaterialNameOnGrid(PageDetail pageDetail) {
-		getExcuteJavaScript();
-		AppLogger.logMessage("js: " + getExcuteJavaScript());
+		//getExcuteJavaScript();
+		//AppLogger.logMessage("js: " + getExcuteJavaScript());
 		String actualMaterialName = pageDetail.getMaterialDetailList().get(0).getMaterialName()
 				+ pageDetail.getMaterialDetailList().get(0).getContenMaterial();
 		AppLogger.logMessage("actual result: " + actualMaterialName);
@@ -381,7 +381,8 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	}
 	
 	private String getTenNguyenLieu() {
-		return tdTenNguyenLieu.findElement(By.xpath(".//span[normalize-space()]")).getText();
+		return driver.findElement(By.xpath("//table/tbody[2]/tr[1]/td[2]/div/span[normalize-space()]")).getText();
+		//return tdTenNguyenLieu.findElement(By.xpath(".//span[normalize-space()]")).getText();
 	}
 	
 	protected String getExcuteJavaScript() {
