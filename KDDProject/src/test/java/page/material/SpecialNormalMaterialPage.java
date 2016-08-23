@@ -2,6 +2,8 @@ package page.material;
 
 import java.io.IOException;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -156,7 +158,7 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	private boolean validateEmptyField(String materialDetail) {
 		if (materialDetail == null || materialDetail.equals("")) {
 			waitForElement(".z-popup-cnt .z-errbox-center");
-			verifyInvalidMessage("Trường bắt buộc nhập");
+			verifyInvalidMessage("TrÆ°á»�ng báº¯t buá»™c nháº­p");
 			return true;
 		}
 		return false;
@@ -164,7 +166,7 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 
 	public void verifyInvalidMessage() {
 		waitForElement(".z-popup-cnt .z-errbox-center");
-		verifyInvalidMessage("Trường bắt buộc nhập");
+		verifyInvalidMessage("TrÆ°á»�ng báº¯t buá»™c nháº­p");
 	}
 
 	public void verifyErrorMessage(PageDetail pageDetail) {
@@ -199,7 +201,7 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	}
 
 	public void verifySuccessMessage(PageDetail pageDetail) {
-		verifySuccessMessage("Lưu thông tin thành công");
+		verifySuccessMessage("LÆ°u thÃ´ng tin thÃ nh cÃ´ng");
 		return;
 	}
 
@@ -247,6 +249,7 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 		waitForTextboxFeildAppear();
 		for (MaterialDetail materialDetail : pageDetail.getMaterialDetailList()) {
 			this.enterMaterialNameFieldAs(materialDetail.getMaterialName());
+			this.enterContenMaterialFieldAs(materialDetail.getContenMaterial());
 			this.enterAmountMaterialFieldAs(materialDetail.getAmountMaterial());
 			this.enterUnitMaterialFieldAs(materialDetail.getUnitMaterial());
 			this.enterQualityMaterialFieldAs(materialDetail.getQualityMateriall());
@@ -308,23 +311,33 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	}
 
 	public void verifyWarningMessage(PageDetail pageDetail) {
-		verifyWarningMessage("Bạn phải nhập ít nhất 01 nguyên liệu");
+		verifyWarningMessage("Báº¡n pháº£i nháº­p Ã­t nháº¥t 01 nguyÃªn liá»‡u");
 		return;
 	}
 
+	protected String getExcuteJavaScript() {
+		String s = "var text = ''; "
+				+ "text = document.querySelector('.z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(2) span').innerHTML;  "
+				+ "text.replace('\\n',''); "
+				+ "return text;";
+		 return (String) ((JavascriptExecutor) driver).executeScript(s);
+	}
+	
 	public void verifyMaterialOnGrid(PageDetail pageDetail) {
 		waitForDataFillOnTableComplete(1);
-//		String js = "document.querySelector('.z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(2) span.z-label').innerHTML.replace(\"\r\",\"\").replace(\"\n\",\"\");";
-		//excuteJavaScript(js);
+//		String js = "document.querySelector('.z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(2) span.z-label').innerHTML;";
+//		excuteJavaScript(js);
 		String actualResult = pageDetail.getMaterialDetailList().get(0).getMaterialName() 
 				+ pageDetail.getMaterialDetailList().get(0).getContenMaterial();
 		AppLogger.logMessage("actual result: " + actualResult);
+		AppLogger.logMessage("js: " + getExcuteJavaScript());
 		String expectedResult = getTenNguyenLieu();
 		AppLogger.logMessage("expected result: " + expectedResult);
 		Assert.assertEquals(actualResult, expectedResult);
 	}
 
 	private String getTenNguyenLieu() {
-		return tdTenNguyenLieu.getAttribute("textContent");
+		//AppLogger.logMessage(tdTenNguyenLieu.getText());
+		return driver.findElement(By.xpath("//table/tbody[2]/tr[1]/td[2]/div/span[normalize-space()]")).getText();
 	}
 }
