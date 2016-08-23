@@ -338,6 +338,7 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 
 	private String getTenNguyenLieu() {
 		//AppLogger.logMessage(tdTenNguyenLieu.getText());
-		return driver.findElement(By.xpath("//table/tbody[2]/tr[1]/td[2]/div/span[normalize-space()]")).getText();
+		//return driver.findElement(By.xpath("//table/tbody[2]/tr[1]/td[2]/div/span[normalize-space()]")).getText();
+		return tdTenNguyenLieu.findElement(By.xpath(".//span[normalize-space()]")).getText();
 	}
 }
