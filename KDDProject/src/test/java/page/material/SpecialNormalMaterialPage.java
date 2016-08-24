@@ -29,6 +29,12 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	@FindBy(css = ".z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(5) div span.z-label")
 	private WebElement tdTieuChuanChatLuong;
 
+	@FindBy(css = ".z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(6) div")
+	private WebElement tdCongTySanXuat;
+
+	@FindBy(css = ".z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(7) div")
+	private WebElement tdCongTyCungCap;
+
 	@FindBy(css = ".z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(8) div span.z-label")
 	private WebElement tdSoDangKy;
 
@@ -322,11 +328,13 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 		verifyQualityOnGrid(pageDetail);
 		verifyRegistrationOnGrid(pageDetail);
 		verifyContentOnGrid(pageDetail);
+		verifyProviderOnGrid(pageDetail);
+		verifyManufacturalOnGrid(pageDetail);
 	}
-	
+
 	private void verifyMaterialNameOnGrid(PageDetail pageDetail) {
-		//getExcuteJavaScript();
-		//AppLogger.logMessage("js: " + getExcuteJavaScript());
+		// getExcuteJavaScript();
+		// AppLogger.logMessage("js: " + getExcuteJavaScript());
 		String actualMaterialName = pageDetail.getMaterialDetailList().get(0).getMaterialName()
 				+ pageDetail.getMaterialDetailList().get(0).getContenMaterial();
 		AppLogger.logMessage("actual result: " + actualMaterialName);
@@ -336,7 +344,7 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	}
 
 	private void verifyContentOnGrid(PageDetail pageDetail) {
-		String actualContent = pageDetail.getMaterialDetailList().get(0).getContentration()
+		String actualContent = pageDetail.getMaterialDetailList().get(0).getContentration() + " "
 				+ pageDetail.getMaterialDetailList().get(0).getContentImport();
 		AppLogger.logMessage("actual result: " + actualContent);
 		String expectedContent = getNongDoHamLuong();
@@ -376,21 +384,47 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 		Assert.assertEquals(actualUnit, expectedUnit);
 	}
 
+	private void verifyProviderOnGrid(PageDetail pageDetail) {
+		String expectedProvider = getCongTyCungCap();
+		String actual = actualProvider;
+		AppLogger.logMessage("actual result: " + actualProvider);
+		AppLogger.logMessage("expected result: " + expectedProvider);
+		Assert.assertEquals(actual, expectedProvider);
+	}
+
+	private void verifyManufacturalOnGrid(PageDetail pageDetail) {
+		// String actualManufactural =
+		// pageDetail.getMaterialDetailList().get(0).getUnitMaterial();
+		AppLogger.logMessage("actual result: " + actualManufactural);
+		String expectedManufactural = getCongTySanXuat();
+		AppLogger.logMessage("expected result: " + expectedManufactural);
+		Assert.assertEquals("+ " + actualManufactural, expectedManufactural);
+	}
+
 	private String getNongDoHamLuong() {
-		return tdNongDoHamLuong.findElement(By.xpath(".//span[normalize-space()]")).getText();
+		String nongDoHamLuong = tdNongDoHamLuong.findElement(By.xpath(".//span[normalize-space()]")).getText();
+		return nongDoHamLuong.replaceAll("\\r\\n|\\r|\\n", "");
 	}
-	
+
 	private String getTenNguyenLieu() {
-		return driver.findElement(By.xpath("//table/tbody[2]/tr[1]/td[2]/div/span[normalize-space()]")).getText();
-		//return tdTenNguyenLieu.findElement(By.xpath(".//span[normalize-space()]")).getText();
+		String materialName = tdTenNguyenLieu.findElement(By.xpath(".//span[normalize-space()]")).getText();
+		return materialName.replaceAll("\\r\\n|\\r|\\n", "");
 	}
-	
+
 	protected String getExcuteJavaScript() {
 		String s = "var text = ''; "
 				+ "text = document.querySelector('.z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(2) span').innerHTML;  "
-				+ "text.replace('\\n',''); "
-				+ "return text;";
-		 return (String) ((JavascriptExecutor) driver).executeScript(s);
+				+ "text.replace('\\n',''); " + "return text;";
+		return (String) ((JavascriptExecutor) driver).executeScript(s);
+	}
+
+	private String getCongTyCungCap() {
+		String temp = tdCongTyCungCap.findElement(By.xpath(".//span[normalize-space()]")).getText();
+		return temp.replaceAll("\\r\\n|\\r|\\n", "");
+	}
+
+	private String getCongTySanXuat() {
+		return tdCongTySanXuat.getText();
 	}
 
 	private String getSoDangKy() {
@@ -439,7 +473,6 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 		verifyWarningMessage("Bạn phải chọn cam kết của doanh nghiệp");
 		return;
 	}
-	
 
 	public void clickAddOrderToGrid(PageDetail pageDetail) {
 		waitForTextboxFeildAppear();
@@ -453,14 +486,58 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 			this.enterContentImportFeildAs(materialDetail.getContentImport());
 			this.enterContentrationFeildAs(materialDetail.getContentration());
 			this.clickCommitedCheckbox();
+
 			this.focusOnProviderMaterialField();
 			this.waitForDropdown();
-			this.chooseProviderMaterialCombobox();
+			this.getActualProvider("2",2);
+			this.chooseProviderMaterialDrodown("2");
+
 			this.focusManufacturalMaterialField();
 			this.waitForDropdown();
+			getActualManufactural();
 			this.chooseManufacturalMaterialCombobox();
+
+			this.focusOnProviderMaterialField();
+			this.waitForDropdown();
+			this.getActualProvider("14",2);
+			this.chooseProviderMaterialDrodown("14");
+
+			/*
+			 * this.focusManufacturalMaterialField(); this.waitForDropdown();
+			 * getActualManufactural();
+			 * this.chooseManufacturalMaterialCombobox();
+			 */
+
 			this.clickAddMaterialButton();
-		}		
+		}
+	}
+
+	private String actualProvider;
+	//WebElement element ;
+	protected void getActualProvider(String index, int position) {
+		String choosenSelector = ChoosenSelector.replace("%INDEX%", index);
+		WebElement element = driver.findElements(By.cssSelector(choosenSelector)).get(position);
+		actualProvider =(actualProvider == null ? "" : actualProvider) + "+ "+ element.getText();
+		AppLogger.logMessage("actualProvider: " + actualProvider);
+	}
+	
+	/*protected void getActualProvider() {
+		actualProvider = (actualProvider == null ? "" : actualProvider) + "+ "
+				+ allChosenComboboxChildCungCap.get(2).getText();
+		AppLogger.logMessage("actualProvider: " + actualProvider);
+	}
+
+	protected void getActualProvider2() {
+		actualProvider = (actualProvider == null ? "" : actualProvider) + "+ "
+				+ allChosenComboboxChildCungCap2.get(2).getText();
+		AppLogger.logMessage("actualProvider2: " + actualProvider);
+	}
+*/
+	private String actualManufactural;
+
+	protected void getActualManufactural() {
+		actualManufactural = allChosenComboboxChildSanXuat.get(2).getText();
+		AppLogger.logMessage("actualManufactural: " + actualManufactural);
 	}
 
 }

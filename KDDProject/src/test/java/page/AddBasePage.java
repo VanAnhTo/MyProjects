@@ -2,6 +2,7 @@ package page;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,8 +23,8 @@ public class AddBasePage extends BasePage {
 	protected WebElement txtSoLuong;
 	protected WebElement txtTieuChuanChatLuong;
 	protected WebElement txtCongTyCungCap;
-	protected WebElement cbxCongTyCungCap;
 	protected WebElement txtNhaSanXuat;
+	protected WebElement cbxCongTyCungCap;
 	protected WebElement cbxNhaSanXuat;
 	protected WebElement txtSoDangKyThuoc;
 	protected WebElement txtHamLuongThuoc;
@@ -37,10 +38,28 @@ public class AddBasePage extends BasePage {
 	
 	// cung cap
 	@FindBy(css = ".z-chosenbox-sel div:nth-child(2)")
-	private List<WebElement> allChosenComboboxChildCungCap;
+	protected List<WebElement> allChosenComboboxChildCungCap;
+	
+	@FindBy(css = ".z-chosenbox-sel div:nth-child(4)")
+	protected List<WebElement> allChosenComboboxChildCungCap2;
+	
+	// cung cap
+	protected String ChoosenSelector = ".z-chosenbox-sel div:nth-child(%INDEX%)";
+	
+	public void chooseProviderMaterialDrodown(String index) {
+		clickSelectProviderFromDropdown(cbxCongTyCungCap, positionOfProviderMaterialCombobox, index);
+	}
+	
+	protected void clickSelectProviderFromDropdown(WebElement choosenComboboxProvider, int position, String index) {
+		String choosenSelector = ChoosenSelector.replace("%INDEX%", index);
+		choosenComboboxProvider = driver.findElements(By.cssSelector(choosenSelector)).get(position);
+		choosenComboboxProvider.click();
+	}
+	
+	
 	// san xuat
 	@FindBy(css = ".z-chosenbox-sel div:nth-child(2)")
-	private List<WebElement> allChosenComboboxChildSanXuat;
+	protected List<WebElement> allChosenComboboxChildSanXuat;
 
 	@FindBy(css = ".z-groupbox-cnt .z-textbox")
 	private List<WebElement> allTextbox;
@@ -142,6 +161,10 @@ public class AddBasePage extends BasePage {
 	public void chooseProviderMaterialCombobox() {
 		clickSelectProviderFromCombobox(cbxCongTyCungCap, positionOfProviderMaterialCombobox);
 	}
+	
+	public void chooseProviderTheSecondMaterialCombobox() {
+		clickSelectTheSecondProviderFromCombobox(cbxCongTyCungCap,positionOfProviderMaterialCombobox);
+	}
 
 	// Cong ty san xuat
 	public void focusManufacturalMaterialField() {
@@ -169,6 +192,11 @@ public class AddBasePage extends BasePage {
 
 	protected void clickSelectProviderFromCombobox(WebElement choosenComboboxProvider, int position) {
 		choosenComboboxProvider = allChosenComboboxChildCungCap.get(position);
+		choosenComboboxProvider.click();
+	}
+	
+	protected void clickSelectTheSecondProviderFromCombobox(WebElement choosenComboboxProvider, int position) {
+		choosenComboboxProvider = allChosenComboboxChildCungCap2.get(position);
 		choosenComboboxProvider.click();
 	}
 
