@@ -46,7 +46,7 @@ Feature: Create a new document in special of normal material page
     Then I see the invalid message
 
   #
-  Scenario: Create order not successful with empty materia on grid
+  Scenario: Create order fail with empty materia on grid
     Given I go to specical of nomaral page
     When I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>"
     And I save without material details
@@ -91,7 +91,7 @@ Feature: Create a new document in special of normal material page
     Then I see an error message
 
   #
-  @add
+ 
   Scenario: Add and verify material successful on grid
     Given I go to specical of nomaral page
     When I enter file number field with value "SDH/2016/01" and sign where field with value "Ha Noi"
@@ -126,3 +126,17 @@ Feature: Create a new document in special of normal material page
       | (()(><#@#!^&(*#$%#!)_#$?SJH%^                           | ><#@#!^&(*#$%#!)_#$@!                                   | ''><#@#!^&(*#$%#!)_#$@!                                                                                |
       | SDH SDH SDH SDH SDH SDH SDH SDH SDH SDH SDH SDH SDH SDH | Ha Noi Ha Noi Ha Noi Ha Noi Ha Noi Ha Noi Ha Noi Ha Noi | Ten nguyen lieu 3 Ten nguyen lieu 3 Ten nguyen lieu 3 Ten nguyen lieu 3 Ten nguyen lieu 3 Ten nguyen l |
       | <a>linktex</a>                                          | <em>Without</em>                                        | <b>Bold</b>                                                                                            |
+
+@add
+  Scenario: Edit and verify material on textbox
+    Given I go to specical of nomaral page
+    When I enter file number field with value "SDH/2016/01" and sign where field with value "Ha Noi"
+    And I enter material info list
+      | materialName      | contentMaterial         | amountMaterial | unitMaterial | qualityMaterial | registrationNumber    | contentration       | contentImport      |
+      | Ten nguyen lieu 2 | Ham luong, dang bao che |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
+    And I add to grid
+    And I click edit button
+    Then I see a material on grid
+
+      
+      

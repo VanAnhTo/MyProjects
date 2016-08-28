@@ -88,9 +88,9 @@ public class Specification {
 
 	public void verifyAlertDate() {
 		NormalMaterialSearchPage onSearchPage = pageStore.get(NormalMaterialSearchPage.class);
-		// onSearchPage.assertAlertDatePickerInvalid();
+		//onSearchPage.verifyInvalidMessage();
 	}
-
+	
 	public void verifyEmptyMessage() {
 		NormalMaterialSearchPage onSearchPage = pageStore.get(NormalMaterialSearchPage.class);
 		onSearchPage.assertEmptyMessage();
@@ -196,6 +196,11 @@ public class Specification {
 	public void clickAddOrderToGrid(PageDetail pageDetail) {
 		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
 		onNew2ddPage.clickAddOrderToGrid(pageDetail);
+	}
+
+	public void clickEdit() {
+		SpecialNormalMaterialPage onNew2ddPage = pageStore.get(SpecialNormalMaterialPage.class);
+		onNew2ddPage.clickEdit();	
 	}
 
 }

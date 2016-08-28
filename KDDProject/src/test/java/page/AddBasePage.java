@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 public class AddBasePage extends BasePage {
 
@@ -32,6 +31,7 @@ public class AddBasePage extends BasePage {
 	protected WebElement cbxCamKet;
 	protected WebElement btnAdd;
 	protected WebElement btnSave;
+	protected WebElement editSave;
 	protected WebElement txtQuyCachDongGoi;
 	
 	
@@ -47,10 +47,14 @@ public class AddBasePage extends BasePage {
 	protected String ChoosenSelector = ".z-chosenbox-sel div:nth-child(%INDEX%)";
 	
 	public void chooseProviderMaterialDrodown(String index) {
-		clickSelectProviderFromDropdown(cbxCongTyCungCap, positionOfProviderMaterialCombobox, index);
+		clickSelectFromDropdown(cbxCongTyCungCap, positionOfProviderMaterialCombobox, index);
 	}
 	
-	protected void clickSelectProviderFromDropdown(WebElement choosenComboboxProvider, int position, String index) {
+	public void chooseManufacturalMaterialCombobox(String index) {
+		clickSelectFromDropdown(cbxNhaSanXuat, positionOfManufacturalMaterialCombobox, index);
+	}
+	
+	protected void clickSelectFromDropdown(WebElement choosenComboboxProvider, int position, String index) {
 		String choosenSelector = ChoosenSelector.replace("%INDEX%", index);
 		choosenComboboxProvider = driver.findElements(By.cssSelector(choosenSelector)).get(position);
 		choosenComboboxProvider.click();
@@ -75,6 +79,9 @@ public class AddBasePage extends BasePage {
 
 	@FindBy(css = ".button.z-button-os")
 	private List<WebElement> allButton;
+	
+	@FindBy(css = "table tbody:nth-child(2) tr td:nth-child(10) div img:nth-child(1)")
+	private WebElement imgEdit;
 
 	// End Thuoc tinh
 	// ===============================================
@@ -102,7 +109,8 @@ public class AddBasePage extends BasePage {
 	protected int positionOfCommitedCheckbox;
 	protected int positionOfAddMaterialButton;
 	protected int positionOfaveListMaterialButton;
-
+	protected int positionOfEditButton;
+	
 	protected int positionOfQuyCachDongGoi;
 
 	public void enterFileNumberFieldAs(String fileNumber) {
@@ -189,6 +197,10 @@ public class AddBasePage extends BasePage {
 	public void clickSaveListMaterialButton() {
 		clickButton(allButton, btnSave, positionOfaveListMaterialButton);
 	}
+	
+	public void clickImgEditButton() {
+		imgEdit.click();
+	}
 
 	protected void clickSelectProviderFromCombobox(WebElement choosenComboboxProvider, int position) {
 		choosenComboboxProvider = allChosenComboboxChildCungCap.get(position);
@@ -204,7 +216,10 @@ public class AddBasePage extends BasePage {
 		choosenComboboxManufacture = allChosenComboboxChildSanXuat.get(position);
 		choosenComboboxManufacture.click();
 	}
-	
+
+	protected String replaceNewLine(String text) {
+		return text.replaceAll("\\r\\n|\\r|\\n",  "");	
+	}
 	
 	
 

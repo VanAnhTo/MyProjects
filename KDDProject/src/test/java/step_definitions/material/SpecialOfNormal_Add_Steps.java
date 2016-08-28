@@ -131,6 +131,13 @@ public class SpecialOfNormal_Add_Steps {
 		PageDetail pageDetail = pageDetailBuilder.build();
 		user.clickAddOrderToGrid(pageDetail);
 	}
+	
+	@And("I click edit button")
+	public void i_edit_material_on_grid() {
+		//pageDetailBuilder.withMaterialDetailList(materialDetailList);
+		//PageDetail pageDetail = pageDetailBuilder.build();
+		user.clickEdit();
+	}
 		
 	@And("I add order to grid without checkbox commited")
 	public void i_save_order_without_check_checkbox() {

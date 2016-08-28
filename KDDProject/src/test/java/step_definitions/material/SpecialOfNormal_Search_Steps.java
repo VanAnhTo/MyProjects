@@ -89,5 +89,4 @@ public class SpecialOfNormal_Search_Steps {
 	public void i_see_error_tooltip() throws InterruptedException {
 		user.verifyAlertDate();
 	}
-
 }

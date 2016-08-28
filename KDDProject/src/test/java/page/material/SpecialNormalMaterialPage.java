@@ -1,6 +1,8 @@
 package page.material;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -40,6 +42,9 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 
 	@FindBy(css = ".z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(9) div")
 	private WebElement tdNongDoHamLuong;
+	
+	@FindBy(css = "div.z-chosenbox-pp div.z-chosenbox-sel div.z-chosenbox-option")
+	private WebElement droplist;
 
 	public SpecialNormalMaterialPage(WebDriver driver) throws NumberFormatException, IOException {
 		super(driver);
@@ -84,6 +89,10 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 				.parseInt(PropertiesStore.getProperty("PositionOfAddMaterialButton_SpecialOfNormalPage"));
 		positionOfaveListMaterialButton = Integer
 				.parseInt(PropertiesStore.getProperty("PositionOfaveListMaterialButton_SpecialOfNormalPage"));
+		
+		positionOfEditButton = Integer
+				.parseInt(PropertiesStore.getProperty("PositionOfEditButton_SpecialOfNormalPage"));
+		
 	}
 
 	public void saveMaterialWith(PageDetail pageDetail) {
@@ -333,8 +342,6 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	}
 
 	private void verifyMaterialNameOnGrid(PageDetail pageDetail) {
-		// getExcuteJavaScript();
-		// AppLogger.logMessage("js: " + getExcuteJavaScript());
 		String actualMaterialName = pageDetail.getMaterialDetailList().get(0).getMaterialName()
 				+ pageDetail.getMaterialDetailList().get(0).getContenMaterial();
 		AppLogger.logMessage("actual result: " + actualMaterialName);
@@ -393,22 +400,22 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	}
 
 	private void verifyManufacturalOnGrid(PageDetail pageDetail) {
-		// String actualManufactural =
-		// pageDetail.getMaterialDetailList().get(0).getUnitMaterial();
-		AppLogger.logMessage("actual result: " + actualManufactural);
 		String expectedManufactural = getCongTySanXuat();
-		AppLogger.logMessage("expected result: " + expectedManufactural);
-		Assert.assertEquals("+ " + actualManufactural, expectedManufactural);
+		String actual = actualManufactural;
+		AppLogger.logMessage("expected result manufactural: " + expectedManufactural);
+		Assert.assertEquals(actual, expectedManufactural);
 	}
 
 	private String getNongDoHamLuong() {
-		String nongDoHamLuong = tdNongDoHamLuong.findElement(By.xpath(".//span[normalize-space()]")).getText();
-		return nongDoHamLuong.replaceAll("\\r\\n|\\r|\\n", "");
+		String temp = tdNongDoHamLuong.findElement(By.xpath(".//span[normalize-space()]")).getText();
+		//return nongDoHamLuong.replaceAll("\\r\\n|\\r|\\n", "");
+		return replaceNewLine(temp);
 	}
 
 	private String getTenNguyenLieu() {
-		String materialName = tdTenNguyenLieu.findElement(By.xpath(".//span[normalize-space()]")).getText();
-		return materialName.replaceAll("\\r\\n|\\r|\\n", "");
+		String temp = tdTenNguyenLieu.findElement(By.xpath(".//span[normalize-space()]")).getText();
+		//return materialName.replaceAll("\\r\\n|\\r|\\n", "");
+		return replaceNewLine(temp);
 	}
 
 	protected String getExcuteJavaScript() {
@@ -420,9 +427,10 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 
 	private String getCongTyCungCap() {
 		String temp = tdCongTyCungCap.findElement(By.xpath(".//span[normalize-space()]")).getText();
-		return temp.replaceAll("\\r\\n|\\r|\\n", "");
+		//return temp.replaceAll("\\r\\n|\\r|\\n", "");
+		return replaceNewLine(temp);
 	}
-
+	
 	private String getCongTySanXuat() {
 		return tdCongTySanXuat.getText();
 	}
@@ -489,38 +497,35 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 
 			this.focusOnProviderMaterialField();
 			this.waitForDropdown();
-			this.getActualProvider("2",2);
-			this.chooseProviderMaterialDrodown("2");
+			String a = this.randomIndex();
+			this.getActualProvider(a);
+			this.chooseProviderMaterialDrodown(a);
 
 			this.focusManufacturalMaterialField();
 			this.waitForDropdown();
-			getActualManufactural();
-			this.chooseManufacturalMaterialCombobox();
+			String i = this.randomIndex();
+			this.getActualManufactural(i);
+			this.chooseManufacturalMaterialCombobox(i);
 
 			this.focusOnProviderMaterialField();
 			this.waitForDropdown();
-			this.getActualProvider("14",2);
-			this.chooseProviderMaterialDrodown("14");
-
-			/*
-			 * this.focusManufacturalMaterialField(); this.waitForDropdown();
-			 * getActualManufactural();
-			 * this.chooseManufacturalMaterialCombobox();
-			 */
-
+			String b = this.randomIndex();
+			this.getActualProvider(b);
+			this.chooseProviderMaterialDrodown(b);
+			
 			this.clickAddMaterialButton();
 		}
 	}
 
 	private String actualProvider;
-	//WebElement element ;
-	protected void getActualProvider(String index, int position) {
+	protected void getActualProvider(String index) {
+		this.waitForDropdown();
 		String choosenSelector = ChoosenSelector.replace("%INDEX%", index);
-		WebElement element = driver.findElements(By.cssSelector(choosenSelector)).get(position);
+		WebElement element = driver.findElements(By.cssSelector(choosenSelector)).get(2);
 		actualProvider =(actualProvider == null ? "" : actualProvider) + "+ "+ element.getText();
 		AppLogger.logMessage("actualProvider: " + actualProvider);
 	}
-	
+
 	/*protected void getActualProvider() {
 		actualProvider = (actualProvider == null ? "" : actualProvider) + "+ "
 				+ allChosenComboboxChildCungCap.get(2).getText();
@@ -534,10 +539,30 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	}
 */
 	private String actualManufactural;
-
-	protected void getActualManufactural() {
+	/*protected void getActualManufactural() {
 		actualManufactural = allChosenComboboxChildSanXuat.get(2).getText();
 		AppLogger.logMessage("actualManufactural: " + actualManufactural);
+	}*/
+	
+	protected void getActualManufactural(String index) {
+		this.waitForDropdown();
+		String choosenSelector = ChoosenSelector.replace("%INDEX%", index);
+		WebElement element = driver.findElements(By.cssSelector(choosenSelector)).get(2);
+		actualManufactural =(actualManufactural == null ? "" : actualManufactural) + "+ "+ element.getText();
+		AppLogger.logMessage("actualManufactural: " + actualManufactural);
+	}
+	
+	private String randomIndex() {
+		Random rand = new Random(); 
+		int index = rand.nextInt(15) + 1;
+		AppLogger.logMessage("random index " + index);
+		return Integer.toString(index);
 	}
 
+	public void clickEdit(){
+		waitForDataFillOnTableComplete(1);
+		this.clickImgEditButton();
+	}
+
+	
 }
