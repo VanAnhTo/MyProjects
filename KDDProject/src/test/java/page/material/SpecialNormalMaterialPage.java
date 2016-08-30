@@ -51,6 +51,7 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 
 	private String actualManufactural;
 	private String actualProvider;
+	private String actualSubstance;
 	private int positionOfSubstance;
 	private int positionOfSubstanceField;
 	
@@ -352,10 +353,12 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 		verifyContentOnGrid(pageDetail);
 		verifyProviderOnGrid(pageDetail);
 		verifyManufacturalOnGrid(pageDetail);
+		
 	}
 
 	private void verifyMaterialNameOnGrid(PageDetail pageDetail) {
-		String actualMaterialName = pageDetail.getMaterialDetailList().get(0).getMaterialName()
+		
+		String actualMaterialName =  pageDetail.getMaterialDetailList().get(0).getMaterialName()
 				+ pageDetail.getMaterialDetailList().get(0).getContenMaterial();
 		AppLogger.logMessage("actual result: " + actualMaterialName);
 		String expectedMaterialName = getTenNguyenLieu();
@@ -364,11 +367,12 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 	}
 
 	private void verifyContentOnGrid(PageDetail pageDetail) {
-		String actualContent = pageDetail.getMaterialDetailList().get(0).getContentration() + " "
+		String actualSubs = actualSubstance;
+		String actualContent = actualSubs+" "+ pageDetail.getMaterialDetailList().get(0).getContentration() + " "
 				+ pageDetail.getMaterialDetailList().get(0).getContentImport();
-		AppLogger.logMessage("actual result: " + actualContent);
+		AppLogger.logMessage("AAA actual result: " + actualContent);
 		String expectedContent = getNongDoHamLuong();
-		AppLogger.logMessage("expected result: " + expectedContent);
+		AppLogger.logMessage("AAA expected result: " + expectedContent);
 		Assert.assertEquals(actualContent, expectedContent);
 	}
 
@@ -507,6 +511,7 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 			
 			this.focusOnSubstanceField();
 			this.waitForDropdown();
+			this.getActualSubstance("3");
 			this.chooseSubstanceDrodown("3");
 			this.clickCommitedCheckbox();
 
@@ -546,6 +551,14 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 		WebElement element = driver.findElements(By.cssSelector(choosenSelector)).get(2);
 		actualManufactural = (actualManufactural == null ? "" : actualManufactural) + "+ " + element.getText();
 		AppLogger.logMessage("actualManufactural: " + actualManufactural);
+	}
+	
+	protected void getActualSubstance(String index) {
+		this.waitForDropdown();
+		String choosenSelector = ChoosenSelector.replace("%INDEX%", index);
+		WebElement element = driver.findElements(By.cssSelector(choosenSelector)).get(2);
+		actualSubstance = (actualSubstance == null ? "" : actualSubstance) + element.getText();
+		AppLogger.logMessage("actualSubstance: " + actualSubstance);
 	}
 
 	private String randomIndex() {
