@@ -42,10 +42,18 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 
 	@FindBy(css = ".z-listbox-body table tbody:nth-child(2) tr:nth-child(1) td:nth-child(9) div")
 	private WebElement tdNongDoHamLuong;
-	
+
 	@FindBy(css = "div.z-chosenbox-pp div.z-chosenbox-sel div.z-chosenbox-option")
 	private WebElement droplist;
+	
+	@FindBy(css = ".z-chosenbox")
+	private List<WebElement> chosenbox;
 
+	private String actualManufactural;
+	private String actualProvider;
+	private int positionOfSubstance;
+	private int positionOfSubstanceField;
+	
 	public SpecialNormalMaterialPage(WebDriver driver) throws NumberFormatException, IOException {
 		super(driver);
 		positionOfFileNumberField = Integer
@@ -89,10 +97,15 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 				.parseInt(PropertiesStore.getProperty("PositionOfAddMaterialButton_SpecialOfNormalPage"));
 		positionOfaveListMaterialButton = Integer
 				.parseInt(PropertiesStore.getProperty("PositionOfaveListMaterialButton_SpecialOfNormalPage"));
-		
+
 		positionOfEditButton = Integer
 				.parseInt(PropertiesStore.getProperty("PositionOfEditButton_SpecialOfNormalPage"));
 		
+		positionOfSubstance = Integer
+				.parseInt(PropertiesStore.getProperty("PositionOfSubstance_SpecialOfNormalPage"));
+
+		positionOfSubstanceField = Integer
+				.parseInt(PropertiesStore.getProperty("PositionOfSubstanceField_SpecialOfNormalPage"));
 	}
 
 	public void saveMaterialWith(PageDetail pageDetail) {
@@ -408,13 +421,11 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 
 	private String getNongDoHamLuong() {
 		String temp = tdNongDoHamLuong.findElement(By.xpath(".//span[normalize-space()]")).getText();
-		//return nongDoHamLuong.replaceAll("\\r\\n|\\r|\\n", "");
 		return replaceNewLine(temp);
 	}
 
 	private String getTenNguyenLieu() {
 		String temp = tdTenNguyenLieu.findElement(By.xpath(".//span[normalize-space()]")).getText();
-		//return materialName.replaceAll("\\r\\n|\\r|\\n", "");
 		return replaceNewLine(temp);
 	}
 
@@ -427,10 +438,10 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 
 	private String getCongTyCungCap() {
 		String temp = tdCongTyCungCap.findElement(By.xpath(".//span[normalize-space()]")).getText();
-		//return temp.replaceAll("\\r\\n|\\r|\\n", "");
+		// return temp.replaceAll("\\r\\n|\\r|\\n", "");
 		return replaceNewLine(temp);
 	}
-	
+
 	private String getCongTySanXuat() {
 		return tdCongTySanXuat.getText();
 	}
@@ -493,6 +504,10 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 			this.enterRegistrationNumberFieldAs(materialDetail.getRegistrationNumber());
 			this.enterContentImportFeildAs(materialDetail.getContentImport());
 			this.enterContentrationFeildAs(materialDetail.getContentration());
+			
+			this.focusOnSubstanceField();
+			this.waitForDropdown();
+			this.chooseSubstanceDrodown("3");
 			this.clickCommitedCheckbox();
 
 			this.focusOnProviderMaterialField();
@@ -512,57 +527,63 @@ public class SpecialNormalMaterialPage extends AddBasePage {
 			String b = this.randomIndex();
 			this.getActualProvider(b);
 			this.chooseProviderMaterialDrodown(b);
-			
+
 			this.clickAddMaterialButton();
 		}
 	}
 
-	private String actualProvider;
 	protected void getActualProvider(String index) {
 		this.waitForDropdown();
 		String choosenSelector = ChoosenSelector.replace("%INDEX%", index);
 		WebElement element = driver.findElements(By.cssSelector(choosenSelector)).get(2);
-		actualProvider =(actualProvider == null ? "" : actualProvider) + "+ "+ element.getText();
+		actualProvider = (actualProvider == null ? "" : actualProvider) + "+ " + element.getText();
 		AppLogger.logMessage("actualProvider: " + actualProvider);
 	}
 
-	/*protected void getActualProvider() {
-		actualProvider = (actualProvider == null ? "" : actualProvider) + "+ "
-				+ allChosenComboboxChildCungCap.get(2).getText();
-		AppLogger.logMessage("actualProvider: " + actualProvider);
-	}
-
-	protected void getActualProvider2() {
-		actualProvider = (actualProvider == null ? "" : actualProvider) + "+ "
-				+ allChosenComboboxChildCungCap2.get(2).getText();
-		AppLogger.logMessage("actualProvider2: " + actualProvider);
-	}
-*/
-	private String actualManufactural;
-	/*protected void getActualManufactural() {
-		actualManufactural = allChosenComboboxChildSanXuat.get(2).getText();
-		AppLogger.logMessage("actualManufactural: " + actualManufactural);
-	}*/
-	
 	protected void getActualManufactural(String index) {
 		this.waitForDropdown();
 		String choosenSelector = ChoosenSelector.replace("%INDEX%", index);
 		WebElement element = driver.findElements(By.cssSelector(choosenSelector)).get(2);
-		actualManufactural =(actualManufactural == null ? "" : actualManufactural) + "+ "+ element.getText();
+		actualManufactural = (actualManufactural == null ? "" : actualManufactural) + "+ " + element.getText();
 		AppLogger.logMessage("actualManufactural: " + actualManufactural);
 	}
-	
+
 	private String randomIndex() {
-		Random rand = new Random(); 
+		Random rand = new Random();
 		int index = rand.nextInt(15) + 1;
 		AppLogger.logMessage("random index " + index);
 		return Integer.toString(index);
 	}
 
-	public void clickEdit(){
+	public void clickEdit() {
 		waitForDataFillOnTableComplete(1);
 		this.clickImgEditButton();
+		this.getProvider();
+		this.getManufactural();
+		AppLogger.logMessage("get provider: " + getProvider());
+		AppLogger.logMessage("get provider: " + getManufactural());
 	}
 
+	public String getProvider() {
+		return chosenbox.get(1).getText();
+	}
+	public String getManufactural() {
+		return chosenbox.get(2).getText();
+	}
 	
+	
+	protected WebElement txtSubstance;
+	
+	@FindBy(css = ".z-chosenbox .z-chosenbox-inp")
+	private List<WebElement> allChosenbox;
+	
+	private WebElement cbxHoatChat;
+	
+	public void chooseSubstanceDrodown(String index) {
+		clickSelectFromDropdown(cbxHoatChat, positionOfSubstance, index);
+	}
+	public void focusOnSubstanceField() {
+		clickOnChosenTextBox(allChosenbox, txtSubstance, positionOfSubstanceField);
+	}
+
 }

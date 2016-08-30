@@ -136,7 +136,7 @@ Feature: Create a new document in special of normal material page
       | Ten nguyen lieu 2 | Ham luong, dang bao che |             20 | tan          | ISO             | SDK cua thuoc duoc SX | Ham luong cua thuoc | dang bao che thuoc |
     And I add to grid
     And I click edit button
-    Then I see a material on grid
+    #Then I see a material on grid
 
       
       
