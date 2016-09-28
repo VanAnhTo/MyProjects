@@ -4,12 +4,12 @@ Feature: Create a new document in special of normal material page
   So that I can import many drug packages
 
   Background: 
-    Given I open browser and enter link website "http://203.190.173.37:8080/kinhdoanhduoc/Pages/login.zul"
+    Given I open browser and enter link website "http://125.212.133.235:8002/kinhdoanhduoc/Pages/login.zul"
     And I fill login form
-      | username  | password |
-      | 010203123 |      123 |
+      | username | password |
+      | 01020304 |      123 |
     And I login
-
+@add
   Scenario Outline: Create order successful with valid values
     Given I go to specical of nomaral page
     When I enter file number field with value "<fileNumber>" and sign where field with value "<signWhere>"
@@ -91,7 +91,6 @@ Feature: Create a new document in special of normal material page
     Then I see an error message
 
   #
- 
   Scenario: Add and verify material successful on grid
     Given I go to specical of nomaral page
     When I enter file number field with value "SDH/2016/01" and sign where field with value "Ha Noi"
@@ -127,7 +126,7 @@ Feature: Create a new document in special of normal material page
       | SDH SDH SDH SDH SDH SDH SDH SDH SDH SDH SDH SDH SDH SDH | Ha Noi Ha Noi Ha Noi Ha Noi Ha Noi Ha Noi Ha Noi Ha Noi | Ten nguyen lieu 3 Ten nguyen lieu 3 Ten nguyen lieu 3 Ten nguyen lieu 3 Ten nguyen lieu 3 Ten nguyen l |
       | <a>linktex</a>                                          | <em>Without</em>                                        | <b>Bold</b>                                                                                            |
 
-@add
+  
   Scenario: Edit and verify material on textbox
     Given I go to specical of nomaral page
     When I enter file number field with value "SDH/2016/01" and sign where field with value "Ha Noi"
@@ -137,6 +136,3 @@ Feature: Create a new document in special of normal material page
     And I add to grid
     And I click edit button
     Then I see a material on grid
-
-      
-      
